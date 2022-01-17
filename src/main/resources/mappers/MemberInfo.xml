@@ -3,8 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zinnaworks.mapper.MemberMapper">
-
-
 	<insert id="insertMemberInfo"
 		parameterType="com.zinnaworks.vo.Member">
 		INSERT INTO zinnaworks.user_info
@@ -39,6 +37,28 @@
 		WHERE email = #{email}
 	</update>
 
+	<insert id="mergeInsertAuthInfo"
+		parameterType="com.zinnaworks.vo.Mail">
+		INSERT INTO zinnaworks.USER_AUTH(USER_ID, AUTH_KEY, CRE_DT, EXP_DT)
+		VALUES(#{userId},#{authKey},#{creDt},#{expDt})
+	</insert>
+
+ <select id="selectAuthInfo" parameterType="String" resultType="com.zinnaworks.vo.MailAuth">
+		SELECT *
+		FROM zinnaworks.USER_AUTH
+		WHERE USER_ID=#{email} AND EXP_DT = (SELECT MAX(EXP_DT) FROM USER_AUTH)  
+	</select>  
+	
+	<!-- <update id="mergeUpdateAuthInfo"
+		parameterType="com.zinnaworks.vo.Mail">
+		MERGE INTO USER_AUTH
+		USING USER_AUTH
+		ON (USER_ID = #{address})
+		WHEN MATCHED THEN
+		UPDATE SET AUTH_KEY=#{AUTH_KEY}, CRE_DT=#{CRE_DT}, EXP_DT=#{EXP_DT}
+		WHERE USER_ID=#{address}
+	</update> -->
+	
 	<!-- <update id="mergeInsertAuthInfo"
 		parameterType="com.zinnaworks.vo.Mail">
 		MERGE INTO USER_AUTH
@@ -48,28 +68,5 @@
 		INSERT INTO (USER_ID, AUTH_KEY, CRE_DT,EXP_DT)
 		VALUES (#{address},#{AUTH_KEY},#{CRE_DT},#{EXP_DT})
 	</update> -->
-	
-	<insert id="mergeInsertAuthInfo"
-		parameterType="com.zinnaworks.vo.Mail">
-		
-		INSERT INTO USER_AUTH(USER_ID, AUTH_KEY, CRE_DT, EXP_DT)
-		VALUES(#{address},#{AUTH_KEY},#{CRE_DT},#{EXP_DT})
-		ON
-		DUPLICATE KEY 
-		UPDATE(AUTH_KEY=#{AUTH_KEY}, CRE_DT=#{CRE_DT}, EXP_DT=#{EXP_DT})
-		WHERE USER_ID=#{address}
-		
-	</insert>
-
-	<update id="mergeUpdateAuthInfo"
-		parameterType="com.zinnaworks.vo.Mail">
-		MERGE INTO USER_AUTH
-		USING USER_AUTH
-		ON (USER_ID = #{address})
-		WHEN MATCHED THEN
-		UPDATE SET AUTH_KEY=#{AUTH_KEY}, CRE_DT=#{CRE_DT}, EXP_DT=#{EXP_DT}
-		WHERE USER_ID=#{address}
-	</update>
-
 
 </mapper>

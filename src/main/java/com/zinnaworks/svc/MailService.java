@@ -3,6 +3,7 @@ package com.zinnaworks.svc;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.Random;
 
 import javax.mail.Message.RecipientType;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import com.zinnaworks.repo.MemberRepository;
 import com.zinnaworks.vo.Mail;
+import com.zinnaworks.vo.MailAuth;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,12 +30,8 @@ public class MailService {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	
-	
-	 private MimeMessage createMessage(String to)throws Exception{
+	 private MimeMessage createMessage(String to, String code)throws Exception{
 		 MimeMessage  message = mailSender.createMimeMessage();
-		 System.out.println("message = " + message);
-	        String code = createCode(ePw);
 	        message.addRecipients(RecipientType.TO, to); //보내는 대상
 	        message.setSubject("zinnaworks 인증코드 발송 "); //제목
 	        String msg="";
@@ -48,11 +46,11 @@ public class MailService {
 	        return message;
 	    }
 	
-	public static final String ePw = mailAuthKey();
-	
 	// 메일 보내기
-	public boolean mailSend(Mail mail) throws Exception{
-		MimeMessage message = createMessage(mail.getAddress().toString());
+	public boolean mailSend(MailAuth mail) throws Exception{
+		String authKey = mailAuthKey();
+		String code = createCode(authKey);
+		MimeMessage message = createMessage(mail.getUserId().toString(), code);
         try{//예외처리
         	//인증번호DB 등록, 등록일, 만료일 DB 저장
         	// 메일 보내는 년월일시간
@@ -60,14 +58,16 @@ public class MailService {
         	Date cre_dt = new Date();
         	// 메일 보내는 년월일시간 + 1일
         	Date exr_dt = createAuthKeyNextDT();
-        	mail.setCRE_DT(formatter.format(cre_dt));
-        	mail.setEXP_DT(formatter.format(exr_dt));
-        	mail.setAUTH_KEY(123456);
-        	System.out.println("address = " + mail.getAddress());
-        	int data = memberRepository.mergeInsertAuthInfo(mail);
-        	System.out.println("insertcheck = " + data);
+        	mail.setCreDt(formatter.format(cre_dt));
+        	mail.setExpDt(formatter.format(exr_dt));
+        	mail.setAuthKey(Integer.parseInt(code));
         	
-            //mailSender.send(message);
+        	int data = memberRepository.mergeInsertAuthInfo(mail);
+        	if(data > 0) {
+        	//	MailAuth result = memberRepository.selectAuthInfo(mail);
+        	//	System.out.println("result = " + result.getAuthKey());
+        	}
+            mailSender.send(message);
         }catch(MailException es){
             es.printStackTrace();
             return false;
@@ -86,17 +86,14 @@ public class MailService {
 	}
 	
 	public String createCode(String ePw) {
-		return ePw.substring(0, 3) + "-" + ePw.substring(3, 6);
+		return ePw.substring(0, 6);
 	}
 	
 	public Date createAuthKeyNextDT() {
 		Date date = new Date();
-		System.out.println("date before = " + date);
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, 1);
 		date = cal.getTime();
-		System.out.println("date = " + cal);
-		System.out.println("date after = " + date);
 		
 		return date;
 		

@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.zinnaworks.repo.MemberRepository;
+import com.zinnaworks.vo.MailAuth;
 import com.zinnaworks.vo.Member;
 
 @Service
@@ -24,13 +25,11 @@ public class MemberService implements UserDetailsService {
 	MemberRepository memberRepository;
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("username = " + username);
 		Member member = memberRepository.findById(username);
-		System.out.println("member ?? " + member);
 		return member;
 
 	}
-	
+
 //	public UserDetails CheckLogin(String username, String pwd) throws Exception {
 //		
 //		Member member = new Member();
@@ -48,16 +47,16 @@ public class MemberService implements UserDetailsService {
 //		
 //		return result;
 //	}
-	
-	public boolean InsertMemberInfo(Member memberVo) throws UsernameNotFoundException{
-		//회원가입 
-		//1. 가입할 이메일이 있는지 확인 -> 없으면 insert
-		
+
+	public boolean InsertMemberInfo(Member memberVo) throws UsernameNotFoundException {
+		// 회원가입
+		// 1. 가입할 이메일이 있는지 확인 -> 없으면 insert
+
 		System.out.println("test Service = " + memberVo.toString());
 		Member member = memberRepository.findById(memberVo.getEmail());
-		if(member == null) {
+		if (member == null) {
 			int saveMember = memberRepository.saveMember(memberVo);
-			if(saveMember > 0) {
+			if (saveMember > 0) {
 				return true;
 			}
 			return false;
@@ -65,14 +64,25 @@ public class MemberService implements UserDetailsService {
 		return false;
 	}
 
-	public boolean updateMemberPwd(Member member) throws Exception {
-		System.out.println("service member pwd = " + member.getPwd());
-		int update = memberRepository.updateMemberPwd(member);
-		if(update < 0) {
+	public boolean updateMemberPwd(Member member, String code) throws Exception {
+		String email = member.getEmail();
+		String emailAuth = null;
+		if (member != null) {
+			MailAuth auth = memberRepository.selectAuthInfo(email);
+			if(auth == null) {
+				return false;
+			}
+			emailAuth = String.valueOf(auth.getAuthKey());
+		}
+		if (code.equals(emailAuth)) {
+			int update = memberRepository.updateMemberPwd(member);
+			if (update < 0) {
+				return false;
+			}
+			return true;
+		}else {
 			return false;
 		}
-		return true;
 	}
-
 
 }

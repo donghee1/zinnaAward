@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zinnaworks.svc.MailService;
 import com.zinnaworks.svc.MemberService;
 import com.zinnaworks.vo.Mail;
+import com.zinnaworks.vo.MailAuth;
 import com.zinnaworks.vo.Member;
 
 @Controller
@@ -166,8 +167,9 @@ public class MemberController {
 			result.put("result", false);
 			return result;
 		} else {
-			Mail mail = new Mail();
-			mail.setAddress(emailAddress);
+			//Mail mail = new Mail();
+			MailAuth mail = new MailAuth();
+			mail.setUserId(emailAddress);
 			data = mailService.mailSend(mail);
 		}
 		result.put("result", data);
@@ -196,12 +198,7 @@ public class MemberController {
 		} else if (!code.equals("") && code != null) {
 			// 메일로 전송한 인증코드 6자리 비교
 			// 코드기 맞는 경우 update 진행
-			if (mailService.ePw.equals(code)) {
-				data = memberService.updateMemberPwd(member);
-			} else {
-				// error 경우 인증코드가 맞지 않는다고 알림
-				result.put("result", "error");
-			}
+				data = memberService.updateMemberPwd(member, code);
 		}
 		result.put("result", data);
 		return result;
