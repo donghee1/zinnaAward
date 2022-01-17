@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zinnaworks.mapper.MemberMapper">
+
+
+	<insert id="insertMemberInfo"
+		parameterType="com.zinnaworks.vo.Member">
+		INSERT INTO zinnaworks.user_info
+		(user_no, email, name,
+		password, team ,entryDate, phone, role)
+		VALUES(#{user_no},#{email},#{name},#{password},#{team},
+		#{entryDate},#{phone}, #{role});
+	</insert>
+
+	<select id="selectLoginInfo"
+		resultType="com.zinnaworks.vo.Member">
+		SELECT * FROM user_info
+		WHERE email = #{email} AND password
+		= #{password}
+	</select>
+
+	<select id="selectCheckById"
+		resultType="com.zinnaworks.vo.Member">
+		SELECT * FROM user_info
+		WHERE email = #{email};
+	</select>
+
+	<select id="loadUserByUsername"
+		resultType="com.zinnaworks.vo.Member">
+		SELECT * FROM user_info
+		WHERE email = #{email}
+	</select>
+
+	<update id="updateMemberPwd"
+		parameterType="com.zinnaworks.vo.Member">
+		UPDATE user_info SET pwd = #{pwd}
+		WHERE email = #{email}
+	</update>
+
+	<!-- <update id="mergeInsertAuthInfo"
+		parameterType="com.zinnaworks.vo.Mail">
+		MERGE INTO USER_AUTH
+		USING USER_AUTH
+		ON (USER_ID=#{address})
+		WHEN NOT MATCHED THEN
+		INSERT INTO (USER_ID, AUTH_KEY, CRE_DT,EXP_DT)
+		VALUES (#{address},#{AUTH_KEY},#{CRE_DT},#{EXP_DT})
+	</update> -->
+	
+	<insert id="mergeInsertAuthInfo"
+		parameterType="com.zinnaworks.vo.Mail">
+		
+		INSERT INTO USER_AUTH(USER_ID, AUTH_KEY, CRE_DT, EXP_DT)
+		VALUES(#{address},#{AUTH_KEY},#{CRE_DT},#{EXP_DT})
+		ON
+		DUPLICATE KEY 
+		UPDATE(AUTH_KEY=#{AUTH_KEY}, CRE_DT=#{CRE_DT}, EXP_DT=#{EXP_DT})
+		WHERE USER_ID=#{address}
+		
+	</insert>
+
+	<update id="mergeUpdateAuthInfo"
+		parameterType="com.zinnaworks.vo.Mail">
+		MERGE INTO USER_AUTH
+		USING USER_AUTH
+		ON (USER_ID = #{address})
+		WHEN MATCHED THEN
+		UPDATE SET AUTH_KEY=#{AUTH_KEY}, CRE_DT=#{CRE_DT}, EXP_DT=#{EXP_DT}
+		WHERE USER_ID=#{address}
+	</update>
+
+
+</mapper>

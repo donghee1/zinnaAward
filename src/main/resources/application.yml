@@ -1,0 +1,38 @@
+spring:
+  main:
+    allow-circular-references: true
+  # 접속 DB 설정
+  datasource:
+    url: "jdbc:mariadb://127.0.0.1:3306/zinnaworks"
+    username: "admin"
+    password: "admin"
+    driver-class-name: "org.mariadb.jdbc.Driver"
+  thymeleaf:
+    prefix: classpath:templates/
+    check-template-location: true
+    suffix: .html
+    cache: false
+  webflux:
+    static-path-pattern: /resources/**
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: zinna_ict@zinnaworks.com 
+    password: zinnaworks
+    properties:
+     mail:
+     smtp:
+     auth: true
+     starttls:
+     enable: true
+     required: true
+     soketFactory:
+     fallback: false
+     port: 465
+
+mybatis:
+  # mapper 경로 지정
+  mapper-locations: mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    
