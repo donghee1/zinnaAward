@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +47,7 @@ public class MemberController {
 
 	@GetMapping("/login")
 	public String loginForm(Model model) {
-		System.out.println("login page!");
+		System.out.println("login");
 		model.addAttribute("Member", new Member());
 		return "login";
 	}
@@ -54,59 +55,49 @@ public class MemberController {
 	// 업데이트 전 메일 전송
 	@GetMapping("/mail")
 	public String pwdmailSenderForm(Model model) {
-		System.out.println("login update Page!");
-		model.addAttribute("Member", new Mail());
+		model.addAttribute("mailAuth", new MailAuth());
 		return "mail";
 	}
 
 	// 업데이트 전 메일 전송
 	@GetMapping("/update")
 	public String pwdUpdateForm(Model model) {
-		System.out.println("login update Page!");
 		model.addAttribute("Member", new Member());
 		return "update";
-	}
-
-	@GetMapping("/main")
-	public String mainPageForm(Model model, HttpServletResponse res) {
-		System.out.println("main page !!");
-		Object currentAuth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println("main page !!" + currentAuth);
-		UserDetails principal = null;
-		try {
-			if (!(currentAuth instanceof String)) {
-				principal = (UserDetails) currentAuth;
-				System.out.println("main principal !!" + principal);
-				// 투표현황을 select 해서 가지고와서 뿌려줄 생각;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
-		return "main";
 	}
 
 	@ResponseBody
 	@PostMapping("/api/signUp")
 	public Map<String, Object> signUp(@RequestBody Map<String, Object> memberInfo, Model model) throws Exception {
 
+		
+		if(memberInfo.get("userId").equals("") || memberInfo.get("userId") == null) {
+			System.out.println("tes = ");
+		}else {
+			
+		}
+		
+		
 		Map<String, Object> result = new HashMap<>();
 		Member memberVo = new Member();
-		if ("ADMIN".equals(memberInfo.get("email"))) {
-			memberVo.setRole("ROLE_ADMIN");
-		} else if ("MANAGER".equals(memberInfo.get("email"))) {
-			memberVo.setRole("ROLE_MANAGER");
+		if ("ADMIN".equals(memberInfo.get("userId"))) {
+			memberVo.setGradeCd(0);
+		} else if ("MANAGER".equals(memberInfo.get("userId"))) {
+			memberVo.setGradeCd(1);
 		} else {
-			memberVo.setRole("ROLE_USER");
+			memberVo.setGradeCd(2);
 		}
-		memberVo.setEmail((String) memberInfo.get("email") + "@zinnaworks.com");
-		memberVo.setPwd((String) passwordEncoder(memberInfo.get("pwd").toString()));
-		memberVo.setName((String) memberInfo.get("name"));
-		memberVo.setTeam((String) memberInfo.get("team"));
-		memberVo.setEntryDate((String) memberInfo.get("entryDate"));
-		memberVo.setPhone((String) memberInfo.get("phone"));
 
-		if (memberVo.getEmail().toString().equals("") || memberVo.getEmail().toString().equals("null")) {
+		int grp = Integer.parseInt((String) memberInfo.get("team"));
+
+		memberVo.setUserId((String) memberInfo.get("userId") + "@zinnaworks.com");
+		memberVo.setPassWd((String) passwordEncoder(memberInfo.get("pwd").toString()));
+		memberVo.setUserNm((String) memberInfo.get("name"));
+		memberVo.setGrpCd(grp);
+		memberVo.setEntryDt((String) memberInfo.get("entryDate"));
+		memberVo.setPhoneNum((String) memberInfo.get("phone"));
+
+		if (memberVo.getUserId().toString().equals("") || memberVo.getUserId().toString().equals("null")) {
 			result.put("result", "null");
 			return result;
 		}
@@ -124,30 +115,34 @@ public class MemberController {
 			throws Exception {
 
 		Map<String, Object> result = new HashMap<>();
-		String username = (String) map.get("email");
-		String pwd = (String) map.get("pwd");
+		String username = (String) map.get("userId") + "@zinnaworks.com";
+		String pwd = (String) map.get("passwd");
 
 		UserDetails data = memberService.loadUserByUsername(username);
 
+		System.out.println("data = " + data.toString());
 		if (data != null) {
-			if (passwordMatchesEncoder(pwd, data.getPassword())) {
-				// true
-				List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>(1);
-				roles.add(new SimpleGrantedAuthority(data.getAuthorities().toString()));
-				User user = new User(username, "", roles);
-				Authentication auth = new UsernamePasswordAuthenticationToken(user, null, roles);
-				SecurityContextHolder.getContext().setAuthentication(auth);
+			if (!pwd.equals("")) {
+
+				System.out.println("pwd = " + pwd);
+				System.out.println("data = " + data.getPassword());
+				if (passwordMatchesEncoder(pwd, data.getPassword())) {
+					// true
+					result.put("result", "success");
+//					List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>(1);
+//					roles.add(new SimpleGrantedAuthority(data.getAuthorities().toString()));
+//					User user = new User(username, "", roles);
+//					Authentication auth = new UsernamePasswordAuthenticationToken(user, null, roles);
+//					SecurityContextHolder.getContext().setAuthentication(auth);
+				} else {
+					// 비밀번호가 틀릴 경우
+					// result 를 false 줘서 처리
+					result.put("result", false);
+					return result;
+				}
 			} else {
-				// 비밀번호가 틀릴 경우
-				// result 를 false 줘서 처리
-				result.put("result", false);
-				return result;
+				result.put("result", "error");
 			}
-		} else {
-			// data가 null 계정이 없다
-			// 없다는 알림창을 띄운다.
-			result.put("result", data);
-			return result;
 		}
 		result.put("result", "success");
 		result.put("data", data);
@@ -167,7 +162,7 @@ public class MemberController {
 			result.put("result", false);
 			return result;
 		} else {
-			//Mail mail = new Mail();
+			// Mail mail = new Mail();
 			MailAuth mail = new MailAuth();
 			mail.setUserId(emailAddress);
 			data = mailService.mailSend(mail);
@@ -189,8 +184,8 @@ public class MemberController {
 		boolean data = false;
 
 		Member member = new Member();
-		member.setEmail(email+"@zinnaworks.com");
-		member.setPwd(passwordEncoder(pwd));
+		member.setUserId(email + "@zinnaworks.com");
+		member.setPassWd(passwordEncoder(pwd));
 
 		if (email == null || email.equals("") || pwd == null || pwd.equals("")) {
 			result.put("result", false);
@@ -198,7 +193,7 @@ public class MemberController {
 		} else if (!code.equals("") && code != null) {
 			// 메일로 전송한 인증코드 6자리 비교
 			// 코드기 맞는 경우 update 진행
-				data = memberService.updateMemberPwd(member, code);
+			data = memberService.updateMemberPwd(member, code);
 		}
 		result.put("result", data);
 		return result;

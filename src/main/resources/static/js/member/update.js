@@ -1,4 +1,6 @@
 window.onload = function() {
+	
+	$("#header").load("html/header.html");
 
 	$("#pwdUpdateSubmit").click(function() {
 		var email = $("#email").val();

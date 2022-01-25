@@ -5,47 +5,46 @@
 <mapper namespace="com.zinnaworks.mapper.MemberMapper">
 	<insert id="insertMemberInfo"
 		parameterType="com.zinnaworks.vo.Member">
-		INSERT INTO zinnaworks.user_info
-		(user_no, email, name,
-		password, team ,entryDate, phone, role)
-		VALUES(#{user_no},#{email},#{name},#{password},#{team},
-		#{entryDate},#{phone}, #{role});
+		INSERT INTO USERS
+		(USER_ID, PASSWD, USER_NM, GRP_CD ,ENTRY_DT, PHONENUM, GRADE_CD)
+		VALUES(#{userId},#{password},#{uesrName},#{userGrp},
+		#{entryDate},#{phoneNum}, #{gradeCd});
 	</insert>
 
 	<select id="selectLoginInfo"
 		resultType="com.zinnaworks.vo.Member">
-		SELECT * FROM user_info
-		WHERE email = #{email} AND password
+		SELECT * FROM USERS
+		WHERE USER_ID = #{userId} AND PASSWD
 		= #{password}
 	</select>
 
 	<select id="selectCheckById"
 		resultType="com.zinnaworks.vo.Member">
-		SELECT * FROM user_info
-		WHERE email = #{email};
+		SELECT * FROM USERS
+		WHERE USER_ID = #{userId};
 	</select>
 
 	<select id="loadUserByUsername"
 		resultType="com.zinnaworks.vo.Member">
-		SELECT * FROM user_info
-		WHERE email = #{email}
+		SELECT * FROM USERS
+		WHERE USER_ID = #{userId}
 	</select>
 
 	<update id="updateMemberPwd"
 		parameterType="com.zinnaworks.vo.Member">
-		UPDATE user_info SET pwd = #{pwd}
-		WHERE email = #{email}
+		UPDATE USERS SET pwd = #{pwd}
+		WHERE USER_ID = #{userId}
 	</update>
 
 	<insert id="mergeInsertAuthInfo"
 		parameterType="com.zinnaworks.vo.Mail">
-		INSERT INTO zinnaworks.USER_AUTH(USER_ID, AUTH_KEY, CRE_DT, EXP_DT)
+		INSERT INTO USER_AUTH(USER_ID, AUTH_KEY, CRE_DT, EXP_DT)
 		VALUES(#{userId},#{authKey},#{creDt},#{expDt})
 	</insert>
 
  <select id="selectAuthInfo" parameterType="String" resultType="com.zinnaworks.vo.MailAuth">
 		SELECT *
-		FROM zinnaworks.USER_AUTH
+		FROM USER_AUTH
 		WHERE USER_ID=#{email} AND EXP_DT = (SELECT MAX(EXP_DT) FROM USER_AUTH)  
 	</select>  
 	

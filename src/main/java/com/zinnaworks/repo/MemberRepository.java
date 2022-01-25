@@ -41,12 +41,10 @@ public class MemberRepository {
 	}
 
 	public int mergeInsertAuthInfo(MailAuth mail) {
-		// TODO Auto-generated method stub
 		return memberMapper.mergeInsertAuthInfo(mail);
 	}
 
 	public MailAuth selectAuthInfo(String email) {
-		// TODO Auto-generated method stub
 		return memberMapper.selectAuthInfo(email);
 	}
 

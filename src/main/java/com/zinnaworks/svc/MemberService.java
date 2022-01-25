@@ -53,7 +53,7 @@ public class MemberService implements UserDetailsService {
 		// 1. 가입할 이메일이 있는지 확인 -> 없으면 insert
 
 		System.out.println("test Service = " + memberVo.toString());
-		Member member = memberRepository.findById(memberVo.getEmail());
+		Member member = memberRepository.findById(memberVo.getUserId());
 		if (member == null) {
 			int saveMember = memberRepository.saveMember(memberVo);
 			if (saveMember > 0) {
@@ -65,7 +65,7 @@ public class MemberService implements UserDetailsService {
 	}
 
 	public boolean updateMemberPwd(Member member, String code) throws Exception {
-		String email = member.getEmail();
+		String email = member.getUserId();
 		String emailAuth = null;
 		if (member != null) {
 			MailAuth auth = memberRepository.selectAuthInfo(email);

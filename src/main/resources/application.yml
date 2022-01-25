@@ -3,14 +3,15 @@ spring:
     allow-circular-references: true
   # 접속 DB 설정
   datasource:
-    url: "jdbc:mariadb://127.0.0.1:3306/zinnaworks"
-    username: "admin"
-    password: "admin"
+    url: "jdbc:mysql://13.124.114.13:3306/aword"
+    username: "root"
+    password: "zinna123"
     driver-class-name: "org.mariadb.jdbc.Driver"
   thymeleaf:
     prefix: classpath:templates/
     check-template-location: true
     suffix: .html
+    mode: HTML
     cache: false
   webflux:
     static-path-pattern: /resources/**

@@ -2,30 +2,29 @@
 <!--signup.html-->
 <!DOCTYPE html>
 <!-- Latest compiled and minified CSS -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org" 
-				xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <meta charset="UTF-8">
-    <link href="/css/member/login.css" rel="stylesheet" type="text/css">
-    <link href="/asset/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<link href="/css/member/mail.css" rel="stylesheet" type="text/css">
+	<link href="/asset/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="/asset/jquery-3.4.1.min.js"></script>
 	<script src="/asset/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-    <script src="/js/member/mail.js"></script>
+	<script src="/js/member/mail.js"></script>
 </head>
-<body class="main-bg">
-        <div class="login-container text-c animated flipInX">
-                <div>
-                    <h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
-                </div>
-                    <h3 class="text-whitesmoke">zinnaworks Email Address Auth</h3>
-                    <p class="text-whitesmoke">Send In Address</p>
-                <div class="container-content">
-                    <form class="margin-t" method="post" th:action="@{/api/mail}">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="email" name="username" placeholder="Username" required="">
-                        </div>
-                        <button type="button" id="mailSubmit"class="form-button button-l margin-b">Sign In</button>
-                    </form>
-                </div>
-            </div>
+
+<body>
+	<div id="header"></div>
+	<div class="mailSendForm">
+		<h1 class="text-whitesmoke">패스워드 변경</h1>
+		<p class="text-whitesmoke">가입한 아이디를 입력하세요. 지나웍스 사내 메일.</p>
+		<div class="container-content" >
+			<div class="form-group" id="inputEmail">
+				<label class="labelForm">아이디</label>
+				<input type="text" class="form-control" id="email" name="username" placeholder="email" required="">
+				<span id="btmText">@zinnaworks.com</span>
+			</div>
+			<button type="button" id="mailSubmit" class="form-button btn-danger margin-b">인증메일 발송</button>
+		</div>
+	</div>
 </body>

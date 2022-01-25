@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**", "/asset/**");
+		web.ignoring().antMatchers("/css/**", "/js/**", "/asset/**", "/img/**");
 	}
 
 	@Override
@@ -53,6 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	                 .and()
 	             .exceptionHandling()
 	                 .accessDeniedPage("/error"); // 권한이 없는 대상이 접속을시도했을 때
+
+		//html iframe 사용을 위한 설정
+		http.headers().frameOptions().sameOrigin();
 					
 	}
 	

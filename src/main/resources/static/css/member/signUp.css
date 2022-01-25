@@ -5,7 +5,6 @@ html {
 body {
     height: 100%;
     width: 100%;
-    margin: 0;
 }
 
 #header{
@@ -32,7 +31,7 @@ body {
 }
 
 #img{
-	width:13%;
+	width:14.5%;
 	height:100%;
 	background: url("../../img/zinnaworks-logo.png");	
 }
@@ -98,10 +97,9 @@ body {
 
 #title{
 	margin: 0 0 60px 0;
-	font-weight: bold;
 }
 .signUpForm{
-	padding: 200px 730px 0 850px;
+	padding: 100px 630px 0 750px;
 	position: relative;
 	font-size: 20px;
 }
@@ -114,31 +112,54 @@ body {
 	font-size: 22px;
 }
 
-#userId{
+#email{
 	width: 30%;
 	margin-left: 70px;
 	display: inline-block;
 }
 #idTitle{
 	 margin-left: 135px;
-	 
 }
-#passwd{
+#password{
 	width: 50%;
 	margin-left: 50px;
 	display: inline-block;
 }
+#pwTitle{
+	margin-left: 135px;
+}
+#password2{
+	width: 50%;
+	margin-left: 10px;
+	display: inline-block;
+}
+#name{
+	width: 50%;
+	margin-left: 93px;
+	display: inline-block;
+}
+#team{
+	width: 50%;
+	margin-left: 45px;
+	display: inline-block;
+}
+#entryDate{
+	width: 50%;
+	margin-left: 75px;
+	display: inline-block;
+}
+#phone{
+	width: 50%;
+	margin-left: 20px;
+	display: inline-block;
+}
 
-#loginSubmit{
-	width: 28%;
-	margin:60px 0 0 140px;
-	font-size: 20px;
+#registrySubmit{
+	width: 40%;
+	margin:0 0 0 140px;
 }
 
 .labelForm{
 	text-align: left;
 	display: inline-block;
-}
-#btmText{
-	margin-left: 135px;
 }

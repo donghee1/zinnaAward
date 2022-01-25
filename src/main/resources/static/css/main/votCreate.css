@@ -1,0 +1,352 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#header{
+	width:100%;
+	height:10%;
+	display: inline-block;
+	z-index: 1;	
+	background-color: white;
+}
+
+.hr{
+	width: 33%;
+	height: 10px;
+	border: none;
+	background-color: blue;
+	position: absolute;
+	margin:0 0 0 0;
+}
+#red{
+	background-color: red;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 70%;
+}
+
+#img{
+	width:13%;
+	height:100%;
+	background: url("../../img/zinnaworks-logo.png");	
+}
+
+#logo{
+	width:22%;
+	height: 5%;
+	position: absolute;
+	left: 14%;
+	top: 0%;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 46px;
+}
+
+.menuVar{
+	position: absolute;
+	top: 0%;
+	width: 13%;
+	height: 10%;
+	font-size: 35px;
+	font-weight: bold;
+	padding-top: 30px;
+	color: blue;
+}
+
+.menuVar:hover{
+	color:red;
+}
+
+#home{
+	left: 33%;
+	text-align: center;
+}
+#voting{
+	left: 46%;
+	text-align: center;
+}
+#admin{
+	left: 59%;
+	display: block;
+	text-align: center;
+}
+#profile{
+	left:72%;
+	text-align: center;
+	font-size: 20px;
+	color: grey;
+	margin-top: 10px;
+}
+#checkLogin{
+	left:85%;
+	text-align: center;
+}
+.check{
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	float: left;
+	margin: 10px 20px 0 0;
+}
+/* top css 옵션 끝 */
+
+
+/*side start */
+
+#side{
+	position: relative;
+	width: 400px;
+	height: 100%;
+	background-color: lightgray;
+	top: 15px;
+}
+#sideBar{
+	width: 400px;
+	height: 100%;
+}
+
+#sideMenu{
+	height: 45%;
+	width: 90%;
+	margin: 0 0 0 17.5px;
+	background-color: white;
+	text-align: center;
+	padding: 25px 0 0 0;
+}
+
+.sideLink{
+	font-size: 24px;
+}
+
+.sideBar_link{
+	text-align: center;
+	margin-top: 20px;
+}
+
+#sidete{
+	position: absolute;
+	width: 100%;
+	height: 15px;
+	background-color: lightgray;
+	top: 0px;
+	left: 0px;
+}
+
+
+
+/* main page */
+
+#mainPage{
+	width: 85%;
+	height: 100%;
+	border: 1px solid black;
+	position: absolute;
+	left: 400px;
+	top: 135px;
+}
+
+#createvot_form{
+	width: 1280px;
+	height: 680px;
+	position: relative;
+	left: inherit;
+}
+
+#detail_title{
+	position: relative;
+	left: 560px;
+	margin: 90px 0 20px 0px;
+	width: 15%;
+	text-align: center;
+}
+
+
+#detail_top{
+	position: relative;
+	width: 55%;
+	height: 15%;
+	border: 1px solid black;
+	left: 180px;
+}
+
+.span_content{
+	width: 49%;
+	height: 49%;
+	border: 1px solid red;
+	display: inline-block;
+}
+
+.vot_id_content{
+	display: table-cell;
+	padding: 25px;
+	font-size: 20px;
+	text-decoration: underline;
+}
+#vot_id_span{
+	float: left;
+}
+#vot_type_select{
+	margin : 20px 0 0 25px;
+	width: 165px;
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#vot_grp_target_span{
+	width: 30%;
+}
+#vot_grp_target_select{
+	width: 69%;
+}
+#vot_grp_select{
+	position: absolute;
+	width: 380px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;	
+    margin: 20px 0 0 60px;
+}
+#vot_date_span{
+	width: 25%;
+	position: relative;
+	top: 20px;
+}
+#vot_name_input{
+	width: 79%;
+	position: relative;
+	top: 20px;
+}
+#vot_name_text{
+	position: absolute;
+	width: 450px;
+	height: 35px;
+	left: 60px;
+}
+
+#vot_content_span{
+	width: 20%;
+	margin-bottom: 75px;
+}
+#vot_content_text{
+	width: 79%;
+	height: 150px;
+	position: relative;
+	top: 25px;
+}
+
+#vot_text_content{
+	width: 92%;
+	height: 100%;
+	position: relative;
+}
+#vot_name_span{
+	width: 20%;
+	position: relative;
+	top: 20px;
+}
+#vot_date_input{
+	width: 74%;
+	position: relative;
+	top: 20px;
+}
+.vot_date_input{
+	position: absolute;
+	height: 30px;
+}
+#vot_min_date{
+	margin: 20px;
+}
+#vot_max_date{
+	right: 21px;
+	margin: 20px;
+}
+#date_span{
+	position: absolute;
+	left: 365px;
+	font-size: 24px;
+	top: 405px;
+}
+
+#vot_member_span{
+	width: 25%;
+	margin-bottom: 95px;
+}
+#vot_member_text{
+	width: 74%;
+	height: 170px;
+	position: relative;
+	top: 35px;
+}
+
+#checkbox{
+	width: 92%;
+	height: 100%;
+	overflow: scroll;
+}
+#check_name{
+	font-size: 20px;
+	margin: 0 10px 0 20px;
+}
+#check_input{
+	width: 25px;
+	height: 25px;
+	position: relative;
+	top: 5px;
+}
+#check_data{
+	position: absolute;
+	width: 120px;
+}
+
+
+
+/*=================================================================== */
+
+#vot_bottom{
+	width: 100%;
+	height: 100px;
+	position: relative;
+	top: 30px;
+}
+
+#vot_btm_span{
+	padding: 10px;
+	float: left;
+}
+
+#check_input_btm{
+	width: 25px;
+	height: 25px;
+	position: relative;
+	top: 10px;
+	left: 59px;
+}
+
+#vot_btm_span2{
+	position: absolute;
+	padding: 10px;
+	float: left;
+}
+#check_input_btm2{
+	width: 25px;
+	height: 25px;
+	position: relative;
+	top: 45px;
+	left: 30px;
+}
+#create_vot{
+	width: 180px;
+    font-size: 20px;
+    margin-top: 20px;
+    position: relative;
+    left: 180px;
+}
+
+
+

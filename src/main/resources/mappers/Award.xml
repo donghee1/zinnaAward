@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zinnaworks.mapper.MemberMapper">
+	
+	<insert id="insertVotInfo" parameterType="com.zinnaworks.vo.Member">
+		INSERT INTO USERS
+		(USER_ID, PASSWD, USER_NM, GRP_CD ,ENTRY_DT, PHONENUM, GRADE_CD)
+		VALUES(#{userId},#{password},#{uesrName},#{userGrp},
+		#{entryDate},#{phoneNum}, #{gradeCd});
+	</insert>
+
+	<select id="selectVotList" resultType="hashmap">
+		SELECT * FROM USERS
+		WHERE USER_ID = #{userId} AND PASSWD
+		= #{password}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,95 @@
+<!--회원가입 페이지-->
+<!--signup.html-->
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/main/votCreate.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main/votCreate.js}"></script>
+</head>
+
+<body class="">
+	<div id="header"></div>
+	<div id="side"></div>
+	<div id="mainPage">
+		<div id="sidete"></div>
+		<div id="detail_title">
+			<h1>투표개설</h1>
+		</div>
+		<div id="createvot_form">
+			<div id="detail_top">
+				<div class="span_content" id="vot_id_span">
+					<span id="vot_id_span" class="vot_id_content">투표ID</span>
+					<span id="vot_id_value" class="vot_id_content">220209-01</span>
+				</div>
+				<div class="span_content" id="vot_id_value">
+					<span id="vot_id_span" class="vot_id_content">투표유형</span>
+					<select id="vot_type_select">
+						<option>어워드</option>
+						<option>설문조사</option>
+					</select>
+				</div>
+				<div class="span_content" id="vot_grp_target_span">
+					<span id="vot_id_span" class="vot_id_content">투표대상(최종)</span>
+				</div>
+				<div class="span_content" id="vot_grp_target_select">
+					<select id="vot_grp_select">
+						<option>경영지원</option>
+						<option>ICT인프라</option>
+						<option>ICT플랫폼</option>
+						<option>ICT솔루션</option>
+					</select>
+				</div>
+				<div class="span_content" id="vot_name_span">
+					<span id="vot_id_span" class="vot_id_content">투표명</span>
+				</div>
+				<div class="span_content" id="vot_name_input">
+					<input type="text" id="vot_name_text" disabled>
+				</div>
+				<div class="span_content" id="vot_content_span">
+					<span id="vot_id_span" class="vot_id_content">설명</span>
+				</div>
+				<div class="span_content" id="vot_content_text">
+					<textarea id="vot_text_content"></textarea>
+				</div>
+
+				<div class="span_content" id="vot_date_span">
+					<span id="vot_id_span" class="vot_id_content">투표기간</span>
+				</div>
+				<div class="span_content" id="vot_date_input">
+					<input type="date" id="vot_min_date" class="vot_date_input">
+					<span id="date_span"> ~ </span>
+					<input type="date" id="vot_max_date" class="vot_date_input">
+				</div>
+
+				<div class="span_content" id="vot_member_span">
+					<span id="vot_id_span" class="vot_id_content">투표항목</span>
+				</div>
+				<div class="span_content" id="vot_member_text">
+					<div id="checkbox">
+						<div id="check_data">
+							<label id="check_name">한동희</label><input type="checkbox" id="check_input" value="blue">
+						</div>
+					</div>
+				</div>
+
+
+				<div class="span_content" id="vot_bottom">
+					<span id="vot_btm_span" class="vot_id_content">투표 대상자에 알림 보내기</span>
+					<input type="checkbox" id="check_input_btm" value="">
+					<span id="vot_btm_span2" class="vot_id_content">투표만료 전 미투표자 알림 보내기</span>
+					<input type="checkbox" id="check_input_btm2" value="">
+				</div>
+			</div>
+		</div>
+			<button id="create_vot" class="form-button btn-danger margin-b">투표 개설</button>	
+	</div>
+</body>
+
+</html>
