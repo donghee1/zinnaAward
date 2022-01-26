@@ -31,7 +31,7 @@ body {
 }
 
 #img{
-	width:14.5%;
+	width:13%;
 	height:100%;
 	background: url("../../img/zinnaworks-logo.png");	
 }
@@ -140,76 +140,199 @@ body {
 /* main page */
 
 #mainPage{
-	width: 100%;
+	width: 85%;
 	height: 100%;
-	border: 1px solid black;
 	position: absolute;
 	left: 400px;
-	top: 135px;
-	padding: 50px 250px 150px 250px;
+	top: 146px;
 }
+
+#createvot_form{
+	width: 1180px;
+	height: 750px;
+	position: relative;
+	left: inherit;
+	top: -30px;
+}
+
+#detail_title{
+	position: relative;
+	left: 840px;
+	margin: 90px 0 20px 0px;
+	width: 7%;
+	text-align: center;
+	top: -30px;
+}
+
+.award_btn{
+	width: 20%;
+	margin: 0 10px 0 10px;
+}
+#award_update{
+	margin-left: 195px;
+}
+
 
 #detail_top{
 	position: relative;
 	width: 55%;
-	height: 15%;
+	height: 50%;
 	border: 1px solid black;
 	left: 180px;
 }
 
-#detail_top_left{
-	display: inline-block;
-	width: 49%;
-	height: 100%;
+.createvot_content{
+	position: relative;
+	width: 100%;
+	height: 15%;
+	border: 1px solid red;
+	
+}
+
+#detail_mid{
+	position: relative;
+	width: 55%;
+	height: 50%;
+	border: 1px solid green;
+	left: 180px;
+}
+
+#awad_info_text{
+	position: relative;
+	height: 30%;
+	width: 100%;
 	border: 1px solid red;
 }
 
-#detail_top_right{
-	display: inline-block;
-	width: 49%;
-	height: 100%;
-	border: 1px solid blue;
-}
-#detail_stats{
-	width: 100%;
-	height: 33%;
-	border: 1px solid green;
-	display: table;
-}
 .span_content{
+	position: relative;
+	margin : 30px;
+	text-decoration: underline;
 	font-size: 20px;
-	position: absolute;
+	top: 15px;	
 }
-#span_stats{
-	left: 65px;
-	top: 10px;
-	text-decoration: underline;
-}
-#span_stats_value{
-	position: absolute;
+#award_stats_value{
 	color: red;
-	top: 10px;
-}
-#span_award_id{
-	top: 55px;
-	left: 65px;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
-#span_award_id_value{
-	top: 55px;
+#award_type{
+	left: 30px;
+}
+#mms_input{
+	position: relative;
+	left: -40px;
+    top: 20px;
 }
 
-#span_award_final{
-	left: 65px;
-	top : 100px;
-	text-decoration: underline;
+#award_type_value{
+	color: lightgray;
+	text-decoration: none;
+	left: 60px;
 }
-#span_vot_type{
-	left: 390px;
-	top: 55px;
-	text-decoration: underline;
+
+#award_id_value{
+	color: lightgray;
+	text-decoration: none;
+	left: -17px;
 }
+
+#award_grp_target_value{
+	text-decoration: none;
+	color: lightgray;
+	left: 60px;
+}
+
+#award_name_value{
+	width: 480px;
+	text-decoration: none;
+	color: lightgray;
+	margin: 0;
+}
+
+
+
+
+
+
+
+
+#award_type_span{
+	left: 50px;
+}
+#vot_grp_select{
+	left: 10px;
+}
+#vot_name_text{
+	width: 508px;
+	left: 10px;
+}
+#award_info_text{
+	top: -70px;
+}
+#info_text{
+	position: relative;
+	height: 100%;
+	width: 74.5%;
+	left: 18px;
+}
+
+#vot_min_date{
+	width: 190px;
+	position: relative;
+	top: 15px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+}
+#vot_max_date{
+	width: 190px;
+	position: relative;
+	top: 15px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#award_data{
+	height: 35%;
+}
+
+#award_data_change{
+	width: 60%;
+	height: 100%;
+	position: relative;
+	left: 210px;
+	top: -30px;
+	border: 1px solid lightgray;
+	font-size: 20px;
+}
+
+#check_name{
+	padding: 15px;
+}
+.check_box{
+	position: relative;
+	top: 5px; 
+	width: 25px;
+	height: 25px;
+}
+
+#vot_member{
+	text-decoration: none;
+	color: red;
+	margin: 0;
+}
+#un_vot_member{
+	text-decoration: none;
+	margin: 0;
+}
+#choice_member{
+	text-decoration: none;
+	margin: 0;
+}
+
+
 #span_vot_type_value{
 	top: 55px;
 	right: 100px;
@@ -263,8 +386,9 @@ body {
 }
 #detail_vot_member_span{
 	position: absolute;
-	left: 65px;
-	top: 230px;
+	left: 30px;
+	top: 240px;
+	text-decoration: underline;
 }
 .detail_btm_content{
 	width: 100%;
@@ -281,34 +405,42 @@ body {
 
 #chart{
 	position: initial;
+	height: 50%;
 }
 
 .pie-chart1 {
-  display:inline-block;
   width: 150px;
   height: 150px;
   background: conic-gradient(#8b22ff 0% 25%, #ffc33b 25% 56%, #21f3d6 56% 100%);
   border-radius: 50%;
+  position: relative;
+  left: 110px;
 }
 
 .chart_stats{
-	position: absolute;
+	position: relative;
 	left:290px;
-	top: 370px;
+	top: -150px;
 	width: 50%;
-	height: 5%;
+	height: 15%;
 	border: 1px solid red;
 	padding: 5px;
+	font-size: 15px;
 }
 
 #person_color{
 	width: 5%;
-	height: 60%;
+	height: 110%;
 	background-color: red;
 	float: left;
+	display: inline-block;
 }
 #person_stats{
 	margin-left: 20px;
+}
+
+#vot_info_mms_span{
+	left: -22px;
 }
 
 #detail_buttom{

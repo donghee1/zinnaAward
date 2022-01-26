@@ -1,0 +1,60 @@
+<!--회원가입 페이지-->
+<!--signup.html-->
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/main/vote.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main/vote.js}"></script>
+</head>
+
+<body class="">
+	<div id="header"></div>
+	<div id="side"></div>
+	<div id="mainPage">
+		<div id="sidete"></div>
+		<div id="vote_title">
+			<h1>투표정보</h1>
+		</div>
+		<div id="vote_form">
+			<div id="vote_top">
+				<div class="vote_content">
+					<span class="vote_span">상태</span>
+					<span class="vote_span" id="vote_span_value">진행중</span>
+				</div>
+				<div class="vote_content">
+					<span class="vote_span">투표명</span>
+					<span class="vote_span" id="vote_name_value">ICT솔루션 22-02 어워드</span>
+				</div>
+				<div class="vote_content">
+					<span class="vote_span">설명</span>
+					<span class="vote_span" id="vote_info_value">22년 2월 ICT솔루션 어워드 입니다.</span>
+				</div>
+			</div>
+
+			<div id="vote_mid">
+				<div id="vote_person_box">
+					<span class="vote_span" id="vote_person">한 동 희</span>
+				</div>
+				<div id="vote_check_box">
+					<input type="checkbox" id="vote_check" value="1">
+				</div>
+
+				<div id="vote_content">
+					<button id="vote_submit" class="btn btn-danger">투표완료</button>
+				</div>
+
+			</div>
+
+
+		</div>
+	</div>
+</body>
+
+</html>

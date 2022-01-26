@@ -7,8 +7,8 @@
 		parameterType="com.zinnaworks.vo.Member">
 		INSERT INTO USERS
 		(USER_ID, PASSWD, USER_NM, GRP_CD ,ENTRY_DT, PHONENUM, GRADE_CD)
-		VALUES(#{userId},#{password},#{uesrName},#{userGrp},
-		#{entryDate},#{phoneNum}, #{gradeCd});
+		VALUES(#{userId},#{passWd},#{userNm},#{grpCd},
+		#{entryDt},#{phoneNum}, #{gradeCd});
 	</insert>
 
 	<select id="selectLoginInfo"

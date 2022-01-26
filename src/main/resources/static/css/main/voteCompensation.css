@@ -1,0 +1,552 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#header{
+	width:100%;
+	height:10%;
+	display: inline-block;
+	z-index: 1;	
+	background-color: white;
+}
+
+.hr{
+	width: 33%;
+	height: 10px;
+	border: none;
+	background-color: blue;
+	position: absolute;
+	margin:0 0 0 0;
+}
+#red{
+	background-color: red;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 70%;
+}
+
+#img{
+	width:13%;
+	height:100%;
+	background: url("../../img/zinnaworks-logo.png");	
+}
+
+#logo{
+	width:22%;
+	height: 5%;
+	position: absolute;
+	left: 14%;
+	top: 0%;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 46px;
+}
+
+.menuVar{
+	position: absolute;
+	top: 0%;
+	width: 13%;
+	height: 10%;
+	font-size: 35px;
+	font-weight: bold;
+	padding-top: 30px;
+	color: blue;
+}
+
+.menuVar:hover{
+	color:red;
+}
+
+#home{
+	left: 33%;
+	text-align: center;
+}
+#voting{
+	left: 46%;
+	text-align: center;
+}
+#admin{
+	left: 59%;
+	display: block;
+	text-align: center;
+}
+#profile{
+	left:72%;
+	text-align: center;
+	font-size: 20px;
+	color: grey;
+	margin-top: 10px;
+}
+#checkLogin{
+	left:85%;
+	text-align: center;
+}
+.check{
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	float: left;
+	margin: 10px 20px 0 0;
+}
+/* top css 옵션 끝 */
+
+
+/*side start */
+
+#side{
+	position: relative;
+	width: 400px;
+	height: 100%;
+	background-color: lightgray;
+	top: 15px;
+}
+#sideBar{
+	width: 400px;
+	height: 100%;
+}
+
+#sideMenu{
+	height: 45%;
+	width: 90%;
+	margin: 0 0 0 17.5px;
+	background-color: white;
+	text-align: center;
+	padding: 25px 0 0 0;
+}
+
+.sideLink{
+	font-size: 24px;
+}
+
+.sideBar_link{
+	text-align: center;
+	margin-top: 20px;
+}
+
+#sidete{
+	position: absolute;
+	width: 100%;
+	height: 15px;
+	background-color: lightgray;
+	top: 0px;
+	left: 0px;
+}
+
+/* main page */
+
+#mainPage{
+	width: 85%;
+	height: 100%;
+	position: absolute;
+	left: 400px;
+	top: 146px;
+}
+
+#createvot_form{
+	width: 1180px;
+	height: 750px;
+	position: relative;
+	left: inherit;
+	top: -30px;
+}
+
+#detail_title{
+	position: relative;
+	left: 840px;
+	margin: 90px 0 20px 0px;
+	width: 7%;
+	text-align: center;
+	top: -30px;
+}
+
+.award_btn{
+	width: 20%;
+	margin: 0 10px 0 10px;
+}
+#award_update{
+	margin-left: 195px;
+}
+
+
+#detail_top{
+	position: relative;
+	width: 55%;
+	height: 50%;
+	border: 1px solid black;
+	left: 180px;
+}
+
+.createvot_content{
+	position: relative;
+	width: 100%;
+	height: 15%;
+	border: 1px solid red;
+	
+}
+
+#detail_mid{
+	position: relative;
+	width: 55%;
+	height: 50%;
+	border: 1px solid green;
+	left: 180px;
+}
+
+#awad_info_text{
+	position: relative;
+	height: 30%;
+	width: 100%;
+	border: 1px solid red;
+}
+
+.span_content{
+	position: relative;
+	margin : 30px;
+	text-decoration: underline;
+	font-size: 20px;
+	top: 15px;	
+}
+#award_stats_value{
+	color: red;
+	text-decoration: none;
+}
+
+#award_type{
+	left: 30px;
+}
+#mms_input{
+	position: relative;
+	left: -40px;
+    top: 20px;
+}
+
+#award_type_value{
+	color: lightgray;
+	text-decoration: none;
+	left: 60px;
+}
+
+#award_id_value{
+	color: lightgray;
+	text-decoration: none;
+	left: -17px;
+}
+
+#award_grp_target_value{
+	text-decoration: none;
+	color: lightgray;
+	left: 60px;
+}
+
+#award_name_value{
+	width: 480px;
+	text-decoration: none;
+	color: lightgray;
+	margin: 0;
+}
+
+
+
+
+
+
+
+
+#award_type_span{
+	left: 50px;
+}
+#vot_grp_select{
+	left: 10px;
+}
+#vot_name_text{
+	width: 508px;
+	left: 10px;
+}
+#award_info_text{
+	top: -70px;
+}
+#info_text{
+	position: relative;
+	height: 100%;
+	width: 74.5%;
+	left: 18px;
+}
+
+#vot_min_date{
+	width: 190px;
+	position: relative;
+	top: 15px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+}
+#vot_max_date{
+	width: 190px;
+	position: relative;
+	top: 15px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#award_data{
+	height: 35%;
+}
+
+#award_data_change{
+	width: 60%;
+	height: 100%;
+	position: relative;
+	left: 210px;
+	top: -30px;
+	border: 1px solid lightgray;
+	font-size: 20px;
+}
+
+#check_name{
+	padding: 15px;
+}
+.check_box{
+	position: relative;
+	top: 5px; 
+	width: 25px;
+	height: 25px;
+}
+
+#vot_member{
+	text-decoration: none;
+	color: red;
+	margin: 0;
+}
+#un_vot_member{
+	text-decoration: none;
+	margin: 0;
+}
+#choice_member{
+	text-decoration: none;
+	margin: 0;
+}
+
+
+#span_vot_type_value{
+	top: 55px;
+	right: 100px;
+}
+#detail_mid{
+	position: relative;
+	width: 55%;
+	height: 55%;
+	border: 1px solid black;
+	left: 180px;
+}
+.detail_mid_content{
+	width: 100%;
+	font-size: 20px;
+}
+#detail_mid_name{
+	height: 10%;
+	border: 1px solid black;
+}
+#detail_grp{
+	height: 100%;
+	width: 80%;
+	position: relative;
+	right: -60px;
+	
+}
+#detail_grp_span{
+	text-decoration: underline;
+}
+#detail_mid_text{
+	height: 20%;
+}
+#detail_vot_text_span{
+	position: relative;
+	top: -40px;
+	text-decoration: underline;
+}
+#detail_vot_text{
+	height: 100%;
+	width: 80%;
+	position: relative;
+	right: -69px;
+}
+#bot_member{
+	width: 80%;
+	height: 100%;
+	border: 1px solid black;
+	position: relative;
+	left: 135px;
+	overflow-y: scroll;
+}
+#detail_vot_member_span{
+	position: absolute;
+	left: 30px;
+	top: 240px;
+	text-decoration: underline;
+}
+.detail_btm_content{
+	width: 100%;
+	font-size: 20px;
+}
+
+#detail_vot_votin_span{
+	margin: 10px 40px 0 30px;
+}
+
+#in_member{
+	color: red;
+}
+
+#chart{
+	position: initial;
+	height: 50%;
+}
+
+.pie-chart1 {
+  width: 150px;
+  height: 150px;
+  background: conic-gradient(#8b22ff 0% 25%, #ffc33b 25% 56%, #21f3d6 56% 100%);
+  border-radius: 50%;
+  position: relative;
+  left: 110px;
+}
+
+.chart_stats{
+	position: relative;
+	left:290px;
+	top: -150px;
+	width: 30%;
+	height: 15%;
+	border: 1px solid red;
+	padding: 5px;
+	font-size: 15px;
+}
+
+#person_color{
+	width: 12%;
+	height: 100%;
+	background-color: red;
+	float: left;
+	display: inline-block;
+}
+#person_stats{
+	margin-left: 20px;
+}
+
+#vot_info_mms_span{
+	left: -22px;
+}
+
+#detail_buttom{
+	position: relative;
+	width: 55%;
+	height: 10%;
+	border: 1px solid green;
+	left: 180px;
+}
+
+
+#vot_end{
+	left:10px;
+	width: 120px;
+	position: absolute;
+}
+
+#vot_update{
+	left: 300px;
+	width: 120px;
+	position: absolute;
+}
+
+#vot_delete{
+	left: 450px;
+	width: 120px;
+	position: absolute;
+}
+
+#reuslt_min_date{
+	text-decoration: none;
+	color:lightgray;
+}
+#reuslt_max_date{
+	text-decoration: none;
+	color:lightgray;
+}
+#result_type{
+	position: relative;
+	width: 325px;
+	font-size: 20px;
+	top: 12px;
+	text-align: center;
+}
+#result_money{
+	position: relative;
+	left: 27px;
+	top: 10px;
+	width: 325px;
+}
+#money_span{
+	position: relative;
+	top: 12px;
+	text-decoration: none;
+	left: 5px;
+}
+#result_type_span{
+	left:-29px;
+}
+#result_date{
+	position: relative;
+	width: 200px;
+	left: 45px;
+	top: 10px;
+}
+.filebox{
+	position: relative;
+    width: 300px;
+    height: auto;
+    bottom: 20px;
+    left: 100px;
+}
+#file_btn{
+	margin-left: 60px;
+    font-size: 15px;
+    width: 204px;
+    text-align: center;
+}
+.filebox label { 
+	display: inline-block; 
+	padding: .5em .75em; 
+	color: #fff;
+	font-size: inherit; 
+	line-height: normal; 
+	vertical-align: middle; 
+	background-color: #337ab7; 
+	cursor: pointer; 
+	border: 1px solid #ebebeb; 
+	border-bottom-color: #e2e2e2; 
+	border-radius: .25em; 
+} 
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); 
+	border: 0; 
+}
+#result_submit{
+	position: relative;
+	position: relative;
+    left: 450px;
+    top: 10px;
+}
+
+

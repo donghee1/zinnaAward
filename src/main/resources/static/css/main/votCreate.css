@@ -144,24 +144,23 @@ body {
 #mainPage{
 	width: 85%;
 	height: 100%;
-	border: 1px solid black;
 	position: absolute;
 	left: 400px;
-	top: 135px;
+	top: 146px;
 }
 
 #createvot_form{
-	width: 1280px;
-	height: 680px;
+	width: 1180px;
+	height: 750px;
 	position: relative;
 	left: inherit;
 }
 
 #detail_title{
 	position: relative;
-	left: 560px;
+	left: 840px;
 	margin: 90px 0 20px 0px;
-	width: 15%;
+	width: 7%;
 	text-align: center;
 }
 
@@ -169,184 +168,171 @@ body {
 #detail_top{
 	position: relative;
 	width: 55%;
-	height: 15%;
+	height: 50%;
 	border: 1px solid black;
 	left: 180px;
 }
 
-.span_content{
-	width: 49%;
-	height: 49%;
+.createvot_content{
+	position: relative;
+	width: 100%;
+	height: 15%;
 	border: 1px solid red;
-	display: inline-block;
+	
 }
 
-.vot_id_content{
-	display: table-cell;
-	padding: 25px;
-	font-size: 20px;
+#detail_mid{
+	position: relative;
+	width: 55%;
+	height: 50%;
+	border: 1px solid green;
+	left: 180px;
+}
+
+#awad_info_text{
+	position: relative;
+	height: 40%;
+	width: 100%;
+	border: 1px solid red;
+}
+
+.span_content{
+	position: relative;
+	margin : 30px;
 	text-decoration: underline;
-}
-#vot_id_span{
-	float: left;
-}
-#vot_type_select{
-	margin : 20px 0 0 25px;
-	width: 165px;
-	height: 40px;
 	font-size: 20px;
-	text-align: center;
+	top: 15px;	
 }
 
-#vot_grp_target_span{
-	width: 30%;
+.vot_select{
+	position: relative;
+	height: 30px;
+	top: 15px;
+	width: 140px;
+	left: 80px;
+	text-align: center;
+	font-size: 20px;
 }
-#vot_grp_target_select{
-	width: 69%;
+#award_id_value{
+	color: lightgray;
+	text-decoration: none;
+}
+#award_type_span{
+	left: 50px;
 }
 #vot_grp_select{
-	position: absolute;
-	width: 380px;
-    height: 40px;
-    font-size: 20px;
-    text-align: center;	
-    margin: 20px 0 0 60px;
-}
-#vot_date_span{
-	width: 25%;
-	position: relative;
-	top: 20px;
-}
-#vot_name_input{
-	width: 79%;
-	position: relative;
-	top: 20px;
+	width: 445px;
+	left: 10px;
 }
 #vot_name_text{
-	position: absolute;
-	width: 450px;
-	height: 35px;
-	left: 60px;
+	width: 508px;
+	left: 10px;
 }
-
-#vot_content_span{
-	width: 20%;
-	margin-bottom: 75px;
+#award_info_text{
+	top: -110px;
 }
-#vot_content_text{
-	width: 79%;
-	height: 150px;
+#info_text{
 	position: relative;
-	top: 25px;
-}
-
-#vot_text_content{
-	width: 92%;
 	height: 100%;
-	position: relative;
+	width: 79%;
+	left: 26px;
 }
-#vot_name_span{
-	width: 20%;
-	position: relative;
-	top: 20px;
-}
-#vot_date_input{
-	width: 74%;
-	position: relative;
-	top: 20px;
-}
-.vot_date_input{
-	position: absolute;
-	height: 30px;
-}
+
 #vot_min_date{
-	margin: 20px;
+	width: 210px;
+	left: 0px;
 }
 #vot_max_date{
-	right: 21px;
-	margin: 20px;
+	width: 210px;
+	left: 0px;
 }
-#date_span{
-	position: absolute;
-	left: 365px;
-	font-size: 24px;
-	top: 405px;
+#award_data{
+	height: 60%;
 }
-
-#vot_member_span{
-	width: 25%;
-	margin-bottom: 95px;
-}
-#vot_member_text{
-	width: 74%;
-	height: 170px;
+.award_data_change{
 	position: relative;
-	top: 35px;
-}
-
-#checkbox{
-	width: 92%;
+	width: 75%;
 	height: 100%;
-	overflow: scroll;
+	border: 1px solid black;
+	left:150px;
+	top: -29px;
+	font-size: 20px;
 }
 #check_name{
-	font-size: 20px;
-	margin: 0 10px 0 20px;
+	margin: 15px 10px 15px 20px;
 }
 #check_input{
+	position: relative;
+	top: 5px; 
 	width: 25px;
 	height: 25px;
+}
+#award_detail_bottom{
+	height: 25%;
+}
+#award_mms1{
+	left: 0px;
+	top: 0px;
+}
+#award_mms2{
+	left: -300px;
+    top: 40px;
+}
+
+#check_mms1{
+	top: 0px;
+	left: 49px;
 	position: relative;
-	top: 5px;
-}
-#check_data{
-	position: absolute;
-	width: 120px;
-}
-
-
-
-/*=================================================================== */
-
-#vot_bottom{
-	width: 100%;
-	height: 100px;
-	position: relative;
-	top: 30px;
-}
-
-#vot_btm_span{
-	padding: 10px;
-	float: left;
-}
-
-#check_input_btm{
 	width: 25px;
 	height: 25px;
-	position: relative;
+}
+
+#check_mms2{
 	top: 10px;
-	left: 59px;
-}
-
-#vot_btm_span2{
-	position: absolute;
-	padding: 10px;
-	float: left;
-}
-#check_input_btm2{
+	left: 320px;
+	position: relative;
 	width: 25px;
 	height: 25px;
-	position: relative;
-	top: 45px;
-	left: 30px;
 }
 #create_vot{
-	width: 180px;
-    font-size: 20px;
-    margin-top: 20px;
-    position: relative;
-    left: 180px;
+	position: relative;
+	width: 200px;
+	left: 235px;	
+}
+#survey_list{
+	position: relative;
+	margin: 3px;
+	width: 99%;
+}
+#servey_list_del{
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	padding: inherit;
+	font-size: 30px; 
+	left: 440px;
+	top: 5px;
+	z-index: 1;
+}
+#servey_list_insert{
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	padding: inherit;
+	font-size: 30px; 
+	left: -100px;
+	top: 170px;
 }
 
+#servey_span{
+	left: -150px;
+	top: 105px;
+	text-decoration: none;
+	color: lightgray;
+	position: absolute;
+	
+}
 
 

@@ -63,7 +63,7 @@ public class AwardController {
 		return "/zinna/votList";
 	}
 	
-	@GetMapping("/votDetail")
+	@GetMapping("/voteDetail")
 	public String votDetailForm(Model model, HttpServletResponse res) {
 		System.out.println("vot page !!");
 		Object currentAuth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -79,7 +79,62 @@ public class AwardController {
 			// TODO: handle exception
 		}
 
-		return "/zinna/votDetail";
+		return "/zinna/voteDetail";
+	}
+	
+	@GetMapping("/voteCompensationList")
+	public String voteCompensationListForm(Model model, HttpServletResponse res) {
+		System.out.println("vot page !!");
+		Object currentAuth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("voteResultList page !!" + currentAuth);
+		UserDetails principal = null;
+		try {
+			if (!(currentAuth instanceof String)) {
+				principal = (UserDetails) currentAuth;
+				System.out.println("main principal !!" + principal);
+				// 투표현황을 select 해서 가지고와서 뿌려줄 생각;
+			}
+		} catch (Exception e) {
+		}
+
+		return "/zinna/voteCompensationList";
+	}
+	
+	@GetMapping("/voteCompensation")
+	public String voteCompensationForm(Model model, HttpServletResponse res) {
+		System.out.println("vot page !!");
+		Object currentAuth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("voteResultList page !!" + currentAuth);
+		UserDetails principal = null;
+		try {
+			if (!(currentAuth instanceof String)) {
+				principal = (UserDetails) currentAuth;
+				System.out.println("main principal !!" + principal);
+				// 투표현황을 select 해서 가지고와서 뿌려줄 생각;
+			}
+		} catch (Exception e) {
+		}
+
+		return "/zinna/voteCompensation";
+	}
+	
+	@GetMapping("/vote")
+	public String voteForm(Model model, HttpServletResponse res) {
+		System.out.println("vot page !!");
+		Object currentAuth = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println("main page !!" + currentAuth);
+		UserDetails principal = null;
+		try {
+			if (!(currentAuth instanceof String)) {
+				principal = (UserDetails) currentAuth;
+				System.out.println("main principal !!" + principal);
+				// 투표현황을 select 해서 가지고와서 뿌려줄 생각;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return "/zinna/vote";
 	}
 	
 	@GetMapping("/votCreate")

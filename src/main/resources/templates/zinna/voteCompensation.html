@@ -1,0 +1,100 @@
+<!--회원가입 페이지-->
+<!--signup.html-->
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/main/voteCompensation.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main/voteCompensation.js}"></script>
+</head>
+
+<body class="">
+	<div id="header"></div>
+	<div id="side"></div>
+	<div id="mainPage">
+		<div id="sidete"></div>
+		<div id="detail_title">
+			<h1>투표정보</h1>
+		</div>
+		<div id="createvot_form">
+			<div id="detail_top">
+				<div class="createvot_content">
+					<span class="span_content">상태</span>
+					<span class="span_content" id="award_stats_value">종료 </span>
+				</div>
+				<div class="createvot_content">
+					<span class="span_content">투표ID</span>
+					<span class="span_content" id="award_id_value">220209-01</span>
+					<span class="span_content" id="award_type">투표유형</span>
+					<span class="span_content" id="award_type_value">어워드</span>
+				</div>
+				<div class="createvot_content">
+					<span class="span_content" id="award_grp_target">투표대상(최종)</span>
+					<span class="span_content" id="award_grp_target_value">ICT솔루션</span>
+				</div>
+				<div class="createvot_content">
+					<span class="span_content">투표명</span>
+					<input class="span_content" id="award_name_value" type="text" value="ICT솔루션 22-02 어워드" disabled>
+				</div>
+				<div class="createvot_content" id="detail_mid_text">
+					<span class="span_content">투표기간</span>
+					<span class="span_content" id="reuslt_min_date">22.02.09.13</span>
+					<span class="span_content" style="text-decoration: none;"> ~ </span>
+					<span class="span_content" id="reuslt_max_date">22.02.15.13</span>
+				</div>
+
+				<div class="createvot_content">
+					<span class="span_content" id="award_member">투표결과</span>
+					<span class="span_content" id="vot_member">3</span>
+					<span class="span_content" style="margin: 0; text-decoration: none;">/</span>
+					<span class="span_content" id="un_vot_member">5</span>
+					<span class="span_content" id="choice_member">(이지연)</span>
+				</div>
+				<div class="createvot_content" id="chart">
+					<div class="pie-chart1" id="pieChart"></div>
+					<div class="chart_stats" id="person_info">
+						<div id="person_color"></div>
+						<span id="person_stats">한동희(33.3% 2p)</span>
+					</div>
+					<div class="chart_stats" id="person_info">
+						<div id="person_color"></div>
+						<span id="person_stats">한동희(33.3% 2p)</span>
+					</div>
+				</div>
+				<div class="createvot_content">
+					<span class="span_content" id="result_type_span">상품유형</span>
+					<select id="result_type">
+						<option id="">상품권</option>
+						<option id="">현금</option>
+						<option id="">기타</option>
+					</select>
+				</div>
+				<div class="createvot_content">
+					<span class="span_content" id="">상품금액</span>
+					<input type=text id="result_money" value=""><span class="span_content" id="money_span">원</span>
+				</div>
+				<div class="createvot_content">
+					<span class="span_content" id="">지급일</span>
+					<input type=date id="result_date" value="">
+				</div>
+				<div class="createvot_content">
+					<span class="span_content" id="">사진첨부</span>
+					<div class="filebox">
+						<label for="ex_file" id="file_btn">파일선택</label>
+						<input type="file" id="ex_file">
+					</div>
+				</div>
+				<div class="createvot_content">
+					<button type="button" id="result_submit" class="btn btn-danger award_btn">완료</button>
+				</div>
+			</div>
+		</div>
+</body>
+
+</html>

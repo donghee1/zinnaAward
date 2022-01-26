@@ -57,7 +57,7 @@ window.onload = function() {
 	function awardList(data) {
 		
 		for (var i = 0; i < cnt; i++) {
-			awardHtml += '<div id="divList" class ="awardList" >' +
+			//awardHtml += '<div id="divList" class ="awardList" >' +
 						'<div id="awardList_top" class="AL">' + data.body[i].votNm + '</div>' +
 						'<div id="awardList_mid" class="AL">' +
 							'<div id="award-date" class="middle">' + awardDate + '</div>' +
@@ -74,7 +74,7 @@ window.onload = function() {
 		
 		console.log(JSON.stringify(data));
 		for(var j = 0; j < cnt; j ++){
-			historyHtml += '<div id="divList" class="HL">' +
+			//historyHtml += '<div id="divList" class="HL">' +
 						   		'<div id="his_top_title" class="his_top_title">' + "22-01 ICT인프라 어워드" + '</div>' +
 						   		'<div id="his_top_award" class="his_top_title">' + '1위 한동희(1회)' + '</div>' +
 						   '<div id= "historyList_mid" class="HL">' + '사진 첨부' + '</div>' +

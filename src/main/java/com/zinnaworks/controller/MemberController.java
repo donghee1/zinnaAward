@@ -96,6 +96,7 @@ public class MemberController {
 		memberVo.setGrpCd(grp);
 		memberVo.setEntryDt((String) memberInfo.get("entryDate"));
 		memberVo.setPhoneNum((String) memberInfo.get("phone"));
+		System.out.println("member = " + memberVo.toString());
 
 		if (memberVo.getUserId().toString().equals("") || memberVo.getUserId().toString().equals("null")) {
 			result.put("result", "null");

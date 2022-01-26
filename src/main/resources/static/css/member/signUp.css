@@ -31,7 +31,7 @@ body {
 }
 
 #img{
-	width:14.5%;
+	width:13%;
 	height:100%;
 	background: url("../../img/zinnaworks-logo.png");	
 }
@@ -99,9 +99,18 @@ body {
 	margin: 0 0 60px 0;
 }
 .signUpForm{
-	padding: 100px 630px 0 750px;
 	position: relative;
 	font-size: 20px;
+	width: 100%;
+	height: 100%;
+}
+
+#signUpContent{
+	position: relative;
+	width: 40%;
+	height: 60%;
+	left: 30%;
+	top: 200px;
 }
 
 .inputForm{
