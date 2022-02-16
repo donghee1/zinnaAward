@@ -1,0 +1,62 @@
+<!--어드민 조직관리-->
+<!-- adminGroupManage.html-->
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/main/admin.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{css/main/vot.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/admin/admin.js}"></script>
+</head>
+
+<body class="">
+	<div id="header"></div>
+	<div id="side"></div>
+	<div id="mainPage">
+		<div id="sidete"></div>
+		
+		<div class="wrapDiv">
+			<div id="leftDiv" class="leftDiv">
+				<table class="titleTab">
+					<tr>
+						<th>부서코드</th>
+						<th>부서명</th>
+					</tr>
+				</table>
+				<div id="leftContWrap">
+					
+				</div>
+			</div>
+			
+			<div id="rightDiv" class="rightDiv">
+				<div class="topDiv">
+					<div class="groupCdWrap">
+						<a class="groupCdTitle">부서코드</a>
+						<input class="groupCd" type="text" id="groupCd" name="groupCd" value="" readonly="readonly"/>
+					</div>
+					<div class="preGroupCdWrap">
+						<a class="preGroupCdTitle">상위부서</a>
+						<input class="preGroupCd" type="text" id="preGroupCd" name="preGroupCd" value="" readonly="readonly"/>
+					</div>
+				</div>
+				<div class="middleDiv">
+					<a>하위부서생성</a>
+					<input class="downGroupCd" type="text" id="downGroupCd" name="downGroupCd" value=""/>
+					<button type="button" id="downGroupSubmit" class="downGroupSubmit">생성</button>
+				</div>
+				<div class="bottomDiv">
+					<button type="button" id="delGroupSubmit" class="delGroupSubmit">삭제</button>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</body>
+
+</html>

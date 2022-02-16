@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+
+
+
+#leftDiv, #rightDiv {
+	border: 1px solid black;
+}
+
+.wrapDiv {
+	display:inline-flex;
+}
+
+
+
+
+
+
+
+
