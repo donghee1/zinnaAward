@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zinnaworks.mapper.CompensationMapper">
+
+ 	<resultMap id="compensationList" type="java.util.HashMap">
+		<id property="votId" column="VOT_ID"/>
+		<result property="votNm" column="VOT_NM"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="status" column="STATUS"/>
+		<result property="participantCnt" column="participantCnt"/>
+		<result property="votItem" column="VOT_ITEM"/>
+		<result property="startDt" column="START_DT"/>
+		<result property="endDt" column="END_DT"/>
+		<result property="resultId" column="RESULT_ID"/>
+		<result property="personCnt" column="personCnt"/>
+	</resultMap>
+<!-- resultType="java.util.HashMap"  -->
+	<select id="compensationList" resultMap="compensationList">
+	SELECT a.VOT_ID
+	       ,a.VOT_NM
+	       ,a.USER_ID
+	       ,a.STATUS
+	       ,COALESCE(b.participantCnt, 0) as participantCnt
+	       ,date_format(a.START_DT, '%y-%m-%d,%H') as START_DT
+	       ,date_format(a.END_DT, '%y-%m-%d,%H') as END_DT
+	       ,COALESCE(c.RESULT_ID, 0) as RESULT_ID
+	       ,COALESCE(d.personCnt, 0) as personCnt
+	FROM VOT_INFO a LEFT JOIN ( SELECT
+	                                COUNT(*) as participantCnt
+	                                ,VOT_ID
+	                            FROM VOT_RATE
+	                            WHERE VOT_YN='Y'
+	                            GROUP BY VOT_ID ) b
+	                     ON a.VOT_ID = b.VOT_ID
+	                LEFT JOIN VOT_RESULT c
+	                     ON a.VOT_ID = c.VOT_ID
+	                LEFT JOIN ( SELECT
+	                                COUNT(VOT_ID) as personCnt
+	                                ,VOT_ID
+	                            FROM VOT_ITEM
+	                            GROUP BY VOT_ID) d
+	                     ON a.VOT_ID = d.VOT_ID
+	ORDER BY VOT_ID DESC
+	</select>
+
+</mapper>

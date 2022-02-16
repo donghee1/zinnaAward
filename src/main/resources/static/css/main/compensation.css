@@ -1,0 +1,24 @@
+.spanBtn{
+	border-radius: 4px;
+    background: red;
+    font-size: 1.3rem;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+td{
+	border:none;
+}
+
+tr {
+	border:none;
+}
+
+table{
+	border: 1px solid lightgray;
+}
