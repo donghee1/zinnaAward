@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zinnaworks.mapper.AdminMapper">
+
+	<select id="selectCateList" resultType="java.util.Map">
+		SELECT *
+		FROM CODE_INFO
+		WHERE GRP_CD_TYP = 'GFT';
+	</select>
+	
+	<!-- <insert id="insertGroupInfoCD" >
+		INSERT INTO GRP_INFO(GRP_CD, GRP_NM, PRE_GRP_CD, PRE_GRP_NM)
+		VALUES (#{grpCd}, #{grpNm}, #{preGrpCd}, #{preGrpNm});
+	</insert> -->
+	
+</mapper>
