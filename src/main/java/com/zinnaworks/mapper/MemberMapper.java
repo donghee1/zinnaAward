@@ -27,5 +27,9 @@ public interface MemberMapper {
 	public int mergeInsertAuthInfo(MailAuth mail);
 
 	public MailAuth selectAuthInfo(String email);
+
+	public int updateSignUpInfo(Map<String, Object> data);
+
+	public Map<String, Object> checkAuthLogin(String userId);
 	
 }

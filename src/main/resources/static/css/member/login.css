@@ -1,31 +1,36 @@
 html {
-    height: 100%;
+    height: 90%;
     width: 100%;
 }
 body {
     height: 100%;
     width: 100%;
     margin: 0;
+    background-color: #eeeeee;
 }
 
 #header{
 	width:100%;
-	height:10%;
+	height:13%;
 	display: inline-block;
-	z-index: 1;	
-	background-color: white;
+	z-index: 1;
+}
+
+.headerLine{
+	position: relative;
+	top: 8px;
 }
 
 .hr{
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -33,7 +38,7 @@ body {
 
 #img{
 	width:13%;
-	height:100%;
+	height:110px;
 	background: url("../../img/zinnaworks-logo.png");	
 }
 
@@ -88,11 +93,12 @@ body {
 	text-align: center;
 }
 .check{
-	font-size: 20px;
+	font-size: 24px;
 	text-align: center;
 	color: grey;
 	float: left;
-	margin: 10px 20px 0 0;
+	margin: 10px 10px 0 10px;
+	text-decoration: underline;
 }
 /* top css 옵션 끝 */
 
@@ -105,6 +111,7 @@ body {
 	font-size: 20px;
 	width: 100%;
 	height: 100%;
+	top: -4px;
 }
 
 #signUpContent{
@@ -127,6 +134,7 @@ body {
 	width: 30%;
 	margin-left: 70px;
 	display: inline-block;
+	font-size: 20px;
 }
 #idTitle{
 	 margin-left: 135px;
@@ -136,6 +144,7 @@ body {
 	width: 50%;
 	margin-left: 50px;
 	display: inline-block;
+	font-size: 20px;
 }
 
 #loginSubmit{

@@ -1,7 +1,9 @@
 package com.zinnaworks.svc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +25,9 @@ public class MemberService implements UserDetailsService {
 
 	@Autowired
 	MemberRepository memberRepository;
+	
+	@Autowired
+	private MailService mailService;
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Member member = memberRepository.findById(username);
@@ -54,14 +59,37 @@ public class MemberService implements UserDetailsService {
 
 		System.out.println("test Service = " + memberVo.toString());
 		Member member = memberRepository.findById(memberVo.getUserId());
-		if (member == null) {
+		if (member != null) {
+			return false;
+		} else {
+			//메일 인증 보내기
+			MailAuth mail = new MailAuth();
+			mail.setUserId(memberVo.getUserId());
+			boolean data;
+			String check = "signUp";
+			try {
+				data = mailService.mailSend(mail, check);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			int saveMember = memberRepository.saveMember(memberVo);
 			if (saveMember > 0) {
 				return true;
 			}
 			return false;
 		}
-		return false;
+	}
+	
+	public Map<String, Object> updateSignUpInfo(String email) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		result = memberRepository.updateSignUpInfo(email);
+		
+		
+		return result;
 	}
 
 	public boolean updateMemberPwd(Member member, String code) throws Exception {
@@ -69,7 +97,7 @@ public class MemberService implements UserDetailsService {
 		String emailAuth = null;
 		if (member != null) {
 			MailAuth auth = memberRepository.selectAuthInfo(email);
-			if(auth == null) {
+			if (auth == null) {
 				return false;
 			}
 			emailAuth = String.valueOf(auth.getAuthKey());
@@ -80,9 +108,20 @@ public class MemberService implements UserDetailsService {
 				return false;
 			}
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
+
+	public Map<String, Object> checkAuthLogin(String email) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		result = memberRepository.checkAuthLogin(email);
+		
+		return result;
+	}
+
+	
 
 }

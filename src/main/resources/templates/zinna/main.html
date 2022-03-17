@@ -6,27 +6,41 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
+</head>
+
+<body class="">
+	<div id="header"></div>
+	<div class="mainForm">
+		<div id="nav">
+			<div id="awardTitle" class="navTitle">진행중인 투표</div>
+			<hr class="hrNav" id="blueNav">
+			<div id="awardList"></div>
+			<div id="newAwardList">
+				<div id="clickText"></div>
+				<a href="#" id="awardListClick">Click</a>
+			</div>
+		</div>
+		<div id="footer">
+			<div id="historyTitle" class="navTitle">결과 History</div>
+			<hr class="hrNav" id="redNav">
+			<div id="historyList">
+			</div>
+			<div><button id="historyBtn" type="button" class="btn btn-primary">+ 더보기</button></div>
+		</div>
+		<div id="paging" class="paging-div" style="display: none;">
+			<ul class="pagination" id="pagination">
+			</ul>
+		</div>
+	</div>
 	<meta charset="UTF-8">
 	<link th:href="@{css/main/main.css}" rel="stylesheet" type="text/css">
 	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
 	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
 	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
 	<script th:src="@{js/main/main.js}"></script>
-</head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<!--paging-->
+	<script th:src="@{asset/twbsPagination.js}"></script>
 
-<body class="">
-	<div id="header"></div>
-	<div id="nav">
-		<div id="awardTitle" class="navTitle">진행중인 투표</div>
-		<hr class="hrNav" id="blueNav"> 	
-		<div id="awardList"></div>		
-	</div>
-	
-	
-	<div id="footer">
-		<div id="historyTitle" class="navTitle">결과 History</div>
-		<hr class="hrNav" id="redNav">
-		<div id="historyList">
-		</div>
-	</div>
 </body>

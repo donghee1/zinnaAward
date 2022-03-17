@@ -5,6 +5,7 @@ html {
 body {
     height: 100%;
     width: 100%;
+    background-color: #eeeeee;
 }
 
 #header{
@@ -12,19 +13,18 @@ body {
 	height:10%;
 	display: inline-block;
 	z-index: 1;	
-	background-color: white;
 }
 
 .hr{
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -265,6 +265,15 @@ body {
 	margin-top: 20px;
 }
 
+#mainte{
+	position: absolute;
+	width: 100%;
+	height: 15px;
+	background-color: lightgray;
+	top: 0px;
+	left: 0px;
+}
+
 #sidete{
 	position: absolute;
 	width: 100%;
@@ -277,11 +286,11 @@ body {
 /* main page */
 
 #mainPage{
-	width: 100%;
+	width: 85%;
 	height: 100%;
 	position: absolute;
 	left: 400px;
-	top: 146px;
+	top: 144px;
 	padding: 50px 30px 150px 30px;
 }
 
@@ -309,7 +318,6 @@ body {
 #vote_mid{
 	position: relative;
 	width: 100%;
-	height: 70%;
 	border: 1px solid black;
 }
 .vote_content{
@@ -347,7 +355,7 @@ body {
 
 #vote_person_box{
 	width: 70%;
-	height: 12%;
+	height: 10%;
 	border: 1px solid purple;
 	text-align: center;
 	float: left;
@@ -356,7 +364,7 @@ body {
 #vote_check_box{
 	display: inline-block;
 	width: 30%;
-	height: 12%;
+	height: 10%;
 	border: 1px solid purple;
 	text-align: center;
 	font-size: 24px;
@@ -364,7 +372,7 @@ body {
 #vote_person{
 	position: relative;
 	top: 5px;
-	font-size: 30px;
+	font-size: 29px;
 	text-decoration: none;
 }
 #vote_check{
@@ -374,12 +382,17 @@ body {
 	top: 5px;
 }
 
+#vote_bottom{
+	position: relative;
+	height: 15%;
+    top: 10px;
+}
+
 #vote_submit{
 	font-size: 20px;
 	position: relative;
-    left: 230px;
-    top: 10px;
     width: 30%;
+    left: 34%;
 }
 
 

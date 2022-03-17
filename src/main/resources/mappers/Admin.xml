@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zinnaworks.mapper.AdminMapper">
+
+	<select id="selectGroupInfo" resultType="java.util.Map">
+		SELECT * FROM GRP_INFO;
+	</select>
+
+	<select id="selectPreGroupCode" resultType="java.util.Map">
+		SELECT a.GRP_CD,
+		a.GRP_NM, b.GRP_NM
+		FROM GRP_INFO a, GRP_INFO b
+		WHERE a.PRE_GRP_CD =
+		b.GRP_CD and a.GRP_CD = ${grpCd};
+	</select>
+
+	<!-- 하위부서 리스트에서 가장 큰 그룹코드 찾기 -->
+	<select id="selectLowGroups" resultType="java.util.Map">
+		<!-- SELECT * FROM GRP_INFO WHERE PRE_GRP_CD = #{preGrpCd}; -->
+		<!-- SELECT * FROM GRP_INFO WHERE PRE_GRP_CD = ${preGrpCd} AND GRP_CD = 
+			(SELECT MAX(GRP_CD) FROM GRP_INFO); -->
+		SELECT *
+		FROM GRP_INFO
+		WHERE GRP_CD = (SELECT MAX(GRP_CD)
+		FROM (SELECT *
+		FROM GRP_INFO
+		WHERE PRE_GRP_CD = ${grpCd}
+		) A
+		);
+	</select>
+
+	<insert id="insertGroupInfoCD">
+		INSERT INTO GRP_INFO(GRP_CD,
+		GRP_NM, PRE_GRP_CD, PRE_GRP_NM)
+		VALUES (#{grpCd}, #{grpNm},
+		#{preGrpCd}, #{preGrpNm});
+	</insert>
+
+	<delete id="grpDeleteInfo" parameterType="string">
+		DELETE FROM
+		GRP_INFO WHERE GRP_CD = #{grpCd}
+	</delete>
+
+	<select id="memberSelectInfo" resultType="map">
+		SELECT * FROM USERS
+		WHERE GRADE_CD BETWEEN 2 AND 3 
+		ORDER BY GRADE_CD ASC, USER_ID
+	</select>
+
+	<update id="memberUpdateInfo" parameterType="map">
+		UPDATE USERS SET
+		GRP_CD=#{grpCd}, ENTRY_DT=#{entryDt}, PHONENUM=#{phone},
+		GRADE_CD=#{gradeCd}
+		WHERE USER_ID = #{userId}
+	</update>
+
+	<delete id="memberDeleteInfo" parameterType="string">
+	DELETE FROM USERS WHERE USER_ID = #{userId}
+	</delete>
+	
+	<select id="selectCateList" resultType="java.util.Map">
+		SELECT GRP_CD_ID, GRP_CD_NM
+		FROM CODE_INFO
+		WHERE GRP_CD_TYP = 'GFT';
+	</select>
+	
+	<delete id="cateDeleteInfo" parameterType="string">
+		DELETE FROM CODE_INFO WHERE GRP_CD_ID = #{productCode}
+	</delete>
+	
+	<select id="cateNewCodeInfo" resultType="string">
+		SELECT MAX(GRP_CD_ID) FROM CODE_INFO WHERE GRP_CD_TYP = 'GFT'
+	</select>
+	
+	<insert id="cateCodeInsertInfo" parameterType="map">
+		INSERT INTO CODE_INFO VALUES(#{codeNm}, #{code}, #{productNm})
+	</insert>
+	
+
+</mapper>

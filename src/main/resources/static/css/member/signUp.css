@@ -5,26 +5,29 @@ html {
 body {
     height: 100%;
     width: 100%;
+    background-color: #eeeeee;
 }
 
 #header{
 	width:100%;
-	height:10%;
-	display: inline-block;
-	z-index: 1;	
+	height:13%;
 	background-color: white;
+}
+
+.headerLine{
+	position: relative;
 }
 
 .hr{
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -32,7 +35,7 @@ body {
 
 #img{
 	width:13%;
-	height:100%;
+	height:110px;
 	background: url("../../img/zinnaworks-logo.png");	
 }
 
@@ -96,13 +99,14 @@ body {
 /* top css 옵션 끝 */
 
 #title{
-	margin: 0 0 60px 0;
+	margin: 0 0 40px 0;
 }
 .signUpForm{
 	position: relative;
 	font-size: 20px;
 	width: 100%;
 	height: 100%;
+	background-color: white;
 }
 
 #signUpContent{
@@ -110,7 +114,7 @@ body {
 	width: 40%;
 	height: 60%;
 	left: 30%;
-	top: 200px;
+	top: 150px;
 }
 
 .inputForm{
@@ -131,7 +135,7 @@ body {
 }
 #password{
 	width: 50%;
-	margin-left: 50px;
+	margin-left: 54px;
 	display: inline-block;
 }
 #pwTitle{
@@ -149,7 +153,7 @@ body {
 }
 #team{
 	width: 50%;
-	margin-left: 45px;
+	margin-left: 40px;
 	display: inline-block;
 }
 #entryDate{
@@ -164,11 +168,17 @@ body {
 }
 
 #registrySubmit{
-	width: 40%;
-	margin:0 0 0 140px;
+	width: 20%;
+    font-size: 20px;
+    position: relative;
+    left: 230px;
+    top: 20px;
 }
 
 .labelForm{
 	text-align: left;
 	display: inline-block;
+}
+.input-data{
+	font-size: 17px;
 }

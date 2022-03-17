@@ -22,6 +22,7 @@ public class Member implements UserDetails{
 	private String entryDt;// 입사일
 	private String phoneNum; //핸드폰 번호
 	private int gradeCd; // 권한 1: 관리자, 2:부서장, 3:사원
+	private int useYn; // 권한 1: 권한없음, 2:사용중, 3:가입대기
 	
 //	@Builder
 //	public Member(String email, String pwd, String name, String EntryDate, String phone, String role) {

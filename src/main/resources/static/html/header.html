@@ -3,37 +3,29 @@
 <!DOCTYPE html>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="/js/member/registry.js"></script>
-<script src="/js/member/login.js"></script>
-<script src="/js/member/mail.js"></script>
-<script src="/js/member/update.js"></script>
-<script src="/js/main/main.js"></script>
-<script src="/js/main/votList.js"></script>
-<script src="/js/main/votCreate.js"></script>
-<script src="/js/main/votDetail.js"></script>
-<script src="/js/main/vote.js"></script>
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-</head>
-
-<body class="">
+<body class="" style="background-color: #eeeeee;">
 	<div id="img"></div>
 	<div id="logo">Zinnaworks Voting System</div>
-	<div id="home" class="menuVar" Onclick="location.href='main'" style="cursor: pointer;">Home</div>
-	<div id="voting" class="menuVar" Onclick="location.href='/vot'" style="cursor: pointer;">Voting</div>
-	<div id="admin" class="menuVar" style="cursor: pointer;">Admin</div>
+	<div id="home" class="menuVar" Onclick="location.href='main'" style="cursor: pointer; color:#114495;">Home</div>
+	<div id="voting" class="menuVar" Onclick="location.href='/votList'" style="cursor: pointer; color:#114495;">Voting</div>
+	<div id="admin" class="menuVar" Onclick="location.href='/admin'" style="cursor: pointer; color:#114495;">Admin</div>
 	<div id="profile" class="menuVar">
-		<span style="text-align: right;">admin | </span>
+		<span style="text-align: right;" id="profile_grade">admin | </span>
+		<span style="text-align: right;" id="profile_name"></span>
+		<span style="text-align: right;" id="profile_rank">admin</span>
+		
 	</div>
 	<div id="checkLogin" class="menuVar">
-		<div id="signUp" Onclick="location.href='signUp'" class="check1 check" style="cursor: pointer;">회원가입</div>
-		<div id="login" Onclick="location.href='login'" class="check1 check" style="cursor: pointer;">로그인</div>
-		<div id="logout" class="check2 check" style="cursor: pointer;">로그아웃</div>
+		<div id="signUp" Onclick="location.href='signUp'" class="check1 check" style="cursor: pointer; display: none;">회원가입</div>
+		<div id="login" Onclick="location.href='login'" class="check1 check" style="cursor: pointer; display: none;">로그인</div>
+		<div id="logout" class="check2 check" style="cursor: pointer; text-decoration: underline;">로그아웃</div>
 	</div>
 	
 	<hr class="hr" id="blue">
 	<hr class="hr" id="red">
-
+	
 </body>
+

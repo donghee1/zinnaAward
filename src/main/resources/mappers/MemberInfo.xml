@@ -3,19 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zinnaworks.mapper.MemberMapper">
+	
 	<insert id="insertMemberInfo"
 		parameterType="com.zinnaworks.vo.Member">
 		INSERT INTO USERS
-		(USER_ID, PASSWD, USER_NM, GRP_CD ,ENTRY_DT, PHONENUM, GRADE_CD)
+		(USER_ID, PASSWD, USER_NM, GRP_CD
+		,ENTRY_DT, PHONENUM, GRADE_CD, USE_YN)
 		VALUES(#{userId},#{passWd},#{userNm},#{grpCd},
-		#{entryDt},#{phoneNum}, #{gradeCd});
+		#{entryDt},#{phoneNum},#{gradeCd}, #{useYn});
 	</insert>
 
 	<select id="selectLoginInfo"
 		resultType="com.zinnaworks.vo.Member">
 		SELECT * FROM USERS
 		WHERE USER_ID = #{userId} AND PASSWD
-		= #{password}
+		=
+		#{password}
 	</select>
 
 	<select id="selectCheckById"
@@ -32,7 +35,7 @@
 
 	<update id="updateMemberPwd"
 		parameterType="com.zinnaworks.vo.Member">
-		UPDATE USERS SET pwd = #{pwd}
+		UPDATE USERS SET PASSWD = #{passWd}
 		WHERE USER_ID = #{userId}
 	</update>
 
@@ -42,30 +45,28 @@
 		VALUES(#{userId},#{authKey},#{creDt},#{expDt})
 	</insert>
 
- <select id="selectAuthInfo" parameterType="String" resultType="com.zinnaworks.vo.MailAuth">
+	<select id="selectAuthInfo" parameterType="String"
+		resultType="com.zinnaworks.vo.MailAuth">
 		SELECT *
 		FROM USER_AUTH
-		WHERE USER_ID=#{email} AND EXP_DT = (SELECT MAX(EXP_DT) FROM USER_AUTH)  
-	</select>  
+		WHERE USER_ID=#{email} AND EXP_DT =
+		(SELECT MAX(EXP_DT) FROM USER_AUTH)
+	</select>
+
+	<select id="selectVotGrp" parameterType="String" resultType="map">
+		SELECT * FROM USERS WHERE
+		GRP_CD = #{grp_no}
+	</select>
+
+	<update id="updateSignUpInfo" parameterType="map">
+		UPDATE USERS SET USE_YN = #{useYn}
+		WHERE USER_ID = #{email}
+	</update>
 	
-	<!-- <update id="mergeUpdateAuthInfo"
-		parameterType="com.zinnaworks.vo.Mail">
-		MERGE INTO USER_AUTH
-		USING USER_AUTH
-		ON (USER_ID = #{address})
-		WHEN MATCHED THEN
-		UPDATE SET AUTH_KEY=#{AUTH_KEY}, CRE_DT=#{CRE_DT}, EXP_DT=#{EXP_DT}
-		WHERE USER_ID=#{address}
-	</update> -->
+	<select id="checkAuthLogin" parameterType="string" resultType="map">
+		SELECT USE_YN FROM USERS WHERE
+		USER_ID = #{userId}
+	</select>
 	
-	<!-- <update id="mergeInsertAuthInfo"
-		parameterType="com.zinnaworks.vo.Mail">
-		MERGE INTO USER_AUTH
-		USING USER_AUTH
-		ON (USER_ID=#{address})
-		WHEN NOT MATCHED THEN
-		INSERT INTO (USER_ID, AUTH_KEY, CRE_DT,EXP_DT)
-		VALUES (#{address},#{AUTH_KEY},#{CRE_DT},#{EXP_DT})
-	</update> -->
 
 </mapper>

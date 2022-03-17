@@ -6,12 +6,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<link th:href="@{css/main/voteCompensation.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
-	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
-	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
-	<script th:src="@{js/main/voteCompensation.js}"></script>
 </head>
 
 <body class="">
@@ -56,45 +50,56 @@
 					<span class="span_content" id="un_vot_member">5</span>
 					<span class="span_content" id="choice_member">(이지연)</span>
 				</div>
-				<div class="createvot_content" id="chart">
-					<div class="pie-chart1" id="pieChart"></div>
-					<div class="chart_stats" id="person_info">
-						<div id="person_color"></div>
-						<span id="person_stats">한동희(33.3% 2p)</span>
-					</div>
-					<div class="chart_stats" id="person_info">
-						<div id="person_color"></div>
-						<span id="person_stats">한동희(33.3% 2p)</span>
-					</div>
+				<div class="createvot_content" id="chartForm">
+				<canvas id="myChart" width="170" height="170"></canvas>
+					<div id="chartData"></div>
 				</div>
+				<form id="uploadForm" enctype="multipart/form-data">
 				<div class="createvot_content">
 					<span class="span_content" id="result_type_span">상품유형</span>
-					<select id="result_type">
-						<option id="">상품권</option>
-						<option id="">현금</option>
-						<option id="">기타</option>
+					<select id="result_gift_select" name="result_gift_select">
 					</select>
 				</div>
 				<div class="createvot_content">
 					<span class="span_content" id="">상품금액</span>
-					<input type=text id="result_money" value=""><span class="span_content" id="money_span">원</span>
+					<input type="text" id="result_money" name="result_money"><span class="span_content" id="money_span">원</span>
 				</div>
 				<div class="createvot_content">
 					<span class="span_content" id="">지급일</span>
-					<input type=date id="result_date" value="">
+					<input type=text class= "datetimepicker vot_select" id="result_date"  name="result_date">
+					<i class="fas fa-calendar-check fa-lg icon_date" id="start_icon" ></i>
 				</div>
 				<div class="createvot_content">
 					<span class="span_content" id="">사진첨부</span>
 					<div class="filebox">
 						<label for="ex_file" id="file_btn">파일선택</label>
-						<input type="file" id="ex_file">
+						<input type="file" id="ex_file" name ="fileUpload" accept=".jpg,jpeg,png,gif" multiple>
+						<input type="hidden" id="ex_text" name ="vote_id" >
+						
 					</div>
 				</div>
 				<div class="createvot_content">
 					<button type="button" id="result_submit" class="btn btn-danger award_btn">완료</button>
 				</div>
+				</form>
+				
 			</div>
 		</div>
+		<meta charset="UTF-8">
+		<link th:href="@{css/main/voteCompensation.css}" rel="stylesheet" type="text/css">
+		<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+		<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
+		<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
+		<script th:src="@{js/main/voteCompensation.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+		
+		<link rel="stylesheet" href="//cdn.rawgit.com/xdan/datetimepicker/master/jquery.datetimepicker.css">
+		<script th:src="@{asset/jquery.datetimepicker.full.min.js}"></script>
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+			integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
 </body>
 
 </html>

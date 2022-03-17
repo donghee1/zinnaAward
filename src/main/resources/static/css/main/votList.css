@@ -5,6 +5,7 @@ html {
 body {
     height: 100%;
     width: 100%;
+    background-color: #eeeeee;
 }
 
 #header{
@@ -12,19 +13,18 @@ body {
 	height:10%;
 	display: inline-block;
 	z-index: 1;	
-	background-color: white;
 }
 
 .hr{
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -240,7 +240,7 @@ body {
 	width: 400px;
 	height: 100%;
 	background-color: lightgray;
-	top: 15px;
+	top: 16px;
 }
 #sideBar{
 	width: 400px;
@@ -277,7 +277,7 @@ body {
 /* main page */
 
 #mainPage{
-	width: 100%;
+	width: 84%;
 	height: 100%;
 	position: absolute;
 	left: 400px;
@@ -285,40 +285,79 @@ body {
 	padding: 50px 30px 150px 30px;
 }
 
-#listForm{
+#titleForm{
 	width: 80%;
-	position: absolute;
-	top: 140px;
+	position: relative;
+	top: 90px;
 	font-size: 20px;
 	text-align: center;
-	border-color: white;
-	
+}
+#listForm{
+	width: 80%;
+    position: relative;
+    top: 90px;
+    font-size: 20px;
+    text-align: center;
+}
+}
+#listDataForm{
+	border-bottom: 30px;
+}
+
+
+.firstTh{
+	border-left: none;
+}
+.lastTh{
+	border-right: none;
 }
 
 th{
-	height: 30px;
-	padding-top: 40px;
-	border-color: lightgray;
-}
-.th{
-	border-top: 1px solid white;
-}
-.firstTh{
-	border-left: 1px solid white;
-}
-.lastTh{
-	border-right: 1px solid white;
-}
+	vertical-align: baseline;
+	vertical-align: middle;
+	border-bottom-color: white;
+	border: 1px solid lightgray;
+	border-top: none;
+	border-bottom: none;
+}	
+
 .firstTd{
-	border-left: 1px solid white;
+	border-left: none;
 }
 .lastTd{
-	border-right: 1px solid white;
-}
+	border-right: none;
+	text-align: right;
+} 
 td{
-	margin: 5px 0 5px 0;
 	vertical-align: baseline;
-	height: 15px;
-	border-color: lightgray;
+	height: 60px;
+	vertical-align: middle;
+	border : 1px solid lightgray;
 	border-bottom-color: white;
+}	
+.tdStatus{
+	padding: 2px 10px 2px 10px;
+	border-radius : 5px;
+	position: relative;
+	float: left;
+	left: 45px;
+	text-align: center;
 }
+
+.voteDetail{
+	position: relative;
+	left: 25px;
+}
+.fa-search{
+	margin:0 0 0 10px;
+	position: relative;
+	right: 30px;
+}
+#paging{
+	position: relative;
+    top: 80px;
+    font-size: 15px;
+    left: 25px;
+}
+
+

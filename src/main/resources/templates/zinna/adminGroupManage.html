@@ -1,0 +1,55 @@
+<!--어드민 조직관리-->
+<!-- adminGroupManage.html-->
+<!DOCTYPE html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body class="">
+	<div id="header"></div>
+	<div id="side"></div>
+	<div id="mainPage">
+		<div id="sidete"></div>
+
+		<div class="wrapDiv">
+			<div id="leftDiv" class="contentDiv">
+				<div class="topContWrap">
+					<span class="grp_cd_span">부서코드</span>
+					<span id="grp_nm_span">부서명</span>
+				</div>
+				<div class="mainWrap" id="leftContWrap">
+					
+				</div>
+			</div>
+
+			<div id="rightDiv" class="contentDiv">
+				<div class="topContWrap">
+					<span class="grp_cd_span span_title" id="right_grp_cd_span">부서코드</span>
+					<span class="grp_cd_span_value value grp_cd_span" id="right_grp_cd_value">10000</span>
+					<span class="grp_upcd_span grp_cd_span" id="right_grp_upcd_span">상위부서</span>
+					<span class="grp_upcd_span_value value grp_cd_span" id="right_grp_upcd_value">지나웍스</span>
+				</div>
+				<div class="mainWrap" id="rightMainWrap">
+					<span id="main_span">하위부서생성</span>
+					<input class="downGroupCd" type="text" id="downGroupCd" name="downGroupCd" value="" />
+					<button type="button" id="downGroupSubmit" class="btn btn-primary downGroupSubmit">생성</button>
+					<button type="button" id="delGroupSubmit" class="btn btn-danger delGroupSubmit">부서삭제</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<meta charset="UTF-8">
+	<link th:href="@{css/main/grpList.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main/grpList.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</body>
+
+</html>

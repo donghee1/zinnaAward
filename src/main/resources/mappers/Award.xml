@@ -2,20 +2,584 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zinnaworks.mapper.MemberMapper">
+<mapper namespace="com.zinnaworks.mapper.AwardMapper">
+
+
+	<select id="selectVotList" parameterType="map" resultType="map">
+		SELECT
+		A.VOT_ID
+		,A.VOT_TYP
+		,A.VOT_GRP, A.VOT_NM
+		,DATE_FORMAT(A.START_DT,
+		'%y-%m-%d-%H') AS START_DT
+		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS
+		END_DT
+		,A.START_MMS
+		,A.END_MMS
+		,A.STATUS
+		,A.USER_ID
+		,A.REWARD
+		,A.REWARD_DT
+		,A.PHOTO_NM
+		,A.AUTO_HISTORY
+		,A.VOT_DESC
+		,B.GRADE_CD
+		,(SELECT COUNT(VOT_ID)
+		FROM VOT_ITEM WHERE A.VOT_ID = VOT_ID) AS NCNT
+		,(SELECT
+		COUNT(VOT_RESULT_ID) FROM VOT_RATE WHERE A.VOT_ID = VOT_ID) AS YCNT
+		,(SELECT COUNT(VOT_ID) FROM VOT_INFO) AS TotalCnt
+		,(SELECT
+		COUNT(STATUS) AS StatusCnt FROM VOT_INFO WHERE STATUS = 0) AS
+		StatusCnt
+		FROM
+		VOT_INFO A, USERS B
+		WHERE
+		A.USER_ID = B.USER_ID
+		AND A.STATUS = #{status}
+		ORDER BY A.VOT_ID DESC LIMIT #{before}, #{after}
+	</select>
+
+	<select id="awardUserList" parameterType="map" resultType="map">
+		SELECT
+		A.VOT_ID
+		,A.VOT_TYP
+		,A.VOT_GRP, A.VOT_NM
+		,DATE_FORMAT(A.START_DT, '%y-%m-%d-%H')
+		AS START_DT
+		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS END_DT
+		,A.START_MMS
+		,A.END_MMS
+		,A.STATUS
+		,A.USER_ID
+		,A.REWARD
+		,A.REWARD_DT
+		,A.PHOTO_NM
+		,A.AUTO_HISTORY
+		,A.VOT_DESC
+		,COALESCE(B.VOT_RESULT_ID, 0) AS VOT_CHECK
+		,(SELECT COUNT(VOT_ID) FROM VOT_ITEM WHERE A.VOT_ID =
+		VOT_ID) AS NCNT
+		,(SELECT COUNT(VOT_RESULT_ID) FROM VOT_RATE WHERE
+		A.VOT_ID = VOT_ID) AS YCNT
+		,(SELECT COUNT(VOT_ID) FROM VOT_INFO) AS
+		TotalCnt
+		,(SELECT COUNT(STATUS) AS StatusCnt FROM VOT_INFO WHERE STATUS
+		= 0) AS StatusCnt
+		FROM VOT_INFO A
+		LEFT JOIN VOT_RATE B ON A.VOT_ID = B.VOT_ID
+		WHERE STATUS = 0
+		AND B.USER_ID = #{user}
+		ORDER BY A.VOT_ID DESC
+		LIMIT #{before}, #{after}
+	</select>
+
+	<select id="awardAdminList" parameterType="map" resultType="map">
+		SELECT DISTINCT
+		A.VOT_ID
+		,A.VOT_TYP
+		,A.VOT_GRP, A.VOT_NM
+		,DATE_FORMAT(A.START_DT, '%y-%m-%d-%H') AS START_DT
+		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS END_DT
+		,A.START_MMS
+		,A.END_MMS
+		,A.STATUS
+		,A.USER_ID
+		,A.REWARD
+		,A.REWARD_DT
+		,A.PHOTO_NM
+		,A.AUTO_HISTORY
+		,A.VOT_DESC
+		,COALESCE(C.VOT_ID, 0) AS VOT_CHECK
+		,(SELECT COUNT(VOT_ID) FROM VOT_ITEM WHERE A.VOT_ID = VOT_ID) AS NCNT
+		,(SELECT COUNT(VOT_RESULT_ID) FROM VOT_RATE WHERE A.VOT_ID = VOT_ID) AS YCNT
+		,(SELECT COUNT(VOT_ID) FROM VOT_INFO) AS TotalCnt
+		,(SELECT COUNT(STATUS) AS StatusCnt FROM VOT_INFO WHERE STATUS = 0) AS
+		StatusCnt
+		FROM
+		VOT_INFO A LEFT JOIN VOT_ITEM B ON A.VOT_ID = B.VOT_ID
+		LEFT JOIN VOT_RATE C ON A.VOT_ID = C.VOT_ID
+		WHERE
+		A.STATUS = 0
+		ORDER BY A.VOT_ID DESC LIMIT #{before}, #{after}
+	</select>
+
+	<select id="historyList" parameterType="map" resultType="map">
+		SELECT DISTINCT
+		A.VOT_ID
+		,A.VOT_TYP
+		,A.VOT_GRP, A.VOT_NM
+		,DATE_FORMAT(A.START_DT, '%y-%m-%d-%H') AS START_DT
+		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS END_DT
+		,A.START_MMS
+		,A.END_MMS
+		,A.STATUS
+		,A.USER_ID
+		,A.REWARD
+		,A.REWARD_DT
+		,COALESCE(A.PHOTO_NM, 0) AS
+		PHOTO_NM
+		,A.AUTO_HISTORY
+		,A.VOT_DESC
+		,COALESCE(C.VOT_ID, 0) AS VOT_CHECK
+		,(SELECT COUNT(VOT_ID) FROM VOT_ITEM WHERE A.VOT_ID =
+		VOT_ID) AS NCNT
+		,(SELECT COUNT(VOT_RESULT_ID) FROM VOT_RATE WHERE
+		A.VOT_ID = VOT_ID) AS YCNT
+		,(SELECT COUNT(VOT_ID) FROM VOT_INFO) AS
+		TotalCnt
+		,(SELECT COUNT(STATUS) AS StatusCnt FROM VOT_INFO WHERE STATUS
+		= 1) AS StatusCnt
+		FROM
+		VOT_INFO A LEFT JOIN VOT_ITEM B ON A.VOT_ID =
+		B.VOT_ID
+		LEFT JOIN VOT_RATE C ON A.VOT_ID = C.VOT_ID
+		WHERE
+		A.STATUS = 1
+		ORDER BY A.VOT_ID DESC LIMIT #{before}, #{after}
+	</select>
+
+	<select id="awardMainList" parameterType="map" resultType="map">
+		SELECT a.VOT_ID
+		,a.VOT_NM
+		,a.USER_ID
+		,a.STATUS
+		,b.VOT_NAME
+		,date_format(a.START_DT, '%y-%m-%d,%H') as START_DT
+		,date_format(a.END_DT, '%y-%m-%d,%H') as END_DT
+		,COALESCE(c.VOT_RESULT_ID, 0) as RESULT_ID
+		,COALESCE(b.VOT_NAME, 0) as RESULT_NM
+		,COALESCE(YCNT, 0) as YCNT
+		,COALESCE(NCNT, 0) as NCNT
+		FROM VOT_INFO a LEFT JOIN VOT_RESULT c
+		ON a.VOT_ID = c.VOT_ID
+		LEFT JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID AND b.VOT_CD = c.VOT_RESULT_ID
+		AND b.VOT_NAME = #{user}
+		LEFT JOIN (SELECT VOT_ID, COUNT(VOT_RESULT_ID) AS YCNT, COUNT(VOT_ID) AS
+		NCNT FROM VOT_RATE GROUP BY VOT_ID) d ON a.VOT_ID = d.VOT_ID
+		WHERE 
+		YCNT != 0
+		ORDER BY a.VOT_ID DESC LIMIT #{before}, #{after}
+	</select>
+
+	<select id="awardMainListSize" parameterType="string"
+		resultType="map">
+
+		SELECT COUNT(a.VOT_ID) AS totalCnt
+		FROM VOT_INFO a LEFT JOIN VOT_RESULT c
+		ON a.VOT_ID = c.VOT_ID
+		LEFT JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID AND b.VOT_CD = c.VOT_RESULT_ID
+		AND b.VOT_NAME = #{user}
+		LEFT JOIN (SELECT VOT_ID, COUNT(VOT_RESULT_ID) AS YCNT, COUNT(VOT_ID) AS
+		NCNT FROM VOT_RATE GROUP BY VOT_ID) d ON a.VOT_ID = d.VOT_ID
+		WHERE STATUS = 1
+		AND
+		YCNT != 0
+		ORDER BY a.VOT_ID DESC
+	</select>
+
+	<select id="awardMainAdminList" parameterType="map"
+		resultType="map">
+		SELECT a.VOT_ID
+		,a.VOT_NM
+		,a.USER_ID
+		,a.STATUS
+		,b.VOT_NAME
+		,date_format(a.START_DT, '%y-%m-%d,%H') as START_DT
+		,date_format(a.END_DT, '%y-%m-%d,%H') as END_DT
+		,COALESCE(c.VOT_RESULT_ID, 0) as RESULT_ID
+		,COALESCE(b.VOT_NAME, 0) as RESULT_NM
+		,COALESCE(YCNT, 0) as YCNT
+		,COALESCE(NCNT, 0) as NCNT
+		FROM VOT_INFO a LEFT JOIN VOT_RESULT c
+		ON a.VOT_ID = c.VOT_ID
+		LEFT JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID AND b.VOT_CD = c.VOT_RESULT_ID
+		LEFT JOIN (SELECT VOT_ID, COUNT(VOT_RESULT_ID) AS YCNT, COUNT(VOT_ID)
+		AS NCNT FROM VOT_RATE GROUP BY VOT_ID) d ON a.VOT_ID = d.VOT_ID
+		WHERE STATUS = 1
+		AND
+		YCNT != 0
+		ORDER BY a.VOT_ID DESC
+		LIMIT #{before}, #{after}
+	</select>
 	
-	<insert id="insertVotInfo" parameterType="com.zinnaworks.vo.Member">
-		INSERT INTO USERS
-		(USER_ID, PASSWD, USER_NM, GRP_CD ,ENTRY_DT, PHONENUM, GRADE_CD)
-		VALUES(#{userId},#{password},#{uesrName},#{userGrp},
-		#{entryDate},#{phoneNum}, #{gradeCd});
+	<select id="awardMainAdminListSize" resultType="map">
+		SELECT COUNT(a.VOT_ID) AS totalCnt
+		FROM VOT_INFO a LEFT JOIN VOT_RESULT c
+		ON a.VOT_ID = c.VOT_ID
+		LEFT JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID AND b.VOT_CD = c.VOT_RESULT_ID
+		LEFT JOIN (SELECT VOT_ID, COUNT(VOT_RESULT_ID) AS YCNT, COUNT(VOT_ID)
+		AS NCNT FROM VOT_RATE GROUP BY VOT_ID) d ON a.VOT_ID = d.VOT_ID
+		WHERE STATUS = 1
+		AND
+		YCNT != 0
+		ORDER BY a.VOT_ID DESC
+	</select>
+
+	<select id="checkAwardList" resultType="map">
+		SELECT
+		A.VOT_ID
+		,A.VOT_TYP
+		,A.VOT_GRP, A.VOT_NM
+		,DATE_FORMAT(A.START_DT,
+		'%y-%m-%d-%H') AS START_DT
+		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS
+		END_DT
+		,A.START_MMS
+		,A.END_MMS
+		,A.STATUS
+		,A.USER_ID
+		,A.REWARD
+		,A.REWARD_DT
+		,A.PHOTO_NM
+		,A.AUTO_HISTORY
+		,A.VOT_DESC
+		,B.GRADE_CD
+		,(SELECT COUNT(VOT_ID)
+		FROM VOT_ITEM WHERE A.VOT_ID = VOT_ID) AS NCNT
+		,(SELECT
+		COUNT(VOT_RESULT_ID) FROM VOT_RATE WHERE A.VOT_ID = VOT_ID) AS YCNT
+		,(SELECT COUNT(VOT_ID) FROM VOT_INFO) AS TotalCnt
+		,(SELECT
+		COUNT(STATUS) AS StatusCnt FROM VOT_INFO WHERE STATUS = 0) AS
+		StatusCnt
+		FROM
+		VOT_INFO A, USERS B
+		WHERE
+		A.USER_ID = B.USER_ID
+		AND
+		A.STATUS = 0
+		ORDER BY A.VOT_ID DESC
+	</select>
+
+	<select id="selectVotListPage" parameterType="map"
+		resultType="map">
+		SELECT
+		A.VOT_ID
+		,A.VOT_TYP
+		,A.VOT_GRP, A.VOT_NM
+		,DATE_FORMAT(A.START_DT, '%y-%m-%d-%H') AS START_DT
+		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS END_DT
+		,A.START_MMS
+		,A.END_MMS
+		,A.STATUS
+		,A.USER_ID
+		,A.REWARD
+		,A.REWARD_DT
+		,A.PHOTO_NM
+		,A.AUTO_HISTORY
+		,A.VOT_DESC
+		,B.GRADE_CD
+		,(SELECT COUNT(VOT_ID) FROM VOT_ITEM WHERE
+		A.VOT_ID = VOT_ID) AS NCNT
+		,(SELECT COUNT(VOT_RESULT_ID) FROM VOT_RATE
+		WHERE A.VOT_ID = VOT_ID) AS YCNT
+		,(SELECT COUNT(VOT_ID) FROM VOT_INFO)
+		AS TotalCnt
+		FROM
+		VOT_INFO A, USERS B
+		WHERE
+		A.USER_ID = B.USER_ID
+		ORDER BY A.VOT_ID DESC LIMIT #{before}, #{after}
+	</select>
+
+
+	<select id="voteMemberList" resultType="map"
+		parameterType="string">
+		SELECT A.VOT_ID, A.VOT_NM, A.status, VOT_DESC, B.VOT_CD,
+		B.VOT_NAME FROM VOT_INFO A, VOT_ITEM B
+		WHERE A.VOT_ID = B.VOT_ID AND
+		B.VOT_ID = #{vote_no}
+	</select>
+
+	<select id="selectVotId" resultType="string"
+		parameterType="hashMap">
+		SELECT MAX(VOT_ID) FROM VOT_INFO
+	</select>
+
+	<select id="selectVotGrp" resultType="map">
+		SELECT GRP_CD, GRP_NM from
+		GRP_INFO
+
+	</select>
+
+	<select id="voteSelectGrpMember" resultType="map"
+		parameterType="string">
+		SELECT DISTINCT A.USER_ID,
+		A.USER_NM,
+		A.GRP_CD,
+		A.GRADE_CD
+		FROM USERS A , GRP_INFO B
+		WHERE A.GRP_CD = B.GRP_CD
+		AND B.PRE_GRP_CD
+		=#{grp_no}
+		OR A.GRP_CD = #{grp_no}
+	</select>
+
+	<select id="voteSelectGrpAllMember" resultType="map">
+		SELECT DISTINCT
+		USER_ID
+		,USER_NM
+		,GRP_CD
+		,GRADE_CD
+		FROM USERS
+		WHERE GRADE_CD NOT IN('1')
+	</select>
+
+	<insert id="voteCreateInfo"
+		parameterType="com.zinnaworks.vo.Award">
+		INSERT INTO VOT_INFO
+		(VOT_ID, VOT_TYP, VOT_GRP, VOT_NM,
+		START_DT, END_DT, START_MMS,
+		END_MMS, STATUS, USER_ID, REWARD,
+		REWARD_DT, PHOTO_NM, AUTO_HISTORY, VOT_DESC)
+		VALUES(#{votId},#{votTyp},#{votGrp},#{votNm},#{startDt},#{endDt},#{startMMS},
+		#{endMMS},#{status},#{userId},#{reward},#{rewardDt},#{photoNm},#{autoHistory}
+		,#{votDesc});
 	</insert>
 
-	<select id="selectVotList" resultType="hashmap">
-		SELECT * FROM USERS
-		WHERE USER_ID = #{userId} AND PASSWD
-		= #{password}
+	<insert id="voteCreateItem" parameterType="java.util.List">
+		INSERT INTO VOT_ITEM
+		(VOT_ID, VOT_CD, VOT_NAME, USER_ID)
+		VALUES
+		<foreach collection="list" index="index" item="item"
+			separator=",">
+			(#{item.votId},#{item.votCd},#{item.votNm},#{item.memberId})
+		</foreach>
+	</insert>
+
+	<insert id="voteCreateRate" parameterType="java.util.List">
+		INSERT INTO VOT_RATE
+		(VOT_ID, USER_ID, VOT_GRADE)
+		VALUES
+		<foreach collection="list" index="index" item="item"
+			separator=",">
+			(#{item.votId},#{item.userId},#{item.voteGrade})
+		</foreach>
+	</insert>
+
+	<insert id="voteInsert" parameterType="java.util.List">
+		INSERT INTO VOT_RATE
+		(VOT_ID, USER_ID,
+		VOT_GRADE)
+		VALUES
+		<foreach collection="list" index="index" item="item"
+			separator=",">
+			(#{item.votId},#{item.userId},#{item.voteGrade})
+		</foreach>
+	</insert>
+
+
+	<select id="selectCheckNm" resultType="string"
+		parameterType="string">
+		SELECT VOT_NAME FROM VOT_ITEM
+		WHERE VOT_ID = #{param1}
+		AND VOT_NAME = #{param2}
 	</select>
+
+	<select id="selectUserId" resultType="string"
+		parameterType="map">
+		SELECT USER_ID FROM VOT_RATE WHERE VOT_ID = #{vote_no}
+		AND USER_ID = #{voterNm}
+	</select>
+
+	<select id="voteRateList" resultType="map"
+		parameterType="string">
+		SELECT VOT_INFO.*, VOT_RATE.USER_ID AS VOTER_ID,
+		VOT_RATE.VOT_DT, VOT_RATE.VOT_RESULT_ID, VOT_RATE.VOT_GRADE FROM
+		VOT_INFO LEFT JOIN VOT_RATE ON VOT_INFO.VOT_ID = VOT_RATE.VOT_ID AND
+		VOT_RATE.USER_ID = #{userId}
+	</select>
+	<select id="voteCheckRate" resultType="map"
+		parameterType="string">
+		SELECT * FROM VOT_RATE INNER JOIN VOT_ITEM ON
+		VOT_RATE.VOT_ID = VOT_ITEM.VOT_ID AND
+		VOT_RATE.VOT_ID = #{vote_no} AND
+		VOT_RATE.VOT_RESULT_ID = VOT_ITEM.VOT_CD
+
+	</select>
+
+	<select id="votSelectDetail" resultType="map"
+		parameterType="string">
+		SELECT
+		A.VOT_ID,A.VOT_TYP
+		,A.VOT_GRP, A.VOT_NM
+		,DATE_FORMAT(A.START_DT, '%y-%m-%d-%H') AS
+		START_DT
+		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS END_DT
+		,A.START_MMS
+		,A.END_MMS
+		,A.STATUS
+		,A.USER_ID
+		,A.REWARD
+		,A.REWARD_DT
+		,A.PHOTO_NM
+		,A.AUTO_HISTORY
+		,A.VOT_DESC
+		,B.GRADE_CD
+		,(SELECT COUNT(VOT_ID) FROM VOT_ITEM WHERE
+		A.VOT_ID = VOT_ID) AS NCNT
+		,(SELECT COUNT(VOT_RESULT_ID) FROM
+		VOT_RATE
+		WHERE
+		A.VOT_ID = VOT_ID) AS
+		YCNT
+		FROM
+		VOT_INFO A, USERS B
+		WHERE
+		A.USER_ID =
+		B.USER_ID AND A.VOT_ID = #{vote_no}
+	</select>
+
+	<update id="voteUpdateDetail" parameterType="map">
+		UPDATE VOT_INFO SET
+		VOT_NM=#{title}, VOT_DESC=#{desc}, START_DT=#{start_time},
+		END_DT=#{end_time}
+		WHERE VOT_ID = #{vote_no}
+	</update>
+
+	<update id="checkEndDt">
+
+		UPDATE VOT_INFO
+		SET STATUS =1
+		WHERE
+		END_DT <![CDATA[<]]>
+		NOW()
+		AND
+		STATUS=0
+		AND
+		VOT_ID = #{vote_id}
+
+	</update>
+
+	<select id="selectResultInfo" parameterType="string"
+		resultType="map">
+		SELECT VOT_ID,
+		VOT_RESULT_ID,SUM(VOT_SCORE) AS VOT_SCORE
+		FROM (
+		SELECT VOT_RATE.VOT_ID, VOT_RATE.VOT_RESULT_ID,
+		CASE
+		WHEN
+		(VOT_RATE.VOT_GRADE = 3) THEN 1
+		WHEN (VOT_RATE.VOT_GRADE = 2) THEN 2
+		END AS VOT_SCORE
+		FROM VOT_RATE LEFT JOIN VOT_INFO ON
+		VOT_RATE.VOT_ID =
+		VOT_INFO.VOT_ID
+		AND VOT_INFO.STATUS = 1
+		) a
+		GROUP BY 1, 2
+	</select>
+
+	<select id="selectResultMember" parameterType="string"
+		resultType="map">
+		SELECT a.VOT_ID
+		,a.VOT_RESULT_ID
+		,VOT_SCORE
+		,c.USER_ID
+		,c.USER_NM
+		,c.GRADE_CD
+		,c.ENTRY_DT
+		FROM (
+		SELECT VOT_RATE.VOT_ID
+		,VOT_RATE.VOT_RESULT_ID
+		,
+		SUM(CASE
+		WHEN (VOT_RATE.VOT_GRADE = 3) THEN 1
+		WHEN (VOT_RATE.VOT_GRADE = 2) THEN 2
+		END) AS VOT_SCORE
+		FROM VOT_RATE INNER JOIN VOT_INFO ON
+		VOT_RATE.VOT_ID = VOT_INFO.VOT_ID
+		WHERE VOT_INFO.STATUS = 1
+		AND VOT_INFO.VOT_ID = #{vote_id}
+		GROUP BY 1, 2) a
+		INNER JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID
+		AND a.VOT_RESULT_ID = b.VOT_CD
+		INNER JOIN USERS c ON c.USER_ID = b.USER_ID
+		ORDER BY VOT_SCORE DESC
+	</select>
+
+	<insert id="resultIdInsert" parameterType="string">
+		INSERT INTO VOT_RESULT
+		(VOT_ID, VOT_RESULT_ID)
+		VALUES(#{param1}, #{param2})
+	</insert>
+
+
+	<select id="compensationList" resultType="map">
+		SELECT DISTINCT a.VOT_ID
+		,a.VOT_NM
+		,a.USER_ID
+		,a.STATUS
+		,date_format(a.START_DT, '%y-%m-%d,%H') as START_DT
+		,date_format(a.END_DT, '%y-%m-%d,%H') as END_DT
+		,COALESCE(c.VOT_RESULT_ID, 0) as RESULT_ID
+		,COALESCE(b.VOT_NAME, 0) as RESULT_NM
+		,(SELECT COUNT(VOT_ID) FROM VOT_ITEM WHERE a.VOT_ID = VOT_ID) AS personCnt
+		,(SELECT COUNT(VOT_RESULT_ID) FROM VOT_RATE WHERE a.VOT_ID = VOT_ID)
+		AS participantCnt
+		,(SELECT COUNT(VOT_ID) FROM VOT_INFO) AS TotalCnt
+		FROM VOT_INFO a LEFT JOIN VOT_RESULT c
+		ON a.VOT_ID = c.VOT_ID
+		LEFT JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID AND
+		b.VOT_CD = c.VOT_RESULT_ID
+		WHERE a.STATUS = 1
+		ORDER BY a.VOT_ID DESC
+
+		LIMIT #{before}, #{after}
+	</select>
+
+	<update id="voteEndStatus" parameterType="string">
+		UPDATE VOT_INFO
+		SET
+		STATUS = 1
+		WHERE
+		VOT_ID = #{vote_no}
+	</update>
+
+	<delete id="voteDelete" parameterType="string">
+		DELETE
+		FROM VOT_INFO
+		WHERE
+		VOT_ID = #{vote_no}
+		AND STATUS = 0
+	</delete>
+
+	<select id="giftSelectInfo" resultType="map">
+		SELECT * FROM CODE_INFO
+		WHERE GRP_CD_TYP = 'GFT'
+	</select>
+
+	<update id="giftFinalUpdate" parameterType="map">
+		UPDATE VOT_INFO SET
+		REWARD = #{gift},
+		REWARD_DT = #{result_date},
+		PHOTO_NM = #{photoNm}
+		WHERE VOT_ID = #{vote_no}
+	</update>
+
+	<!-- <select id="checkResultMember" parameterType="map" resultType="map"> 
+		select COALESCE(b.VOT_NAME, 'fail') AS VOT_NAME, COUNT(a.VOT_ID) AS award_cnt 
+		FROM VOT_RESULT a INNER JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID AND <foreach 
+		collection="map" item="list" index="key" separator="and"> b.VOT_NAME = #{list.} 
+		</foreach> </select> -->
+
+	<update id="voteUpdate" parameterType="map">
+		UPDATE VOT_RATE SET
+		VOT_DT=NOW(), VOT_RESULT_ID=#{votedCd}
+		WHERE VOT_ID = #{vote_no}
+		AND
+		USER_ID LIKE CONCAT(#{voterId},'%')
+	</update>
+
+	<select id="checkVoteChoice" parameterType="map"
+		resultType="map">
+		SELECT * FROM VOT_RATE WHERE VOT_ID = #{vote_no} AND
+		USER_ID LIKE CONCAT(#{voterId}, '%')
+	</select>
+
+
+
 
 
 </mapper>

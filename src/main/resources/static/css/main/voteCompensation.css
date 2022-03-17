@@ -5,6 +5,7 @@ html {
 body {
     height: 100%;
     width: 100%;
+    background-color: #eeeeee;
 }
 
 #header{
@@ -12,19 +13,18 @@ body {
 	height:10%;
 	display: inline-block;
 	z-index: 1;	
-	background-color: white;
 }
 
 .hr{
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -419,24 +419,22 @@ body {
 
 .chart_stats{
 	position: relative;
-	left:290px;
-	top: -150px;
-	width: 30%;
-	height: 15%;
+	width: 100%;
+	height: 32px;
 	border: 1px solid red;
 	padding: 5px;
 	font-size: 15px;
 }
 
 #person_color{
-	width: 12%;
-	height: 100%;
-	background-color: red;
-	float: left;
-	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	border: 1px solid green;
 }
 #person_stats{
-	margin-left: 20px;
+	position: relative;
+	right: 170px;
 }
 
 #vot_info_mms_span{
@@ -478,27 +476,27 @@ body {
 	text-decoration: none;
 	color:lightgray;
 }
-#result_type{
+#result_gift_select{
 	position: relative;
 	width: 325px;
 	font-size: 20px;
 	top: 12px;
 	text-align: center;
+	left:25px;
 }
 #result_money{
 	position: relative;
 	left: 27px;
 	top: 10px;
 	width: 325px;
+	font-size: 17px;
+	text-align: right;
 }
 #money_span{
 	position: relative;
 	top: 12px;
 	text-decoration: none;
 	left: 5px;
-}
-#result_type_span{
-	left:-29px;
 }
 #result_date{
 	position: relative;
@@ -549,4 +547,41 @@ body {
     top: 10px;
 }
 
+#chartForm{
+	height: 55%;
+}
+#chartData{    
+	position: relative;
+    width: 50%;
+    left: 323px;
+}
+#myChart{
+	margin:10px 0 0 30px;
+	float: left;
+}
 
+.icon_date{
+	position: absolute;
+	top:30px;
+}
+
+#start_icon{
+	position: absolute;
+	top:25px;
+	left: 335px;
+	font-size: 20px;
+}
+
+.vot_select{
+	position: relative;
+	height: 30px;
+	top: 15px;
+	width: 180px;
+	left: 10px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#uploadForm{
+	height: 100%;
+}

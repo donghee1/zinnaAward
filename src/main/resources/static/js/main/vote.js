@@ -1,92 +1,212 @@
+
+$("#header").load("html/header.html");
+$("#side").load("html/side.html");
+
 window.onload = function() {
 
-	$("#header").load("html/header.html");
-	$("#side").load("html/side.html");
-};		
-	
-	
-	//탑 메뉴바 설정 필요함
-	
+	let temp = location.href.split("?");
+	let vote_no = temp[1];
 
-	console.log("test main page!!!")
-	var list = "";
-	var cnt = "";
-	var awardDate = "";
-	var teamCnt = "";
-	var votPerson = "";
-	let awardHtml = "";
-	let historyHtml = "";
+	let cookie = $.cookie("zinnaworks");
 	
+	if(cookie == null || cookie == undefined || cookie == ""){
+		alert("관리자에게 문의하기 바랍니다")
+		window.location.href="/login"
+	}
+
+	let cookieData = cookie.split(",");
+	var str = cookieData[0];
+	let cookieId = str.substr(1);
+	
+	let cookieNm = cookieData[1];
+	let cookieGrp = cookieData[2];
+	let grade = cookieData[3];
+	let cookieGd = grade.substr(0, 1)
+
+	if (cookieGd > 1) {
+		$("#admin").css("display", "none");
+	}
+	if (cookieGd > 1) {
+		$("#admin").css("display", "none");
+		$("#voteCompensationListLink").css("display", "none");
+		$("#votCreateLink").css("display", "none");
+		$("#totalLink").css("display", "none");
+	}
+
+	let memberListHtml = "";
+
 	$.ajax({
-		url: '/api/main',
+		type: "post",
+		url: "/api/votCreate/voselectGrp",
+		dataType: "json",
+		contentType: "application/json",
+		success: function(data) {
+			$("#profile_name").text("| " + cookieNm);
+			var result = data.body;
+			for (var z = 0; z < result.length; z++) {
+				if (cookieGrp == result[z].GRP_CD) {
+					$("#profile_grade").text(result[z].GRP_NM);
+				}
+				if (cookieGd == 1) {
+					$("#profile_rank").text("| admin");
+				} else if (cookieGd == 2) {
+					$("#profile_rank").text("| 부서장");
+				} else if (cookieGd == 3) {
+					$("#profile_rank").text("| 사원");
+				}
+			}
+		}
+	})
+
+
+	$.ajax({
+		url: 'api/voteSelectList',
 		type: 'POST',
+		data: vote_no,
 		contentType: "application/json",
 		dataType: 'json',
 		success: function(data) {
-			console.log(JSON.stringify(data));
-			console.log("data = " + data);
-			//리스트의카운트가 될수있다.
-			awardDate = data.body[0].startDt + '시 ~ ' + data.body[0].endDt + ' 시';
-			var teamPerson = data.body[0].votItem;
-			teamCnt = teamPerson.split('|').length + ' 참여';
+			console.log("data = " + JSON.stringify(data.body));
 			
-			//award_list 값을 기준으로 동적 테이블은 생성한다
-			//alert("award_list")
-			list = data.body;
-			cnt = data.body.length;
-			console.log("cnt = " + cnt);
-			console.log("list = " + list)
-			console.log("list = " + JSON.stringify(list));
-
-
-			if (data.result == "fail") {
-				console.log("데이터가 없습니다")
-			} else if (data.result == "result") {
-				console.log("깔깔")
+			let memberList = data.body;
+			if (memberList[0].status === 0) {
+				$("#vote_span_value").text("진행중")
+			} else {
+				$("#vote_span_value").text("종료")
 			}
+			$("#vote_name_value").text(memberList[0].VOT_NM);
+			$("#vote_info_value").text(memberList[0].VOT_DESC);
 
-			awardList(data);
+
+			voteMemberList(memberList);
 
 		},
 		error: function(e) {
 			alert("일시적인 에러입니다. 다시 시도해 주세요.");
-			location.href = "/login";
 		}
 	});
 
-	function awardList(data) {
-		
-		for (var i = 0; i < cnt; i++) {
-			//awardHtml += '<div id="divList" class ="awardList" >' +
-						'<div id="awardList_top" class="AL">' + data.body[i].votNm + '</div>' +
-						'<div id="awardList_mid" class="AL">' +
-							'<div id="award-date" class="middle">' + awardDate + '</div>' +
-							'<div id="award-person" class="middle">' + '1 / ' + teamCnt + '</div>' + 
-						'</div>' +
-						'<div id="awardList_bottm" class="AL">' +
-							'<button id="awardGo" class="btn btn-primary bottom-btn" type="button">투표참여</button>' +
-							'<button id="awardDetail" class="btn btn-primary bottom-btn" type="button">결과확인</button>' +
-						'</div>' + 
-					'</div>';
+	function voteMemberList(memberList) {
+
+		var i = 0;
+
+		for (i; i < memberList.length; i++) {
+			var memberNm = memberList[i].VOT_NAME;
+			var memberCd = memberList[i].VOT_CD;
+				
+			memberListHtml += '<div id="vote_person_box">' +
+				'<span class="vote_span" id="vote_person">' + memberNm + '</span>' + '</div>' +
+				'<div id="vote_check_box">' +
+				'<input type="checkbox" id="vote_check" value=' + memberCd + '>' + '</div>'
 		}
 
-	//	$('#awardList').html(awardHtml);
-		
-		console.log(JSON.stringify(data));
-		for(var j = 0; j < cnt; j ++){
-			//historyHtml += '<div id="divList" class="HL">' +
-						   		'<div id="his_top_title" class="his_top_title">' + "22-01 ICT인프라 어워드" + '</div>' +
-						   		'<div id="his_top_award" class="his_top_title">' + '1위 한동희(1회)' + '</div>' +
-						   '<div id= "historyList_mid" class="HL">' + '사진 첨부' + '</div>' +
-						   '</div>' 
-						    
-		}
-		
-	//	$('#historyList').html(historyHtml);
+		$("#vote_mid").html(memberListHtml);
 	}
-	
-	
 
 
+	let arr = new Array();
+	$(document).on('change', 'input[id="vote_check"]', function(e) {
+		//var chk_e = e.target.value;
+		var chk = $(this).val();
+		console.log("test = " + chk)
+		var check = this.checked;
+		if (check == true) {
+			arr.push(chk);
+			if (cookieGd == 3) {
+				if (arr.length > 1) {
+					alert("투표는 한 명만 가능합니다.")
+				}
+				if (chk == arr[1]) {
+					console.log("arr0 =  " + arr)
+					this.checked = false;
+					arr.pop();
+					console.log("arr2 =  " + arr)
+				}
+			}
+			if (cookieGd > 3) {
+				if (arr.length > 2) {
+					alert("투표는 두 명만 가능합니다.")
+				}
+				if (chk == arr[2]) {
+					console.log("arr0 =  " + arr)
+					this.checked = false;
+					arr.pop();
+					console.log("arr2 =  " + arr)
+				}
+			}
+
+		} else if (check == false) {
+			arr.pop();
+			console.log("arr2 = " + arr)
+		}
+	});
+
+
+	$("#vote_submit").click(function() {
+		
+		if (arr.length == 0) {
+			alert("투표 대상자를 체크해 주시기 바랍니다.")
+		} else {
+
+			var obj = {
+				"vote_no": vote_no,
+				"voterId": cookieId,
+				"voterNm": cookieNm,
+				"votedCd": arr,
+				"voteGd": cookieGd
+			};
+			console.log("cookieno = " + vote_no)
+			console.log("cookieid = " + cookieId)
+			console.log("cookieNm = " + cookieNm)
+			console.log("arr  = " + arr)
+
+
+
+			$.ajax({
+				url: 'api/vote',
+				type: 'POST',
+				data: JSON.stringify(obj),
+				contentType: "application/json",
+				dataType: 'json',
+				success: function(data) {
+					console.log(JSON.stringify(data))
+					if (data.result == false) {
+						alert("체크박스를 입력해주시기 바랍니다.")
+					} else if (data.result == "updateFail") {
+						alert("투표에 실해 하였습니다")
+					} else if (data.result == "fail") {
+						alert("투표권한이 없음으로 투표하실 수가 없습니다. ")
+						//main 페이지로 이동
+					}else if (data.result == "fail2") {
+						alert("투표가 중복 되었습니다. 메인페이지로 돌아값니다")
+						//main 페이지로 이동
+					} else if (data.result == "success") {
+						alert("투표를 완료하였습니다. 메인 페이지로 돌아갑니다.")
+						window.location.href="/main"
+					}
+				},
+			});
+
+		}
+
+
+	});
 	
-	
+	$(header).on('click', '#logout', function(){
+		
+		var check = confirm("로그아웃 하시겠습니까?")
+		
+		if(check){
+			$.removeCookie("zinnaworks")
+			window.location.href="login"
+		} 
+		
+	})
+
+
+};
+
+
+
+
+

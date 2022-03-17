@@ -6,12 +6,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<link th:href="@{css/main/votDetail.css}" rel="stylesheet" type="text/css">
-	<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
-	<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
-	<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
-	<script th:src="@{js/main/votDetail.js}"></script>
 </head>
 
 <body class="">
@@ -26,61 +20,54 @@
 			<div id="detail_top">
 				<div class="createvot_content">
 					<span class="span_content">상태</span>
-					<span class="span_content" id="award_stats_value">진행중</span>
+					<span class="span_content" id="award_stats_value"></span>
 				</div>
 				<div class="createvot_content">
 					<span class="span_content">투표ID</span>
-					<span class="span_content" id="award_id_value">220209-01</span>
+					<span class="span_content" id="award_id_value"></span>
 					<span class="span_content" id="award_type">투표유형</span>
-					<span class="span_content" id="award_type_value">어워드</span>
+					<span class="span_content" id="award_type_value"></span>
 				</div>
 				<div class="createvot_content">
 					<span class="span_content" id="award_grp_target">투표대상(최종)</span>
-					<span class="span_content" id="award_grp_target_value">ICT솔루션</span>
+					<span class="span_content" id="award_grp_target_value"></span>
 				</div>
 				<div class="createvot_content">
 					<span class="span_content">투표명</span>
-					<input class="span_content" id="award_name_value" type="text" value="ICT솔루션 22-02 어워드" disabled>
+					<input class="span_content" id="award_name_value" type="text">
 				</div>
 				<div class="createvot_content" id="awad_info_text">
 					<span class="span_content" id="award_info_text">설명</span>
-					<textarea id="info_text" disabled></textarea>
+					<textarea id="info_text" style="resize: none;"></textarea>
 				</div>
 				<div class="createvot_content" id="detail_mid_text">
 					<span class="span_content">투표기간</span>
-					<input type="date" class="vot_select" id="vot_min_date">
-					<span class="span_content" style="text-decoration: none;"> ~ </span>
-					<input type="date" class="vot_select" id="vot_max_date">
+					<input type="text" class="datetimepicker vot_select" id="vot_start_date">
+					<i class="fas fa-calendar-check fa-lg icon_date" id="start_icon" style="display: none;"></i>
+					<span class="span_content" style="text-decoration: none;" id="date_"> ~ </span>
+					<input type="text" class="datetimepicker vot_select" id="vot_end_date">
+					<i class="fas fa-calendar-check fa-lg icon_date" id="end_icon" style="display: none;"></i>
 				</div>
 				<div class="createvot_content" id="award_data">
 					<span class="span_content" id="award_member">투표항목</span>
 					<div id="award_data_change" class="award_data_change">
-						<label id="check_name">한동희</label><input type="checkbox" class="check_box" id="check_input"
-							value="blue">
 					</div>
 				</div>
 
 				<div class="createvot_content">
 					<span class="span_content" id="award_member">투표현황</span>
-					<span class="span_content" id="vot_member">3</span>
+					<span class="span_content" id="vot_member"></span>
 					<span class="span_content" style="margin: 0; text-decoration: none;">/</span>
-					<span class="span_content" id="un_vot_member">5</span>
+					<span class="span_content" id="un_vot_member"></span>
 					<span class="span_content" id="choice_member">(이지연)</span>
 				</div>
 				<div class="createvot_content" id="chart">
-					<div class="pie-chart1" id="pieChart"></div>
-					<div class="chart_stats" id="person_info">
-						<div id="person_color"></div>
-						<span id="person_stats">한동희(33.3% 2p)</span>
-					</div>
-					<div class="chart_stats" id="person_info">
-						<div id="person_color"></div>
-						<span id="person_stats">한동희(33.3% 2p)</span>
-					</div>
+					<canvas id="myChart" width="170" height="170"></canvas>
+					<div id="chartData"></div>
 				</div>
 				<div class="createvot_content">
 					<span class="span_content" id="vot_info_mms_span">투표만료 전 미투표자에 알림 보내기</span>
-					<input type="checkbox" class="check_box" id="mms_input" value="blue">
+					<input type="checkbox" class="check_box" id="mms_input" value="blue" disabled>
 				</div>
 				<div class="createvot_content">
 					<button type="button" id="award_end" class="btn btn-danger award_btn">마감</button>
@@ -89,6 +76,24 @@
 				</div>
 			</div>
 		</div>
+
+		<meta charset="UTF-8">
+		<link th:href="@{css/main/voteDetail.css}" rel="stylesheet" type="text/css">
+		<link th:href="@{asset/bootstrap-4.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+		<script th:src="@{asset/jquery-3.4.1.min.js}"></script>
+		<script th:src="@{asset/bootstrap-4.4.1-dist/js/bootstrap.min.js}"></script>
+		<script th:src="@{js/main/voteDetail.js}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+		
+		<!-- datetimepicker -->
+		<link rel="stylesheet" href="//cdn.rawgit.com/xdan/datetimepicker/master/jquery.datetimepicker.css">
+		<script th:src="@{asset/jquery.datetimepicker.full.min.js}"></script>
+		
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+			integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 </body>
 
 </html>

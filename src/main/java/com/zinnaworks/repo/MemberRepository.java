@@ -1,5 +1,6 @@
 package com.zinnaworks.repo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,11 @@ public class MemberRepository {
 
 	@Autowired
 	MemberMapper memberMapper;
-	
+
 	public Member findById(String username) {
-		
+
 		Member member = memberMapper.selectCheckById(username);
-		
+
 		return member;
 	}
 
@@ -28,7 +29,7 @@ public class MemberRepository {
 	}
 
 	public Member checkLogin(Member memberVo) {
-		
+
 		return memberMapper.selectLoginInfo(memberVo);
 	}
 
@@ -48,6 +49,52 @@ public class MemberRepository {
 		return memberMapper.selectAuthInfo(email);
 	}
 
-	
+
+	public Map<String, Object> updateSignUpInfo(String email) {
+		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> data = new HashMap<>();
+		int useYn = 2;
+		data.put("email", email);
+		data.put("useYn", useYn);
+		
+		
+		int i = memberMapper.updateSignUpInfo(data);
+
+		if (i == 0) {
+			result.put("result", "fail");
+		} else {
+			result.put("result", "success");
+		}
+
+		return result;
+	}
+
+	public Map<String, Object> checkAuthLogin(String email) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		System.out.println("email!!!!@!@!@!!! = " + email);
+		
+		String userId = email + "@zinnaworks.com";
+		
+		result = memberMapper.checkAuthLogin(userId);
+		
+		System.out.println("result = " + result.toString());
+		
+		int i = 0; 
+		
+		userId = (String) result.get("USE_YN");
+		
+		i = Integer.parseInt(userId);
+		System.out.println("i = " + i);
+		
+		if(i == 3) {
+			result.put("result", "fail");
+		}else {
+			result.put("result", "success");
+		}
+		
+		return result;
+	}
 
 }

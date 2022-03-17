@@ -5,6 +5,7 @@ html {
 body {
     height: 100%;
     width: 100%;
+    background-color: #eeeeee;
 }
 
 #header{
@@ -12,19 +13,18 @@ body {
 	height:10%;
 	display: inline-block;
 	z-index: 1;	
-	background-color: white;
 }
 
 .hr{
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -168,6 +168,12 @@ body {
 	width: 20%;
 	margin: 0 10px 0 10px;
 }
+
+#award_end, #award_update, #award_delete {
+	font-size: 15px;
+}
+
+
 #award_update{
 	margin-left: 195px;
 }
@@ -246,13 +252,8 @@ body {
 #award_name_value{
 	width: 480px;
 	text-decoration: none;
-	color: lightgray;
 	margin: 0;
 }
-
-
-
-
 
 
 
@@ -275,6 +276,7 @@ body {
 	height: 100%;
 	width: 74.5%;
 	left: 18px;
+	font-size: 18px;
 }
 
 #vot_min_date{
@@ -299,17 +301,18 @@ body {
 }
 
 #award_data_change{
-	width: 60%;
+	width: 70%;
 	height: 100%;
 	position: relative;
-	left: 210px;
+	left: 143px;
 	top: -30px;
 	border: 1px solid lightgray;
 	font-size: 20px;
+	overflow: scroll;
 }
 
 #check_name{
-	padding: 15px;
+	padding: 14px;
 }
 .check_box{
 	position: relative;
@@ -419,24 +422,22 @@ body {
 
 .chart_stats{
 	position: relative;
-	left:290px;
-	top: -150px;
-	width: 50%;
-	height: 15%;
+	width: 100%;
+	height: 32px;
 	border: 1px solid red;
 	padding: 5px;
 	font-size: 15px;
 }
 
 #person_color{
-	width: 5%;
-	height: 110%;
-	background-color: red;
-	float: left;
-	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	border: 1px solid green;
 }
 #person_stats{
-	margin-left: 20px;
+	position: relative;
+	right: 170px;
 }
 
 #vot_info_mms_span{
@@ -469,3 +470,50 @@ body {
 	width: 120px;
 	position: absolute;
 }
+
+.vot_select{
+	position: relative;
+	height: 30px;
+	top: 15px;
+	width: 180px;
+	left: 10px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#date_{
+	left: 10px;
+}
+
+.icon_date{
+	position: absolute;
+	top:30px;
+}
+
+#start_icon{
+	left:290px;
+}
+
+#end_icon{
+	left:570px;
+}
+
+#member{
+	position: relative;
+	width: 110px;
+	float: left;
+	color: lightgray;
+}
+
+#myChart{
+	margin: 10px 0 0 40px;
+	float: left;
+	
+}
+
+#chartData{    
+	position: relative;
+    width: 50%;
+    left: 323px;
+}
+

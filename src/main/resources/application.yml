@@ -18,8 +18,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 465
-    username: zinna_ict@zinnaworks.com 
-    password: zinnaworks
+    username: zvs@zinnaworks.com 
+    password: zinna432!
     properties:
      mail:
      smtp:
@@ -30,7 +30,17 @@ spring:
      soketFactory:
      fallback: false
      port: 465
-
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+server:
+  servlet:
+    session:
+      timeout: 10m
+      tracking-modes: cookie
+            
 mybatis:
   # mapper 경로 지정
   mapper-locations: mappers/*.xml

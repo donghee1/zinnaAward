@@ -1,6 +1,5 @@
 window.onload = function() {
 
-	$("#header").load("html/header.html");
 
 	$("#mailSubmit").click(function() {
 
@@ -37,3 +36,4 @@ window.onload = function() {
 
 };
 
+$("#header").load("html/loginHeader.html");

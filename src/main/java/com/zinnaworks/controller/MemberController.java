@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,6 +46,11 @@ public class MemberController {
 		model.addAttribute("Member", new Member());
 		return "signUp";
 	}
+	@GetMapping("/signUpAuth")
+	public String signUpAuthForm(Model model) {
+		model.addAttribute("Member", new Member());
+		return "signUpAuth";
+	}
 
 	@GetMapping("/login")
 	public String loginForm(Model model) {
@@ -65,27 +72,25 @@ public class MemberController {
 		model.addAttribute("Member", new Member());
 		return "update";
 	}
+	
 
 	@ResponseBody
 	@PostMapping("/api/signUp")
 	public Map<String, Object> signUp(@RequestBody Map<String, Object> memberInfo, Model model) throws Exception {
 
-		
+		Map<String, Object> result = new HashMap<>();
 		if(memberInfo.get("userId").equals("") || memberInfo.get("userId") == null) {
-			System.out.println("tes = ");
-		}else {
-			
+			result.put("result", "fail");
+			return result;
 		}
 		
-		
-		Map<String, Object> result = new HashMap<>();
 		Member memberVo = new Member();
 		if ("ADMIN".equals(memberInfo.get("userId"))) {
-			memberVo.setGradeCd(0);
-		} else if ("MANAGER".equals(memberInfo.get("userId"))) {
 			memberVo.setGradeCd(1);
-		} else {
+		} else if ("MANAGER".equals(memberInfo.get("userId"))) {
 			memberVo.setGradeCd(2);
+		} else {
+			memberVo.setGradeCd(3);
 		}
 
 		int grp = Integer.parseInt((String) memberInfo.get("team"));
@@ -96,12 +101,8 @@ public class MemberController {
 		memberVo.setGrpCd(grp);
 		memberVo.setEntryDt((String) memberInfo.get("entryDate"));
 		memberVo.setPhoneNum((String) memberInfo.get("phone"));
-		System.out.println("member = " + memberVo.toString());
-
-		if (memberVo.getUserId().toString().equals("") || memberVo.getUserId().toString().equals("null")) {
-			result.put("result", "null");
-			return result;
-		}
+		//가입대기
+		memberVo.setUseYn(3);
 
 		boolean data = memberService.InsertMemberInfo(memberVo);
 
@@ -109,11 +110,45 @@ public class MemberController {
 
 		return result;
 	}
+	
+	@ResponseBody
+	@PostMapping("/api/signUpAuth")
+	public Map<String, Object> signUpAuth(@RequestBody String email) throws Exception {
+
+		Map<String, Object> result = new HashMap<>();
+		
+		
+		
+		if(email.equals("")) {
+			result.put("result", "email");
+			return result;
+		}else {
+			result = memberService.updateSignUpInfo(email);
+		}
+		return result;
+	}
+	
+	@ResponseBody
+	@PostMapping("/api/checkAuthLogin")
+	public Map<String, Object> checkAuthLogin(@RequestBody String email) throws Exception {
+
+		Map<String, Object> result = new HashMap<>();
+		
+		if(email.equals("")) {
+			result.put("result", "email");
+			return result;
+		}else {
+			result = memberService.checkAuthLogin(email);
+		}
+		return result;
+	}
 
 	@ResponseBody
 	@PostMapping("/api/login")
-	public Map<String, Object> login(Model model, @RequestBody Map<String, Object> map, HttpServletResponse response)
+	public Map<String, Object> login(Model model, @RequestBody Map<String, Object> map, HttpServletRequest request ,HttpServletResponse response)
 			throws Exception {
+		
+		System.out.println("login api");
 
 		Map<String, Object> result = new HashMap<>();
 		String username = (String) map.get("userId") + "@zinnaworks.com";
@@ -125,8 +160,8 @@ public class MemberController {
 		if (data != null) {
 			if (!pwd.equals("")) {
 
-				System.out.println("pwd = " + pwd);
-				System.out.println("data = " + data.getPassword());
+				System.out.println("pwd = " + pwd);//1234
+				System.out.println("Encoder pwd = " + data.getPassword());//db 데이터 조회
 				if (passwordMatchesEncoder(pwd, data.getPassword())) {
 					// true
 					result.put("result", "success");
@@ -145,8 +180,9 @@ public class MemberController {
 				result.put("result", "error");
 			}
 		}
+		
 		result.put("result", "success");
-		result.put("data", data);
+		result.put("body", data);
 
 		return result;
 
@@ -166,10 +202,11 @@ public class MemberController {
 			// Mail mail = new Mail();
 			MailAuth mail = new MailAuth();
 			mail.setUserId(emailAddress);
-			data = mailService.mailSend(mail);
+			String check = "pwdChange";
+			data = mailService.mailSend(mail, check);
 		}
 		result.put("result", data);
-
+		System.out.println("???" + data);	
 		return result;
 	}
 

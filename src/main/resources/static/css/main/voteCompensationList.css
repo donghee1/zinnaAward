@@ -5,6 +5,7 @@ html {
 body {
     height: 100%;
     width: 100%;
+    background-color: #eeeeee;
 }
 
 #header{
@@ -12,19 +13,18 @@ body {
 	height:10%;
 	display: inline-block;
 	z-index: 1;	
-	background-color: white;
 }
 
 .hr{
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -277,7 +277,7 @@ body {
 /* main page */
 
 #mainPage{
-	width: 100%;
+	width: 80%;
 	height: 100%;
 	position: absolute;
 	left: 400px;
@@ -294,31 +294,51 @@ body {
 	border-color: white;
 	
 }
+#listDataForm{
+	border-bottom: 30px;
+}
 
-th{
-	height: 30px;
-	padding-top: 40px;
-	border-color: lightgray;
-}
-.th{
-	border-top: 1px solid white;
-}
 .firstTh{
-	border-left: 1px solid white;
+	border-left: none;
 }
 .lastTh{
-	border-right: 1px solid white;
+	border-right: none;
 }
+
+th{
+	vertical-align: baseline;
+	vertical-align: middle;
+	border-bottom-color: white;
+	border: 1px solid lightgray;
+	border-top: none;
+	border-bottom: none;
+}	
+
 .firstTd{
-	border-left: 1px solid white;
+	border-left: none;
 }
 .lastTd{
-	border-right: 1px solid white;
-}
+	border-right: none;
+	text-align: center;
+} 
 td{
-	margin: 5px 0 5px 0;
 	vertical-align: baseline;
-	height: 15px;
-	border-color: lightgray;
+	height: 60px;
+	vertical-align: middle;
+	border : 1px solid lightgray;
 	border-bottom-color: white;
+}	
+.tdStatus{
+	padding: 2px 10px 2px 10px;
+	border-radius : 5px;
+	position: relative;
+	float: left;
+	left: 15px;
+	text-align: center;
+}
+
+#paging{
+	    position: relative;
+    top: 480px;
+    font-size: 15px;
 }

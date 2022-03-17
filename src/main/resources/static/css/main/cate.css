@@ -1,0 +1,555 @@
+
+   
+@charset "UTF-8";
+
+#leftDiv, #rightDiv {
+	border: 1px solid black;
+}
+
+
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #eeeeee;
+}
+
+#header{
+	width:100%;
+	height:10%;
+	display: inline-block;
+	z-index: 1;	
+}
+
+.hr{
+	width: 33%;
+	height: 10px;
+	border: none;
+	background-color: #114495;
+	position: absolute;
+	margin:0 0 0 0;
+}
+#red{
+	background-color: #E8485B;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 70%;
+}
+
+#img{
+	width:13%;
+	height:100%;
+	background: url("../../img/zinnaworks-logo.png");	
+}
+
+#logo{
+	width:22%;
+	height: 5%;
+	position: absolute;
+	left: 14%;
+	top: 0%;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 46px;
+}
+
+.menuVar{
+	position: absolute;
+	top: 0%;
+	width: 13%;
+	height: 10%;
+	font-size: 35px;
+	font-weight: bold;
+	padding-top: 30px;
+	color: blue;
+}
+
+.menuVar:hover{
+	color:red;
+}
+
+#home{
+	left: 33%;
+	text-align: center;
+}
+#voting{
+	left: 46%;
+	text-align: center;
+}
+#admin{
+	left: 59%;
+	display: block;
+	text-align: center;
+}
+#profile{
+	left:72%;
+	text-align: center;
+	font-size: 20px;
+	color: grey;
+	margin-top: 10px;
+}
+#checkLogin{
+	left:85%;
+	text-align: center;
+}
+.check{
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	float: left;
+	margin: 10px 20px 0 0;
+}
+/* top css 옵션 끝 */
+
+/* nav css 옵션 시작 */
+
+#nav{
+	width:100%;
+	height:40%;
+	margin-top: 30px;
+	position: absolute;
+	
+}
+.navTitle{
+	font-size: 24px;
+	font-weight: bold;
+	
+	
+	margin: 0 0 5px 20px;
+}
+
+#awardTitle{
+	position: absolute;
+	top:20px;
+}
+
+
+#historyTitle{
+	position: absolute;
+	top:10px;
+}
+
+.hrNav{
+	width: 37%;
+	height: 10px;
+	border: none;
+	margin:0 0 5px 20px;
+}
+#redNav{
+	background-color: red;
+	position: absolute;
+	top: 45px;
+}
+
+#blueNav{
+	background-color: blue;
+	position: absolute;
+	top: 50px;
+}
+
+#awardList{
+	margin: 70px 20px 0 20px;
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+#divList{
+	width: 650px;
+	background-color: lightgray;
+	font-size: 22px;
+	display: inline-block;
+	margin: 0 30px 15px 0;
+}
+#awardList_top{
+	padding: 10px 0 0 15px;
+}
+
+.AL{
+	width: 100%;
+	height: 70px;
+}
+
+.middle{
+	width: 50%;
+	height: 100%;
+	float: left;
+	text-align: right;
+}
+#award-date{
+	padding: 0 50px 0 0px;
+}
+#award-person{
+	padding: 15px 50px 15px 15px;
+}
+.bottom-btn{
+	width: 280px;
+	height: 60%;
+}
+#awardGo{
+	margin:5px 0 0 25px;
+	font-size: 17px;
+	border-radius: 12px;
+}
+#awardDetail{
+	margin: 5px 0 0 35px;
+	font-size: 17px;
+	border-radius: 12px;
+}
+
+/* nav css 옵션 끝 */
+
+
+
+/* footer css 옵션 시작 */
+
+#footer{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:600px;
+}
+#historyList{
+	width: 100%;
+	height: 46%;
+	margin: 60px 0 0 20px;
+	position: relative;
+	padding: 10px;
+}
+
+.HL{
+	font-size: 24px;
+	padding: 15px;
+	width: 100%;
+	height: 540px;
+}
+
+#historyList_top{
+	height: 20%;
+}
+.his_top_title{
+	font-size: 24px;
+	margin: 0 0 10px 0;
+}
+
+#historyList_mid{
+	height: 60%;
+	width: 60%;
+	margin:50px 0 0 110px;
+}
+
+
+/*side start */
+
+#side{
+	position: relative;
+	width: 400px;
+	height: 100%;
+	background-color: lightgray;
+	top: 15px;
+}
+#sideBar{
+	width: 400px;
+	height: 100%;
+}
+
+#sideMenu{
+	height: 45%;
+	width: 90%;
+	margin: 0 0 0 17.5px;
+	background-color: white;
+	text-align: center;
+	padding: 25px 0 0 0;
+}
+
+.sideLink{
+	font-size: 24px;
+}
+
+.sideBar_link{
+	text-align: center;
+	margin-top: 20px;
+}
+
+#mainte{
+	position: absolute;
+	width: 100%;
+	height: 15px;
+	background-color: lightgray;
+	top: 0px;
+	left: 0px;
+}
+
+#sidete{
+	position: absolute;
+	width: 100%;
+	height: 15px;
+	background-color: lightgray;
+	top: 0px;
+	left: 0px;
+}
+
+/* main page */
+
+#mainPage{
+	width: 85%;
+	height: 100%;
+	position: absolute;
+	left: 400px;
+	top: 144px;
+	padding: 50px 30px 150px 30px;
+	
+}
+
+#vote_form{
+	position: relative;
+	width: 650px;
+	height: 600px;
+	border: 1px solid red;
+	left: 480px;
+	top: 20px;
+}
+
+#vote_title{
+	position: relative;
+	left: 750px;
+	width: 8%;
+}
+
+#vote_top{
+	position: relative;
+	width: 100%;
+	height: 30%;
+	border: 1px solid green;
+}
+#vote_mid{
+	position: relative;
+	width: 100%;
+	border: 1px solid black;
+}
+.vote_content{
+	position: relative;
+	width: 100%;
+	height: 33.3%;
+	border: 1px solid blue;
+}
+
+.vote_span{
+	position: relative;
+    margin: 30px;
+    text-decoration: underline;
+    font-size: 20px;
+    top: 15px;
+}
+
+#vote_span_value{
+	left: 40px;
+	color: red;
+	text-decoration: none;
+}
+
+#vote_name_value{
+	left: 25px;
+	color: lightgray;
+	text-decoration: none;
+}
+
+#vote_info_value{
+	left: 40px;
+	color: lightgray;
+	text-decoration: none;
+}
+
+#vote_person_box{
+	width: 70%;
+	height: 10%;
+	border: 1px solid purple;
+	text-align: center;
+	float: left;
+}
+
+#vote_check_box{
+	display: inline-block;
+	width: 30%;
+	height: 10%;
+	border: 1px solid purple;
+	text-align: center;
+	font-size: 24px;
+}
+#vote_person{
+	position: relative;
+	top: 5px;
+	font-size: 29px;
+	text-decoration: none;
+}
+#vote_check{
+	position: relative;
+	width: 30px;
+	height: 30px;
+	top: 5px;
+}
+
+#vote_bottom{
+	position: relative;
+	height: 15%;
+    top: 10px;
+}
+
+#vote_submit{
+	font-size: 20px;
+	position: relative;
+    width: 30%;
+    left: 34%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.wrapDiv{
+	position: relative;
+	width: 70%;
+	height: 70%;
+	left:290px;
+	top: 30px;
+}
+
+.contentDiv{
+	position: relative;
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+.topContWrap{
+	position: relative;
+	width: 100%;
+	height: 15%;
+	font-size: 20px;
+	padding: 10px;
+}
+
+span{
+	text-decoration: underline;
+	font-size: 20px;
+	position: relative;
+}
+.grp_cd_span{
+	position: relative;
+	top: 60px;
+	left: 25px;
+}
+
+#grp_nm_span{
+	position: relative;
+	top: 60px;
+	left: 95px;
+}
+
+.mainWrap{
+	position: relative;
+	width: 98%;
+	left: 8px;
+	height: 60%;
+	border: 1px solid lightgray;
+	padding: 8px;
+	overflow-y: scroll;
+}
+#mainWrapContent{
+	padding: 5px;
+	background-color: lightgray;
+	margin:  0 0 10px 0;
+	position: relative;
+	width: 100%;
+	height: 12%;
+}
+
+#grp_code{
+	text-decoration: unset;
+	margin: 0 0 0 15px;
+	font-size: 23px;
+}
+#grp_nm{
+	margin:  0 0 0 70px;
+	text-decoration: unset;
+	font-size: 23px;
+}
+.grp_upcd_span{
+	left: 270px;
+}
+.value{
+	color: lightgray;
+}
+#rightMainWrap{
+	border: none;
+}
+#main_span{
+	margin: 0 20px 0 35px;
+}
+#downGroupCd{
+	font-size: 20px;
+	margin: 0 15px 0 0;
+	
+}
+#insertCodeSubmit{
+	position: relative;
+	font-size: 20px;
+	width: 120px;
+	left: 220px;
+	
+}
+#downGroupCd{
+	width: 70%;
+}
+
+#delCodeSubmit{
+	position: relative;
+	font-size: 20px;
+	width: 120px;
+	left: 280px;
+}
+#right_grp_cd_value{
+	left: 70px;
+}
+
+#right_grp_upcd_span{
+	position: absolute;
+	left:350px;
+	top: 70px;
+}
+#right_grp_upcd_value{
+	position: absolute;
+	left:470px;
+	top: 70px;
+}
+
+#righBtmWrap{
+	position: relative;
+	top: 20px;
+}
+#newCodeSubmit{
+	position: relative;
+	top: 10px;
+	width: 190px;
+	left: 270px;
+	font-size: 20px;
+	
+}
+
+
+

@@ -1,0 +1,175 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #eeeeee;
+}
+
+#header{
+	width:100%;
+	height:10%;
+	display: inline-block;
+	z-index: 1;	
+}
+
+.hr{
+	width: 33%;
+	height: 10px;
+	border: none;
+	background-color: #114495;
+	position: absolute;
+	margin:0 0 0 0;
+}
+#red{
+	background-color: #E8485B;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 70%;
+}
+
+#img{
+	width:13%;
+	height:110px;
+	background: url("../../img/zinnaworks-logo.png");	
+}
+
+#logo{
+	width:22%;
+	height: 5%;
+	position: absolute;
+	left: 14%;
+	top: 0%;
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 46px;
+}
+
+.menuVar{
+	position: absolute;
+	top: 0%;
+	width: 13%;
+	height: 10%;
+	font-size: 35px;
+	font-weight: bold;
+	padding-top: 30px;
+	color: blue;
+}
+
+.menuVar:hover{
+	color:red;
+}
+
+#home{
+	left: 33%;
+	text-align: center;
+}
+#voting{
+	left: 46%;
+	text-align: center;
+}
+#admin{
+	left: 59%;
+	display: block;
+	text-align: center;
+}
+#profile{
+	left:72%;
+	text-align: center;
+	font-size: 20px;
+	color: grey;
+	margin-top: 10px;
+}
+#checkLogin{
+	left:85%;
+	text-align: center;
+}
+.check{
+	font-size: 20px;
+	text-align: center;
+	color: grey;
+	float: left;
+	margin: 10px 20px 0 0;
+}
+/* top css 옵션 끝 */
+
+.form-group{
+	position: relative;
+	margin-top: 15px 0 0 0;
+}
+
+#title{
+	margin-bottom: 70px;
+}
+
+#email{
+	width: 30%;
+	margin-left: 70px;
+	display: inline-block;
+}
+#idTitle{
+	 margin-left: 135px;
+	 
+}
+#code{
+	width: 50%;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+#pwd{
+	width: 50%;
+	margin-left: 50px;
+	display: inline-block;
+}
+
+#pwd1{
+	width: 50%;
+	margin-left: 10px;
+	display: inline-block;
+}
+
+#CDTitle{
+	margin-left: 125px;
+}
+
+#pwTitle{
+	margin-left: 125px;
+}
+
+
+.signUpAuthForm{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.signUpForm{
+	font-size: 20px;
+	display: inline-block;
+	position: relative;
+	top: 300px;
+	
+}
+
+#signUpAuthSubmit{
+	width: 28%;
+	font-size: 20px;
+}
+
+.labelForm{
+	text-align: left;
+	display: inline-block;
+}
+#btmText{
+	margin-left: 135px;
+}
+
+.headerLine{
+	position: relative;
+}

@@ -5,6 +5,7 @@ html {
 body {
     height: 100%;
     width: 100%;
+    background-color: #eeeeee;
 }
 
 #header{
@@ -19,12 +20,12 @@ body {
 	width: 33%;
 	height: 10px;
 	border: none;
-	background-color: blue;
+	background-color: #114495;
 	position: absolute;
 	margin:0 0 0 0;
 }
 #red{
-	background-color: red;
+	background-color: #E8485B;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 70%;
@@ -146,7 +147,7 @@ body {
 	height: 100%;
 	position: absolute;
 	left: 400px;
-	top: 146px;
+	top: 11.6%;
 }
 
 #createvot_form{
@@ -208,11 +209,29 @@ body {
 	position: relative;
 	height: 30px;
 	top: 15px;
-	width: 140px;
-	left: 80px;
+	width: 180px;
+	left: 60px;
 	text-align: center;
 	font-size: 20px;
 }
+
+#date_{
+	left: 60px;
+}
+
+.icon_date{
+	position: absolute;
+	top:30px;
+}
+
+#start_icon{
+	left:350px;
+}
+
+#end_icon{
+	left:610px;
+}
+
 #award_id_value{
 	color: lightgray;
 	text-decoration: none;
@@ -224,9 +243,15 @@ body {
 	width: 445px;
 	left: 10px;
 }
+
+#vot_grp_choice_select{
+	width: 445px;
+    left: 58px;
+}
 #vot_name_text{
-	width: 508px;
-	left: 10px;
+	width: 445px;
+    left: 75px;
+    text-align: start;
 }
 #award_info_text{
 	top: -110px;
@@ -234,17 +259,22 @@ body {
 #info_text{
 	position: relative;
 	height: 100%;
-	width: 79%;
-	left: 26px;
+	width: 445px;
+	left: 92px;
+	font-size: 20px;
 }
 
 #vot_min_date{
 	width: 210px;
 	left: 0px;
+	font-size: 13.5px;
+    text-align: center;
 }
 #vot_max_date{
 	width: 210px;
 	left: 0px;
+	font-size: 13.5px;
+    text-align: center;
 }
 #award_data{
 	height: 60%;
@@ -252,11 +282,18 @@ body {
 .award_data_change{
 	position: relative;
 	width: 75%;
-	height: 100%;
+	height: 99%;
 	border: 1px solid black;
 	left:150px;
-	top: -29px;
+	top: -27px;
 	font-size: 20px;
+	overflow: scroll;
+}
+
+#member{
+	position: relative;
+	width: 120px;
+	float: left;
 }
 #check_name{
 	margin: 15px 10px 15px 20px;
@@ -279,25 +316,27 @@ body {
     top: 40px;
 }
 
-#check_mms1{
-	top: 0px;
+#start_mms{
+	top: 5px;
 	left: 49px;
 	position: relative;
 	width: 25px;
 	height: 25px;
 }
 
-#check_mms2{
-	top: 10px;
-	left: 320px;
-	position: relative;
+#end_mms{
+	top: 45px;
+	left: 317px;
+	position: absolute;
 	width: 25px;
 	height: 25px;
 }
 #create_vot{
 	position: relative;
 	width: 200px;
-	left: 235px;	
+	left: 235px;
+	font-size: 18px;
+	background-color: #E8485B;	
 }
 #survey_list{
 	position: relative;
@@ -334,5 +373,11 @@ body {
 	position: absolute;
 	
 }
+#award_member_choices{
+	top:70px;
+}
 
 
+#vot_type_select{
+	width: 160px;
+}
