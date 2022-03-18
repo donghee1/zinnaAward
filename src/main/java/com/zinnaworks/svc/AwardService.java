@@ -135,11 +135,11 @@ public class AwardService {
 						Map<String, Object> map = new HashMap<>();
 						if (dataMap.get("result").equals("fail")) {
 							System.out.println("No member Award choice!!!");
-						} else if(dataMap.get("result").equals("success")){
+						} else if (dataMap.get("result").equals("success")) {
 							listMap = (List<Map<String, Object>>) dataMap.get("list");
 							System.out.println("listMapSize = " + listMap.size());
 							// 투표대상이 1명 이상일 경우
-							
+
 							if (listMap.size() > 1) {
 								if (dataMap.get("list").equals("") || dataMap.get("list") != null) {
 									map.putAll(listMap.get(0));
@@ -168,7 +168,7 @@ public class AwardService {
 								}
 
 							} else {
-								
+
 								vote_id = (String) listMap.get(0).get("VOT_ID");
 								vote_result_id = (String) listMap.get(0).get("VOT_RESULT_ID");
 								System.out.println("Reward 당첨자는 1명이고 당첨자는 = " + vote_result_id + "입니다");
@@ -251,37 +251,54 @@ public class AwardService {
 			e.printStackTrace();
 		}
 
-		if (!data.equals("")) {
-			String str = data.substring(0, 6);
-			System.out.println("str = " + str);
-			Date date = new Date();
-			SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
-			String dateForm = format.format(date);
-			Long dataLong = Long.parseLong(str);
-			Long todayLong = Long.parseLong(dateForm);
-			String strData = null;
-			// 비교 데이터가 클수 없다. 같거나 적을 것
-			if (todayLong > dataLong) {
-				// 작을경우 처음 시작한다고 가정하여 신규날짜 + 01을 넣어준다;
-				System.out.println("ddd");
-				strData = String.valueOf(todayLong);
-				strData += "-01";
-			} else {
-				// 같을 경우
-				String split = data.substring(7);
-				int no = Integer.parseInt(split);
-				no += 1;
-				String noStr = String.valueOf(no);
-				if (noStr.length() >= 2) {
-					noStr = "-" + noStr;
+		try {
+
+			if (data != null) {
+				String str = data.substring(0, 6);
+				System.out.println("str = " + str);
+				Date date = new Date();
+				SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
+				String dateForm = format.format(date);
+				Long dataLong = Long.parseLong(str);
+				Long todayLong = Long.parseLong(dateForm);
+				String strData = null;
+				// 비교 데이터가 클수 없다. 같거나 적을 것
+				if (todayLong > dataLong) {
+					// 작을경우 처음 시작한다고 가정하여 신규날짜 + 01을 넣어준다;
+					System.out.println("ddd");
+					strData = String.valueOf(todayLong);
+					strData += "-01";
 				} else {
-					noStr = "-0" + noStr;
+					// 같을 경우
+					String split = data.substring(7);
+					int no = Integer.parseInt(split);
+					no += 1;
+					String noStr = String.valueOf(no);
+					if (noStr.length() >= 2) {
+						noStr = "-" + noStr;
+					} else {
+						noStr = "-0" + noStr;
+					}
+					strData = String.valueOf(dataLong) + noStr;
 				}
-				strData = String.valueOf(dataLong) + noStr;
+
+				result.put("VOT_ID", strData);
+
+			} else {
+				Date date = new Date();
+				SimpleDateFormat format = new SimpleDateFormat("yyMMdd");
+
+				String str = format.format(date);
+
+				
+				str = str + "-01";
+				
+				
+				result.put("VOT_ID", str);
 			}
 
-			result.put("VOT_ID", strData);
-
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 
 		return result;
