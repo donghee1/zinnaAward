@@ -543,7 +543,14 @@ public class AwardRepository {
 									int afterGrade = Integer.parseInt(afterGradeStr);
 									String afterEntryDt = (String) data.get("ENTRY_DT");
 									//직급 비교
-									if(grade < afterGrade) {
+									//직급도 같다면
+									if(grade == afterGrade) {
+									
+										
+										
+										
+									//직급이 낮은사람이 당첨
+									}else if(grade < afterGrade){
 										
 									}
 									

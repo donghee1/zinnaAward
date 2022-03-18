@@ -43,5 +43,5 @@ test {
 }
 
 bootJar {
-    archiveName 'reseve.jar'
+    archiveName 'award.jar'
 }
