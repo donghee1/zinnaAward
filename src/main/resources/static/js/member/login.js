@@ -73,7 +73,7 @@ window.onload = function() {
 
 									$.cookie("zinnaworks", JSON.stringify(obj));
 
-									window.location.href = "http://localhost:8080/main";
+									window.location.href = "/main";
 								}
 							}
 
