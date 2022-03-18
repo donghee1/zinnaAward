@@ -228,6 +228,10 @@ window.onload = function() {
 		});
 	}
 	
+	$('#totalLink').click(function(){
+		alert("개발중입니다.")		
+	})
+	
 	$(header).on('click', '#logout', function(){
 		
 		var check = confirm("로그아웃 하시겠습니까?")

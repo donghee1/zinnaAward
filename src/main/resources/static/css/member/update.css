@@ -32,9 +32,10 @@ body {
 }
 
 #img{
-	width:14.5%;
-	height:100%;
-	background: url("../../img/zinnaworks-logo.png");	
+	width:13%;
+	height:110px;
+	background: url("../../img/zinnaworks-logo.png");
+	background-size: contain;	
 }
 
 #logo{
@@ -53,7 +54,7 @@ body {
 	top: 0%;
 	width: 13%;
 	height: 10%;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 	padding-top: 30px;
 	color: blue;
@@ -84,7 +85,7 @@ body {
 	margin-top: 10px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
@@ -106,7 +107,7 @@ body {
 }
 
 #email{
-	width: 30%;
+	width: 40%;
 	margin-left: 70px;
 	display: inline-block;
 }

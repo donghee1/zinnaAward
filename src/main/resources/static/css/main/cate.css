@@ -43,6 +43,7 @@ body {
 	width:13%;
 	height:100%;
 	background: url("../../img/zinnaworks-logo.png");	
+	background-size: contain;
 }
 
 #logo{
@@ -61,7 +62,7 @@ body {
 	top: 0%;
 	width: 13%;
 	height: 10%;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 	padding-top: 30px;
 	color: blue;
@@ -90,9 +91,10 @@ body {
 	font-size: 20px;
 	color: grey;
 	margin-top: 10px;
+	width: 280px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
@@ -266,7 +268,7 @@ body {
 }
 
 .sideLink{
-	font-size: 24px;
+	font-size: 20px;
 }
 
 .sideBar_link{
@@ -299,8 +301,8 @@ body {
 	height: 100%;
 	position: absolute;
 	left: 400px;
-	top: 144px;
-	padding: 50px 30px 150px 30px;
+	top: 114px;
+	padding: 50px 30px 150px 0px;
 	
 }
 
@@ -426,7 +428,7 @@ body {
 	position: relative;
 	width: 70%;
 	height: 70%;
-	left:290px;
+	left:200px;
 	top: 30px;
 }
 
@@ -451,13 +453,13 @@ span{
 }
 .grp_cd_span{
 	position: relative;
-	top: 60px;
+	top: 35px;
 	left: 25px;
 }
 
 #grp_nm_span{
 	position: relative;
-	top: 60px;
+	top: 35px;
 	left: 95px;
 }
 
@@ -482,12 +484,12 @@ span{
 #grp_code{
 	text-decoration: unset;
 	margin: 0 0 0 15px;
-	font-size: 23px;
+	font-size: 20px;
 }
 #grp_nm{
-	margin:  0 0 0 70px;
+	margin:  0 0 0 80px;
 	text-decoration: unset;
-	font-size: 23px;
+	font-size: 20px;
 }
 .grp_upcd_span{
 	left: 270px;
@@ -502,15 +504,15 @@ span{
 	margin: 0 20px 0 35px;
 }
 #downGroupCd{
-	font-size: 20px;
+	font-size: 15px;
 	margin: 0 15px 0 0;
 	
 }
 #insertCodeSubmit{
 	position: relative;
-	font-size: 20px;
+	font-size: 15px;
 	width: 120px;
-	left: 220px;
+	left: 150px;
 	
 }
 #downGroupCd{
@@ -519,9 +521,9 @@ span{
 
 #delCodeSubmit{
 	position: relative;
-	font-size: 20px;
+	font-size: 15px;
 	width: 120px;
-	left: 280px;
+	left: 220px;
 }
 #right_grp_cd_value{
 	left: 70px;
@@ -546,8 +548,8 @@ span{
 	position: relative;
 	top: 10px;
 	width: 190px;
-	left: 270px;
-	font-size: 20px;
+	left: 180px;
+	font-size: 15px;
 	
 }
 

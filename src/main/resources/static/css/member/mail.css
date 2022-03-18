@@ -11,9 +11,13 @@ body {
 
 #header{
 	width:100%;
-	height:10%;
+	height:14%;
 	display: inline-block;
 	z-index: 1;	
+}
+
+.headerLine{
+	position: relative;
 }
 
 .hr{
@@ -32,9 +36,10 @@ body {
 }
 
 #img{
-	width:14.5%;
-	height:100%;
+	width:13%;
+	height:110px;
 	background: url("../../img/zinnaworks-logo.png");	
+	background-size: contain;
 }
 
 #logo{
@@ -84,7 +89,7 @@ body {
 	margin-top: 10px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
@@ -97,19 +102,21 @@ body {
 /* top css 옵션 끝 */
 
 .mailSendForm{
-	padding: 250px 830px 0 800px;
 	position: relative;
 	font-size: 20px;
+	left:35%;
+	top:20%;
 }
 
 #email{
-	width: 30%;
+	width: 10%;
 	margin-left: 35px;
 	display: inline-block;
+	font-size: 15px;
 }
 
 #mailSubmit{
-	width: 28%;
+	width: 10%;
 	margin:35px 0 0 95px;
 	font-size: 20px;
 }

@@ -34,7 +34,8 @@ body {
 #img{
 	width:13%;
 	height:100%;
-	background: url("../../img/zinnaworks-logo.png");	
+	background: url("../../img/zinnaworks-logo.png");
+	background-size: contain;	
 }
 
 #logo{
@@ -53,7 +54,7 @@ body {
 	top: 0%;
 	width: 13%;
 	height: 10%;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 	padding-top: 30px;
 	color: blue;
@@ -82,9 +83,10 @@ body {
 	font-size: 20px;
 	color: grey;
 	margin-top: 10px;
+	width: 280px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
@@ -92,7 +94,7 @@ body {
 	text-align: center;
 	color: grey;
 	float: left;
-	margin: 10px 20px 0 0;
+	margin: 10px 20px 0 0px;
 }
 /* top css 옵션 끝 */
 
@@ -101,13 +103,13 @@ body {
 
 #side{
 	position: relative;
-	width: 400px;
-	height: 100%;
+	width: 350px;
+	height: 90%;
 	background-color: lightgray;
 	top: 15px;
 }
 #sideBar{
-	width: 400px;
+	width: 345px;
 	height: 100%;
 }
 
@@ -121,7 +123,7 @@ body {
 }
 
 .sideLink{
-	font-size: 24px;
+	font-size: 20px;
 }
 
 .sideBar_link{
@@ -138,29 +140,37 @@ body {
 	left: 0px;
 }
 
+#mainSidete{
+	position: absolute;
+	width: 100%;
+	height: 15px;
+	background-color: lightgray;
+	top: 0px;
+	left: 0px;
+}
 
 
 /* main page */
 
 #mainPage{
 	width: 85%;
-	height: 100%;
+	height: 90%;
 	position: absolute;
-	left: 400px;
-	top: 11.6%;
+	left: 350px;
+	top: 114px;
 }
 
 #createvot_form{
 	width: 1180px;
 	height: 750px;
 	position: relative;
-	left: inherit;
+	left: 200px;
 }
 
 #detail_title{
 	position: relative;
-	left: 840px;
-	margin: 90px 0 20px 0px;
+	left: 655px;
+	margin: 50px 0 20px 0px;
 	width: 7%;
 	text-align: center;
 }
@@ -170,7 +180,6 @@ body {
 	position: relative;
 	width: 55%;
 	height: 50%;
-	border: 1px solid black;
 	left: 180px;
 }
 
@@ -178,7 +187,6 @@ body {
 	position: relative;
 	width: 100%;
 	height: 15%;
-	border: 1px solid red;
 	
 }
 
@@ -186,22 +194,21 @@ body {
 	position: relative;
 	width: 55%;
 	height: 50%;
-	border: 1px solid green;
 	left: 180px;
+	top:-40px;
 }
 
 #awad_info_text{
 	position: relative;
-	height: 40%;
+	height: 30%;
 	width: 100%;
-	border: 1px solid red;
 }
 
 .span_content{
 	position: relative;
 	margin : 30px;
 	text-decoration: underline;
-	font-size: 20px;
+	font-size: 17px;
 	top: 15px;	
 }
 
@@ -210,13 +217,13 @@ body {
 	height: 30px;
 	top: 15px;
 	width: 180px;
-	left: 60px;
+	left: 71px;
 	text-align: center;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 #date_{
-	left: 60px;
+	left: 66px;
 }
 
 .icon_date{
@@ -225,11 +232,11 @@ body {
 }
 
 #start_icon{
-	left:350px;
+	left:340px;
 }
 
 #end_icon{
-	left:610px;
+	left:608px;
 }
 
 #award_id_value{
@@ -241,27 +248,27 @@ body {
 }
 #vot_grp_select{
 	width: 445px;
-	left: 10px;
+	left: 20px;
 }
 
 #vot_grp_choice_select{
 	width: 445px;
-    left: 58px;
+    left: 61px;
 }
 #vot_name_text{
 	width: 445px;
-    left: 75px;
+    left: 77px;
     text-align: start;
 }
 #award_info_text{
-	top: -110px;
+	top: -50px;
 }
 #info_text{
 	position: relative;
 	height: 100%;
 	width: 445px;
 	left: 92px;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 #vot_min_date{
@@ -277,16 +284,16 @@ body {
     text-align: center;
 }
 #award_data{
-	height: 60%;
+	height: 50%;
 }
 .award_data_change{
 	position: relative;
 	width: 75%;
 	height: 99%;
 	border: 1px solid black;
-	left:150px;
+	left:145px;
 	top: -27px;
-	font-size: 20px;
+	font-size: 17px;
 	overflow: scroll;
 }
 
@@ -312,7 +319,7 @@ body {
 	top: 0px;
 }
 #award_mms2{
-	left: -300px;
+	left: -268px;
     top: 40px;
 }
 
@@ -326,7 +333,7 @@ body {
 
 #end_mms{
 	top: 45px;
-	left: 317px;
+	left: 287px;
 	position: absolute;
 	width: 25px;
 	height: 25px;
@@ -335,7 +342,7 @@ body {
 	position: relative;
 	width: 200px;
 	left: 235px;
-	font-size: 18px;
+	font-size: 15px;
 	background-color: #E8485B;	
 }
 #survey_list{
@@ -380,4 +387,9 @@ body {
 
 #vot_type_select{
 	width: 160px;
+	left: 91px;
+}
+
+#vot_start_date{
+	left:62px;
 }

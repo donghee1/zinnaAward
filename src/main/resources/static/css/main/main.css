@@ -33,7 +33,8 @@ body {
 #img{
 	width:13%;
 	height:100%;
-	background: url("../../img/zinnaworks-logo.png");	
+	background: url("../../img/zinnaworks-logo.png");
+	background-size: contain;	
 }
 
 #logo{
@@ -52,7 +53,7 @@ body {
 	top: 0%;
 	width: 13%;
 	height: 10%;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 	padding-top: 30px;
 	color: blue;
@@ -81,9 +82,10 @@ body {
 	font-size: 20px;
 	color: grey;
 	margin-top: 10px;
+	width: 280px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
@@ -100,8 +102,8 @@ body {
 #nav{
 	width:100%;
 	height:20%;
-	margin-top: 30px;
 	position: absolute;
+	top:110px;
 	
 }
 .navTitle{
@@ -146,9 +148,9 @@ body {
 }
 
 #divList{
-	width: 700px;
+	width: 570px;
 	background-color: lightgray;
-	font-size: 22px;
+	font-size: 19px;
 	margin: 0 30px 15px 0;
 	position: relative;
 	float: left;
@@ -181,34 +183,35 @@ body {
 	left: 120px;
 }
 .bottom-btn{
-	width: 280px;
+	width: 260px;
 	height: 60%;
 }
 #awardGo{
 	position: relative;
 	margin:5px 0 0 0;
-	font-size: 20px;
+	font-size: 17px;
 	border-radius: 12px;
 	float: left;
-	left : 50px;
+	left : 10px;
 	background-color: #114495;
 	border-color: #114495;
 }
 #awardDetail{
 	position: relative;
 	margin: 5px 0 0 35px;
-	font-size: 20px;
+	font-size: 17px;
 	border-radius: 12px;
 	background-color: #114495;
 	border-color: #114495;
+	right: 10px;
 }
 #awardSuccess{
 	position: relative;
 	margin:5px 0 0 0;
-	font-size: 20px;
+	font-size: 17px;
 	border-radius: 12px;
 	float: left;
-	left : 50px;
+	left : 10px;
 }
 /* nav css 옵션 끝 */
 
@@ -218,7 +221,7 @@ body {
 	width: 100%;
 	height: 50%;
 	position: relative;
-	top:350px;
+	top:280px;
 }
 #historyList{
 	width: 100%;
@@ -230,7 +233,7 @@ body {
 
 .historyList{
 	padding: 15px;
-	height: 450px;
+	height: 380px;
 	left: -10px;
 	top:50px;
 }
@@ -239,7 +242,7 @@ body {
 	height: 20%;
 }
 .his_top_title{
-	font-size: 24px;
+	font-size: 20px;
 	margin: 0 0 10px 0;
 }
 
@@ -256,6 +259,8 @@ body {
 	position: absolute;
 	left: 78%;
 	font-size: 20px;
+	top:290px;
+	
 }
 #clickText{
 	position: relative;
@@ -266,7 +271,7 @@ body {
 #historyBtn{
 	position: relative;
 	width: 23%;
-	font-size: 30px;
+	font-size: 20px;
 	border-radius: 10px;
 	left: 37%;
 	top: 50px;

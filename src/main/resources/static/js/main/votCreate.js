@@ -30,7 +30,7 @@ window.onload = function() {
 		alert("관리자에게 문의하기 바랍니다")
 		window.location.href = "/login"
 	}
-	
+
 	let cookieData = cookie.split(",");
 	var str = cookieData[0];
 	let cookieId = str.substr(1);
@@ -44,10 +44,10 @@ window.onload = function() {
 	if (cookieGd > 1) {
 		$("#admin").css("display", "none");
 	}
-	
-	if(cookieGd == 3){
+
+	if (cookieGd == 3) {
 		alert("사용할 수 없는 페이지 입니다.")
-		location.href="/main"
+		location.href = "/main"
 	}
 	//어워드 개설 기간 formatter
 	$(function() {
@@ -152,7 +152,7 @@ window.onload = function() {
 	$("#vot_grp_choice_select").change(function() {
 		console.log("select 2")
 		var votGrpChoiType = $("#vot_grp_choice_select").val();
-		
+
 		grpMemberHtml = "";
 		$.ajax({
 			type: "post",
@@ -165,7 +165,7 @@ window.onload = function() {
 				console.log("member = " + JSON.stringify(member))
 				if (votGrpChoiType != 'fail') {
 					for (var z = 0; z < member.length; z++) {
-						authorityArr.push(member[z].GRADE_CD+','+member[z].USER_ID);
+						authorityArr.push(member[z].GRADE_CD + ',' + member[z].USER_ID);
 						console.log("arr = " + authorityArr)
 					}
 				}
@@ -189,8 +189,8 @@ window.onload = function() {
 				var memberID = grpMember[i].USER_ID;
 				var grade = grpMember[i].GRADE_CD;
 				grpMemberHtml += '<div id="member">' + '<label id="check_name">' + memberNM + '</label>' +
-					'<input type="checkbox" id="check_input" name="test_check" value=' + memberNM+','+memberID +
-					','+grade+' checked>' + '</div>'
+					'<input type="checkbox" id="check_input" name="test_check" value=' + memberNM + ',' + memberID +
+					',' + grade + ' checked>' + '</div>'
 			}
 			$("#award_data_change").html(grpMemberHtml);
 		}
@@ -202,13 +202,15 @@ window.onload = function() {
 
 		console.log("votType = " + votType);
 
+
 		if (votType == 'award') {
 			console.log("award!!")
-			$("#award_data_change1").css('display', 'none');
-			$("#award_data_change").css('display', 'block');
+			//$("#award_data_change1").css('display', 'none');
+			//$("#award_data_change").css('display', 'block');
 		} else if (votType == 'survey') {
-			$("#award_data_change").css('display', 'none');
-			$("#award_data_change1").css('display', 'block');
+			alert("개발중으로 사용하실 수 없습니다.")
+			//$("#award_data_change").css('display', 'none');
+			//$("#award_data_change1").css('display', 'block');
 		}
 
 	});
@@ -255,6 +257,7 @@ window.onload = function() {
 		user_id = cookieId;
 		console.log("vote_id = " + vote_id)
 		vot_type = $("#vot_type_select").val();
+		console.log("vot_type = " + vot_type)
 		vote_grp = $("#vot_grp_select").val();
 		vot_title = $("#vot_name_text").val();
 		vot_info = $("#info_text").val();
@@ -265,35 +268,40 @@ window.onload = function() {
 		console.log("arr = " + arr)
 		console.log("authorityArr = " + authorityArr)
 
-		$('input:checkbox[name=test_check]').each(function (index) {
-			if($(this).is(":checked")==true){
-		    	console.log($(this).val());
-		    	
-		    	arr.push($(this).val());
-		    }
+		$('input:checkbox[name=test_check]').each(function(index) {
+			if ($(this).is(":checked") == true) {
+				console.log($(this).val());
+				arr.push($(this).val());
+			}
 		})
-		
-		if (arr.length == 0) {
+
+
+		if (vote_grp == '0') {
 			alert("그룹을 지정하지 않았습니다.")
-		}		
-		
-		var obj = {
-			"vote_id": vote_id,
-			"member_id": cookieId,
-			"vote_type": vot_type,
-			"vote_grp": vote_grp,
-			"vote_title": vot_title,
-			"vote_info": vot_info,
-			"start_dt": start_dt,
-			"end_dt": end_dt,
-			"user_id": user_id,
-			"start_mms": start_mms,
-			"end_mms": end_mms,
-			"vote_member": arr,
-			"auth_member" : authorityArr
-		}
-		
-		console.log("obj = " + JSON.stringify(obj))
+		} else if (vot_title == "") {
+			alert("제목을 입력해주시기 바랍니다.")
+		} else if (vot_info == "") {
+			alert("내용을 입력해주시기 바랍니다.")
+		} else if (start_dt == "" || end_dt == "") {
+			alert("날짜를 입력해주시기 바랍니다.")
+		} else {
+			var obj = {
+				"vote_id": vote_id,
+				"member_id": cookieId,
+				"vote_type": vot_type,
+				"vote_grp": vote_grp,
+				"vote_title": vot_title,
+				"vote_info": vot_info,
+				"start_dt": start_dt,
+				"end_dt": end_dt,
+				"user_id": user_id,
+				"start_mms": start_mms,
+				"end_mms": end_mms,
+				"vote_member": arr,
+				"auth_member": authorityArr
+			}
+
+			console.log("obj = " + JSON.stringify(obj))
 
 			$.ajax({
 				type: "post",
@@ -314,10 +322,17 @@ window.onload = function() {
 						alert("투표개설이 완료 되었습니다. 메인페이지로 돌아갑니다.")
 						window.location.href = "/main";
 					}
-	
+
 				}
-	
-			}); 
+
+			});
+		}
+
+
+
+
+
+
 
 
 		$("#servey_list_insert").click(function() {
@@ -325,6 +340,10 @@ window.onload = function() {
 			console.log("click event")
 		});
 
+	})
+
+	$('#totalLink').click(function() {
+		alert("개발중입니다.")
 	})
 
 	$(header).on('click', '#logout', function() {

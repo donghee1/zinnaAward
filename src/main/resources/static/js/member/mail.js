@@ -1,3 +1,6 @@
+
+$("#header").load("html/loginHeader.html");
+
 window.onload = function() {
 
 

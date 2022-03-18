@@ -407,7 +407,7 @@ public class AwardRepository {
 		Map<String, Object> result = new HashMap<>();
 		int i = 0;
 		i = awardMapper.checkEndDt(vote_id);
-		System.out.println("i = " + i);
+		System.out.println("updaste Cnt = " + i);
 		if (i == 0) {
 			result.put("endDt", "N");
 		} else {
@@ -432,9 +432,12 @@ public class AwardRepository {
 		List<Object> list = new ArrayList<>();
 		list = awardMapper.selectResultMember(vote_id);
 
+		System.out.println("list repo = " + list.size());
+
 		if (list.size() == 0) {
 			result.put("result", "fail");
 		} else {
+			result.put("result", "success");
 			result.put("list", list);
 		}
 		return result;
@@ -499,6 +502,69 @@ public class AwardRepository {
 		i = awardMapper.voteEndStatus(vote_no);
 		if (i > 0) {
 			result.put("result", "success");
+			// 투표 마감에 대한 기능 개발
+			// 1. 투표수가 높을 떄 * 선택
+			// 2. 투표수가 동표 일 때
+			// 2-1 직급 확인 -> 부서장 과 사원일 경우 사원에게
+			// 2-2 직급이 같을 떄 -> 받은 어워드 수가 적은 사람이 받기
+			// 2-3 근속년수가 오래된 순
+			try {
+				Map<String, Object> data = new HashMap<String, Object>();
+				// votid,resultid,email,name,grade,entrydt 정보를 가지고 옴
+				data = selectResultMember(vote_no);
+
+				// 수상자가 없을경우
+				if (data == null) {
+					result.put("result", "fail");
+				} else {
+					// 수상자가 있고, 한명일 경우
+					if (data.size() == 1) {
+						// 수상자로 선정 및 진행
+
+					} else {
+						// 투표수가 같은지 확인
+						// 투표수가 제일 높은사람이 0번째
+						String result_id = null;
+						//투표 1위 정보 뽑기
+						for (int z = 0; z < 1; z++) {
+							String str = (String) data.get("VOT_SCORE");
+							int score = Integer.parseInt(str); // 1,2,3,3
+							String userId = (String) data.get("USER_ID");
+							String gradeStr = (String) data.get("GRADE_CD");
+							int grade = Integer.parseInt(gradeStr);
+							String entryDt = (String) data.get("ENTRY_DT");
+							for (int x = 1; x <= data.size(); x++) {
+								String afterStr = (String) data.get("VOT_SCORE");  
+								int afterScore = Integer.parseInt(afterStr); 
+								//투표수가 같다면
+								if(score == afterScore) {
+									String afterUserId = (String) data.get("USER_ID");
+									String afterGradeStr = (String) data.get("GRADE_CD");
+									int afterGrade = Integer.parseInt(afterGradeStr);
+									String afterEntryDt = (String) data.get("ENTRY_DT");
+									//직급 비교
+									if(grade < afterGrade) {
+										
+									}
+									
+									
+									
+								}else {
+									
+								}
+								
+							}
+
+						}
+
+					}
+
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
 		} else {
 			result.put("result", "fail");
 		}
@@ -611,35 +677,35 @@ public class AwardRepository {
 	public Map<String, Object> voteUpdate(Map<String, Object> obj) {
 		Map<String, Object> result = new HashMap<>();
 		System.out.println("obj!!!!aw = " + obj.toString());
-		
+
 		Map<String, Object> data = awardMapper.checkVoteChoice(obj);
-		
-		if(data == null) {
+
+		if (data == null) {
 			result.put("result", "fail");
 			return result;
-		}else {
-			
+		} else {
+
 			Long loData;
 			List<Object> list = new ArrayList<>();
 			list = (List<Object>) obj.get("votedCd");
-			
+
 			loData = Long.valueOf((String) list.get(0));
-			
+
 			System.out.println("loData!!!!aw = " + loData);
-			
+
 			obj.put("votedCd", loData);
-			
+
 			int i = 0;
-			
+
 			i = awardMapper.voteUpdate(obj);
-			
-			if(i == 0) {
+
+			if (i == 0) {
 				result.put("result", "updateFail");
-			}else {
+			} else {
 				result.put("result", "success");
 			}
 		}
-		
+
 		return result;
 
 	}

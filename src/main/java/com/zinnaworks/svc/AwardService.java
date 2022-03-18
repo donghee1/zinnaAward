@@ -105,79 +105,89 @@ public class AwardService {
 		List<Object> list = new ArrayList<>();
 
 		list = awardRepository.checkAwardList();
-		if (list.get(0) == null || list.get(0).equals("")) {
-			result.put("result", "fail");
-		} else {
-			System.out.println("list = " + list.toString());
-			System.out.println("listSize = " + list.size());
-			// 현재시간보다 종료시간이 지났을 경우 update
+		try {
 
-			Map<String, Object> dataMap;
-			String vote_id = null;
-			String vote_result_id = null;
-			// 리스트사이즈 변경
-			for (int i = 0; i < list.size(); i++) {
-				Map<String, Object> data = (Map<String, Object>) list.get(i);
-				vote_id = (String) data.get("VOT_ID");
-				System.out.println("vote_id = " + vote_id);
-				result = awardRepository.checkEndDt(vote_id);
+			if (list.get(0) == null || list.get(0).equals("")) {
+				result.put("result", "fail");
+			} else {
+				System.out.println("list = " + list.toString());
+				System.out.println("listSize = " + list.size());
+				// 현재시간보다 종료시간이 지났을 경우 update
 
-				List<Map<String, Object>> listMap = new ArrayList<>();
-				try {
-					dataMap = awardRepository.selectResultMember(vote_id);
-					System.out.println("dataMap = " + dataMap.toString());
-					System.out.println("dataMapresult = " + dataMap.get("result"));
+				Map<String, Object> dataMap;
+				String vote_id = null;
+				String vote_result_id = null;
+				// 리스트사이즈 변경
+				for (int i = 0; i < list.size(); i++) {
+					Map<String, Object> data = (Map<String, Object>) list.get(i);
+					vote_id = (String) data.get("VOT_ID");
+					System.out.println("vote_id = " + vote_id);
+					result = awardRepository.checkEndDt(vote_id);
 
-					// 조회된 당첨자가 없을경우 없는 내용을 로그로 호출
-					Map<String, Object> rankMap = new HashMap<>();
-					Map<String, Object> map = new HashMap<>();
-					if (dataMap.get("result").equals("fail")) {
-						System.out.println("No member Award choice!!!");
-					} else {
-						listMap = (List<Map<String, Object>>) dataMap.get("list");
-						System.out.println("listMap = " + listMap.size());
-						// 투표대상이 1명 이상일 경우
-						if (listMap.size() > 1) {
-							if (dataMap.get("list").equals("") || dataMap.get("list") != null) {
-								map.putAll(listMap.get(0));
-								Integer checkScore = (int) listMap.get(0).get("VOT_SCORE");
-								int score = 0;
-								for (int z = 0; z < listMap.size(); z++) {
-									// 최종 투표자는 정렬로 인해 무조건 0번째가 최종 투표자이다
-									if (z >= 1) {
-										score = (int) listMap.get(z).get("VOT_SCORE");
+					List<Map<String, Object>> listMap = new ArrayList<>();
+					try {
+						dataMap = awardRepository.selectResultMember(vote_id);
+						System.out.println("dataMap!!!! = " + dataMap.toString());
+						System.out.println("dataMapresult = " + dataMap.get("result"));
+
+						// 조회된 당첨자가 없을경우 없는 내용을 로그로 호출
+						Map<String, Object> rankMap = new HashMap<>();
+						Map<String, Object> map = new HashMap<>();
+						if (dataMap.get("result").equals("fail")) {
+							System.out.println("No member Award choice!!!");
+						} else if(dataMap.get("result").equals("success")){
+							listMap = (List<Map<String, Object>>) dataMap.get("list");
+							System.out.println("listMapSize = " + listMap.size());
+							// 투표대상이 1명 이상일 경우
+							
+							if (listMap.size() > 1) {
+								if (dataMap.get("list").equals("") || dataMap.get("list") != null) {
+									map.putAll(listMap.get(0));
+									Integer checkScore = (int) listMap.get(0).get("VOT_SCORE");
+									int score = 0;
+									for (int z = 0; z < listMap.size(); z++) {
+										// 최종 투표자는 정렬로 인해 무조건 0번째가 최종 투표자이다
+										if (z >= 1) {
+											score = (int) listMap.get(z).get("VOT_SCORE");
+										}
+										// 동률이 나왔을 경우
+										if (checkScore == score) {
+											map.putAll(listMap.get(i));
+										}
+										System.out.println("for cont = " + z);
+										// if(listMap.get(z).get("ENTRY_DT") <)
 									}
-									// 동률이 나왔을 경우
-									if (checkScore == score) {
-										map.putAll(listMap.get(i));
+									rankMap = awardRepository.checkResultMember(map);
+									System.out.println("rankMap = " + rankMap.toString());
+
+									for (Map.Entry<String, Object> m : rankMap.entrySet()) {
+										System.out.println("최종 데이터!!!! = " + m.getKey() + "," + m.getValue());
 									}
-									System.out.println("for cont = " + z);
-									// if(listMap.get(z).get("ENTRY_DT") <)
-								}
-								rankMap = awardRepository.checkResultMember(map);
-								System.out.println("rankMap = " + rankMap.toString());
 
-								for (Map.Entry<String, Object> m : rankMap.entrySet()) {
-									System.out.println("최종 데이터!!!! = " + m.getKey() + "," + m.getValue());
+									result = awardRepository.resultIdInsert(vote_id, vote_result_id);
 								}
 
+							} else {
+								
+								vote_id = (String) listMap.get(0).get("VOT_ID");
+								vote_result_id = (String) listMap.get(0).get("VOT_RESULT_ID");
+								System.out.println("Reward 당첨자는 1명이고 당첨자는 = " + vote_result_id + "입니다");
+								System.out.println("단일 최종 데이터!!!! = " + vote_id);
 								result = awardRepository.resultIdInsert(vote_id, vote_result_id);
 							}
-
-						} else {
-							System.out.println("Reward 당첨자는 1명이고 당첨자는 = " + rankMap.toString() + "입니다");
-							vote_id = (String) listMap.get(0).get("VOT_ID");
-							vote_result_id = (String) listMap.get(0).get("VOT_RESULT_ID");
-							result = awardRepository.resultIdInsert(vote_id, vote_result_id);
 						}
+					} catch (Exception e) {
+						System.out.println("e = " + e.getMessage());
 					}
-				} catch (Exception e) {
-					System.out.println("e = " + e.getMessage());
+
 				}
 
 			}
 
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+
 		result.put("body", list);
 
 		return result;
@@ -297,9 +307,9 @@ public class AwardService {
 	public Map<String, Object> voteCreateInfo(Map<String, Object> obj) throws Exception {
 
 		Award award = new Award();
-		
-		System.out.println("obj = " +obj.toString());
-		
+
+		System.out.println("obj = " + obj.toString());
+
 		Map<String, Object> result = new HashMap<String, Object>();
 
 		if (obj.get("vote_id").equals("") || obj.get("vote_id") == "") {
@@ -376,12 +386,12 @@ public class AwardService {
 				List<RateMember> rateMemberList = new ArrayList<>();
 
 				result = awardRepository.voteCreateItem(memberList);
-				
+
 				List<Object> authMember = new ArrayList<>();
 				authMember = (List<Object>) obj.get("auth_member");
-				
+
 				if (authMember.size() == 0) {
-						System.out.println("if문 테스트!!!!");
+					System.out.println("if문 테스트!!!!");
 					for (int i = 0; i < dataList.size(); i++) {
 
 						String str = dataList.get(i);
@@ -544,11 +554,11 @@ public class AwardService {
 	}
 
 	public Map<String, Object> voteUpdate(Map<String, Object> obj) {
-		
+
 		Map<String, Object> result = new HashMap<>();
-		
+
 		result = awardRepository.voteUpdate(obj);
-		
+
 		return result;
 	}
 

@@ -44,6 +44,7 @@ body {
 	width:13%;
 	height:100%;
 	background: url("../../img/zinnaworks-logo.png");	
+	background-size: contain;
 }
 
 #logo{
@@ -62,7 +63,7 @@ body {
 	top: 0%;
 	width: 13%;
 	height: 10%;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 	padding-top: 30px;
 	color: blue;
@@ -91,9 +92,10 @@ body {
 	font-size: 20px;
 	color: grey;
 	margin-top: 10px;
+	width: 280px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
@@ -267,7 +269,7 @@ body {
 }
 
 .sideLink{
-	font-size: 24px;
+	font-size: 20px;
 }
 
 .sideBar_link{
@@ -300,8 +302,8 @@ body {
 	height: 100%;
 	position: absolute;
 	left: 400px;
-	top: 144px;
-	padding: 50px 30px 150px 30px;
+	top: 114px;
+	padding: 50px 30px 150px 0px;
 	background-color: white;
 }
 tr {
@@ -356,3 +358,5 @@ th {
 }
 
 
+#listForm{
+	width: 90%;

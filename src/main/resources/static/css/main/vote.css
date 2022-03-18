@@ -34,6 +34,7 @@ body {
 	width:13%;
 	height:100%;
 	background: url("../../img/zinnaworks-logo.png");	
+	background-size: contain;
 }
 
 #logo{
@@ -52,7 +53,7 @@ body {
 	top: 0%;
 	width: 13%;
 	height: 10%;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 	padding-top: 30px;
 	color: blue;
@@ -81,9 +82,10 @@ body {
 	font-size: 20px;
 	color: grey;
 	margin-top: 10px;
+	width: 280px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
@@ -290,7 +292,7 @@ body {
 	height: 100%;
 	position: absolute;
 	left: 400px;
-	top: 144px;
+	top: 12%;
 	padding: 50px 30px 150px 30px;
 }
 
@@ -299,13 +301,13 @@ body {
 	width: 650px;
 	height: 600px;
 	border: 1px solid red;
-	left: 480px;
+	left: 20%;
 	top: 20px;
 }
 
 #vote_title{
 	position: relative;
-	left: 750px;
+	left: 39.5%;
 	width: 8%;
 }
 
@@ -392,7 +394,7 @@ body {
 	font-size: 20px;
 	position: relative;
     width: 30%;
-    left: 34%;
+    left: -34%;
 }
 
 

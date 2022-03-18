@@ -72,8 +72,6 @@ window.onload = function() {
 			}
 
 		}
-
-
 	})
 
 	$("#registrySubmit").click(function() {

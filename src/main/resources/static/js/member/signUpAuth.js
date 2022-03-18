@@ -26,7 +26,7 @@ window.onload = function() {
 					alert("이메일이 잘못되었습니다.")
 				} else if (data.result == "success") {
 					alert("회원가입 인증이 완료 되었습니다. 로그인 페이지로 이동 합니다")
-					window.location.href = "http://localhost:8080/login"
+					window.location.href = "/login"
 				}
 			}
 

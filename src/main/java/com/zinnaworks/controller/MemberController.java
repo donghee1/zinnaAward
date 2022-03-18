@@ -52,7 +52,7 @@ public class MemberController {
 		return "signUpAuth";
 	}
 
-	@GetMapping("/login")
+	@GetMapping(value={"/","/login"})
 	public String loginForm(Model model) {
 		System.out.println("login");
 		model.addAttribute("Member", new Member());

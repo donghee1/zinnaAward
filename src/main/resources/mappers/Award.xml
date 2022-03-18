@@ -69,7 +69,7 @@
 		FROM VOT_INFO A
 		LEFT JOIN VOT_RATE B ON A.VOT_ID = B.VOT_ID
 		WHERE STATUS = 0
-		AND B.USER_ID = #{user}
+		AND B.USER_ID LIKE CONCAT(#{user},'%') 
 		ORDER BY A.VOT_ID DESC
 		LIMIT #{before}, #{after}
 	</select>
@@ -217,39 +217,8 @@
 	</select>
 
 	<select id="checkAwardList" resultType="map">
-		SELECT
-		A.VOT_ID
-		,A.VOT_TYP
-		,A.VOT_GRP, A.VOT_NM
-		,DATE_FORMAT(A.START_DT,
-		'%y-%m-%d-%H') AS START_DT
-		,DATE_FORMAT(A.END_DT, '%y-%m-%d-%H') AS
-		END_DT
-		,A.START_MMS
-		,A.END_MMS
-		,A.STATUS
-		,A.USER_ID
-		,A.REWARD
-		,A.REWARD_DT
-		,A.PHOTO_NM
-		,A.AUTO_HISTORY
-		,A.VOT_DESC
-		,B.GRADE_CD
-		,(SELECT COUNT(VOT_ID)
-		FROM VOT_ITEM WHERE A.VOT_ID = VOT_ID) AS NCNT
-		,(SELECT
-		COUNT(VOT_RESULT_ID) FROM VOT_RATE WHERE A.VOT_ID = VOT_ID) AS YCNT
-		,(SELECT COUNT(VOT_ID) FROM VOT_INFO) AS TotalCnt
-		,(SELECT
-		COUNT(STATUS) AS StatusCnt FROM VOT_INFO WHERE STATUS = 0) AS
-		StatusCnt
-		FROM
-		VOT_INFO A, USERS B
-		WHERE
-		A.USER_ID = B.USER_ID
-		AND
-		A.STATUS = 0
-		ORDER BY A.VOT_ID DESC
+		SELECT * FROM VOT_INFO WHERE NOW() > END_DT 
+		AND STATUS = 0  
 	</select>
 
 	<select id="selectVotListPage" parameterType="map"
@@ -443,7 +412,7 @@
 		UPDATE VOT_INFO
 		SET STATUS =1
 		WHERE
-		END_DT <![CDATA[<]]>
+		END_DT <![CDATA[>]]>
 		NOW()
 		AND
 		STATUS=0

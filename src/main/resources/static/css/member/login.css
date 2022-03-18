@@ -11,14 +11,13 @@ body {
 
 #header{
 	width:100%;
-	height:13%;
+	height:14%;
 	display: inline-block;
 	z-index: 1;
 }
 
 .headerLine{
 	position: relative;
-	top: 8px;
 }
 
 .hr{
@@ -39,7 +38,8 @@ body {
 #img{
 	width:13%;
 	height:110px;
-	background: url("../../img/zinnaworks-logo.png");	
+	background: url("../../img/zinnaworks-logo.png");
+	background-size: contain;	
 }
 
 #logo{
@@ -58,7 +58,7 @@ body {
 	top: 0%;
 	width: 13%;
 	height: 10%;
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: bold;
 	padding-top: 30px;
 	color: blue;
@@ -87,13 +87,14 @@ body {
 	font-size: 20px;
 	color: grey;
 	margin-top: 10px;
+	width: 280px;
 }
 #checkLogin{
-	left:85%;
+	left:88%;
 	text-align: center;
 }
 .check{
-	font-size: 24px;
+	font-size: 20px;
 	text-align: center;
 	color: grey;
 	float: left;
@@ -118,8 +119,8 @@ body {
 	width: 40%;
 	height: 40%;
 	position: relative;
-	left: 30%;
-	top: 200px;
+	left: 35%;
+	top: 150px;
 }
 
 .inputForm{
@@ -127,14 +128,14 @@ body {
 	margin:10px 0 10px 0;
 	width: 100%;
 	display: inline-block;
-	font-size: 22px;
+	font-size: 20px;
 }
 
 #userId{
 	width: 30%;
 	margin-left: 70px;
 	display: inline-block;
-	font-size: 20px;
+	font-size: 15px;
 }
 #idTitle{
 	 margin-left: 135px;
@@ -144,13 +145,13 @@ body {
 	width: 50%;
 	margin-left: 50px;
 	display: inline-block;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 #loginSubmit{
 	width: 28%;
-	margin:60px 0 0 140px;
-	font-size: 20px;
+	margin:40px 0 0 140px;
+	font-size: 15px;
 }
 
 .labelForm{
