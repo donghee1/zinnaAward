@@ -16,7 +16,7 @@ public class Schedule {
 	@Autowired
 	AwardService awardService;
 
-	@Scheduled(cron = "0 0/1 * * * ?")
+	@Scheduled(cron = "0 0/10 * * * ?")
 	public void cronRun() {
 		
 		try {
