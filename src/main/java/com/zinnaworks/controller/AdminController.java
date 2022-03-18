@@ -31,24 +31,24 @@ public class AdminController {
 	public String mainPageForm(Model model) {
 		System.out.println("admin page");
 		model.addAttribute("Group", new Group());
-		return "/zinna/adminGroupManage";
+		return "zinna/adminGroupManage";
 	}
 	
 	@GetMapping("/management")
 	public String managementForm(Model model) {
 		System.out.println("management page");
 		model.addAttribute("Group", new Group());
-		return "/zinna/adminMemberManage";
+		return "zinna/adminMemberManage";
 	}
 	
 	@GetMapping("/cate")
 	public String catePageForm(Model model) {
-		return "/zinna/adminCateManage";
+		return "zinna/adminCateManage";
 	}
 	
 	@GetMapping("/admin/userInfo")
 	public Object userInfoPageForm(Model model) {
-		return "/zinna/adminUserInfoManage";
+		return "zinna/adminUserInfoManage";
 	}
 	
 	@PostMapping("/api/admin")

@@ -80,7 +80,7 @@ public class AwardController {
 			// TODO: handle exception
 		}
 
-		return "/zinna/votList";
+		return "zinna/votList";
 	}
 
 	@GetMapping("/voteDetail")
@@ -99,7 +99,7 @@ public class AwardController {
 			// TODO: handle exception
 		}
 
-		return "/zinna/voteDetail";
+		return "zinna/voteDetail";
 	}
 
 	@GetMapping("/voteCompensationList")
@@ -117,7 +117,7 @@ public class AwardController {
 		} catch (Exception e) {
 		}
 
-		return "/zinna/voteCompensationList";
+		return "zinna/voteCompensationList";
 	}
 
 	@GetMapping("/voteCompensation")
@@ -135,7 +135,7 @@ public class AwardController {
 		} catch (Exception e) {
 		}
 
-		return "/zinna/voteCompensation";
+		return "zinna/voteCompensation";
 	}
 
 	@GetMapping("/vote")
@@ -154,7 +154,7 @@ public class AwardController {
 			// TODO: handle exception
 		}
 
-		return "/zinna/vote";
+		return "zinna/vote";
 	}
 
 	@GetMapping("/votCreate")
@@ -173,7 +173,7 @@ public class AwardController {
 			// TODO: handle exception
 		}
 
-		return "/zinna/votCreate";
+		return "zinna/votCreate";
 	}
 
 //	@GetMapping("/admin")
