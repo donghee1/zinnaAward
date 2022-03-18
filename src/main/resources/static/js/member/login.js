@@ -72,7 +72,7 @@ window.onload = function() {
 									obj = user_id + "," + user_nm + "," + user_grp + "," + grade
 
 									$.cookie("zinnaworks", JSON.stringify(obj));
-									window.location.href = "main";
+									window.location.href = "/main";
 								}
 							}
 

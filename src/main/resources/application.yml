@@ -8,7 +8,7 @@ spring:
     password: "zinna123"
     driver-class-name: "org.mariadb.jdbc.Driver"
   thymeleaf:
-    prefix: classpath:templates/
+    prefix: classpath:/templates/
     check-template-location: true
     suffix: .html
     mode: HTML

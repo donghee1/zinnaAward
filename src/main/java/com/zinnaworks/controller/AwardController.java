@@ -61,7 +61,7 @@ public class AwardController {
 			// TODO: handle exception
 		}
 
-		return "/zinna/main";
+		return "zinna/main";
 	}
 
 	@GetMapping("/votList")
