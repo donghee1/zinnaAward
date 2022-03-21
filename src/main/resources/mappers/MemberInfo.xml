@@ -49,8 +49,7 @@
 		resultType="com.zinnaworks.vo.MailAuth">
 		SELECT *
 		FROM USER_AUTH
-		WHERE USER_ID=#{email} AND EXP_DT =
-		(SELECT MAX(EXP_DT) FROM USER_AUTH)
+		WHERE EXP_DT = (SELECT MAX(EXP_DT) FROM USER_AUTH WHERE USER_ID = #{email})
 	</select>
 
 	<select id="selectVotGrp" parameterType="String" resultType="map">

@@ -662,6 +662,7 @@ public class AwardRepository {
 			System.out.println("admin");
 			totalSize = awardMapper.awardMainAdminListSize();
 			list = awardMapper.awardMainAdminList(map);
+			System.out.println("list = " + list.toString());
 			list.add(0, totalSize);
 		}
 

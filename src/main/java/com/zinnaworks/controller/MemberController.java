@@ -217,6 +217,7 @@ public class MemberController {
 
 		Map<String, Object> result = new HashMap<>();
 		String email = (String) map.get("email");
+		System.out.println("start update Email = " + email);
 		String code = (String) map.get("code");
 		String pwd = (String) map.get("pwd");
 		boolean data = false;
@@ -224,6 +225,7 @@ public class MemberController {
 		Member member = new Member();
 		member.setUserId(email + "@zinnaworks.com");
 		member.setPassWd(passwordEncoder(pwd));
+		System.out.println("start update pwd = " + member.getPassWd());
 
 		if (email == null || email.equals("") || pwd == null || pwd.equals("")) {
 			result.put("result", false);
