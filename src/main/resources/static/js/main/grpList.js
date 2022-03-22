@@ -10,6 +10,7 @@ window.onload = function() {
 
 	let cookie = $.cookie("zinnaworks");
 
+	console.log("cookie = " + cookie)
 	if (cookie == null || cookie == undefined || cookie == "") {
 		alert("관리자에게 문의하기 바랍니다")
 		window.location.href = "/login"

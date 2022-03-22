@@ -35,10 +35,8 @@ window.onload = function() {
 	let pageCnt = 0;
 
 	//paging 처리를 위한 변수선언
-
-
-	if (cookieGd > 1) {
-		$("#admin").css("display", "none");
+	if (cookieGd == 1) {
+		$("#admin").css("display", "block");
 	}
 
 

@@ -17,6 +17,8 @@ window.onload = function() {
 
 	let cookie = $.cookie("zinnaworks");
 	
+	console.log("cookie = " + cookie)
+	
 	if(cookie == null || cookie == undefined || cookie == ""){
 		alert("관리자에게 문의하기 바랍니다")
 		window.location.href="/login"
@@ -30,8 +32,11 @@ window.onload = function() {
 	var str = cookieData[3];
 	let cookieGd = str.substr(0, 1)
 
-	if (cookieGd > 1) {
-		$("#admin").css("display", "none");
+	if (cookieGd == 1) {
+		$("#admin").css("display", "block");
+		$("#voteCompensationListLink").css("display", "block");
+		$("#votCreateLink").css("display", "block");
+		$("#totalLink").css("display", "block");
 	}
 	if(cookieGd == 3){
 		alert("사용할 수 없는 페이지 입니다.")

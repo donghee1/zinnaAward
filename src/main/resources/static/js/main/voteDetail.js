@@ -7,10 +7,10 @@ window.onload = function() {
 	let temp = location.href.split("?");
 	let vote_no = temp[1];
 	let cookie = $.cookie("zinnaworks");
-	
-	if(cookie == null || cookie == undefined || cookie == ""){
+
+	if (cookie == null || cookie == undefined || cookie == "") {
 		alert("관리자에게 문의하기 바랍니다")
-		window.location.href="/login"
+		window.location.href = "/login"
 	}
 
 	let cookieData = cookie.split(",");
@@ -23,23 +23,23 @@ window.onload = function() {
 	let pieChartData = "";
 	let color = [];
 	let grp_name = "";
-	
+
 	$(function() {
 		$('.datetimepicker').datetimepicker({
 			lang: 'ko',
 			format: 'Y-m-d H:i'
 		})
 	})
-	
-	if (cookieGd > 1) {
-		$("#admin").css("display", "none");
+
+	if (cookieGd == 1) {
+		$("#admin").css("display", "block");
 	}
-	
-	if (cookieGd > 1) {
-		$("#admin").css("display", "none");
-		$("#voteCompensationListLink").css("display", "none");
-		$("#votCreateLink").css("display", "none");
-		$("#totalLink").css("display", "none");
+
+	if (cookieGd == 1) {
+		$("#admin").css("display", "block");
+		$("#voteCompensationListLink").css("display", "block");
+		$("#votCreateLink").css("display", "block");
+		$("#totalLink").css("display", "block");
 	}
 
 	let start_dt = "";
@@ -82,7 +82,7 @@ window.onload = function() {
 
 
 	//어워드 개설 기간 formatter
-	
+
 
 	var obj = {
 		"vote_no": vote_no,
@@ -96,18 +96,11 @@ window.onload = function() {
 		contentType: "application/json",
 		dataType: 'json',
 		success: function(data) {
-			console.log("info = " + JSON.stringify(data.info));
-			console.log("member = " + JSON.stringify(data.member));
 
 			info = data.info;
 			grp = data.grp;
-			console.log("grp = " + data.grp)
 			member = data.member;
 			rate = data.rate;
-
-			console.log("rate = " + JSON.stringify(rate))
-			console.log("NM = " + info[0].VOT_NM);
-			console.log("STATUS = " + info[0].STATUS);
 
 			if (info[0].STATUS === 0) {
 				status = "진행중"
@@ -159,16 +152,16 @@ window.onload = function() {
 
 
 			let arr = new Array();
-			var data = {};
+			var data = new Map();
 			//rate 값을 추출 투표자, 투표수가 높은 투표자
 			for (var i = 0; i < rate.length; i++) {
 				arr.push(rate[i].VOT_NAME)
 				if (!data[rate[i].VOT_NAME]) {
 					data[rate[i].VOT_NAME] = 0 + 1;
-				} else if (data[rate[i].VOT_NAME] && rate[i].VOT_GRADE <= 3) {
-					data[rate[i].VOT_NAME] = + 2;
+				} else if (rate[i].VOT_GRADE <= 3) {
+					data[rate[i].VOT_NAME] = data[rate[i].VOT_NAME] + 1;
 				} else {
-					data[rate[i].VOT_NAME] = + 1;
+					data[rate[i].VOT_NAME] = data[rate[i].VOT_NAME] + 2;
 				}
 			}
 
@@ -188,22 +181,39 @@ window.onload = function() {
 					keysArr.push(rate[i].VOT_NAME)
 					valueArr.push(value)
 				}
-
-
-				if (value < min) {
+				/*if (value < min) {
 					min = value;
 					minVoter = rate[i].VOT_NAME
 					console.log("minVoter = " + minVoter)
 				} else if (value <= max) {
 					max = value;
 					maxVoter = rate[i].VOT_NAME
-					console.log("maxVoter = " + maxVoter)
-				}
-			}
-			if (max === min) {
-				$("#choice_member").text(maxVoter);
+				}*/
 			}
 
+			var test = Object.values(data);
+			var choiceUser = Math.max(...test);
+			var result = "";
+
+			console.log("data data= " + JSON.stringify(data))
+			console.log("data length= " + data.size)
+			console.log("data length= " + JSON.stringify(data))
+			
+			for(var i=0; i < keysArr.length; i++){
+				
+				console.log("arr = " + keysArr[i])
+				console.log("choice = " + choiceUser)
+				console.log("data = " + data[keysArr[i]])
+				
+				if(choiceUser == data[keysArr[i]]){
+					$("#choice_member").text("("+keysArr[i]+")")
+					var i = 0;
+					++i;
+					if(i > 1){
+						$("#choice_member").text("("+keysArr[i]+")" + "외" + i-1 +" 명")
+					}				
+				}
+			}			
 			console.log("keysArr = " + JSON.stringify(keysArr))
 			console.log("valueArr = " + JSON.stringify(valueArr))
 
@@ -246,11 +256,13 @@ window.onload = function() {
 
 			var chartHtml = "";
 			for (var i = 0; i < keysArr.length; i++) {
-				var data = valueArr[i] / info[0].NCNT * 100 + '%';
-				data = data.substr(0, 4)
+				var data = valueArr[i] / rate.length * 100;
+				console.log("data = " + data)
+				//data = data.substr(0, 3)
+				data = Math.round(data);
 				chartHtml += '<div class="chart_stats" id="person_info">' +
 					'<div id="person_color" style="background-color:' + color[i] + ';">' + '</div>'
-					+ '<span id="person_stats">' + keysArr[i] + '(' + data + ' ' + valueArr[i] + 'p' + ')' + '</span>'
+					+ '<span id="person_stats">' + keysArr[i] + '(' + data + '% ' + valueArr[i] + 'p' + ')' + '</span>'
 					+ '</div>'
 			}
 			$("#chartData").html(chartHtml)
@@ -303,7 +315,7 @@ window.onload = function() {
 
 		var checkAlert = confirm("어워드 내용이 변경됩니다. 계속 진행 하시겠습니까?")
 
-		if (checkAlert)  {
+		if (checkAlert) {
 			$.ajax({
 				type: "post",
 				url: "/api/voteUpdateDetail",
@@ -334,11 +346,11 @@ window.onload = function() {
 
 		var checkAlert = confirm("어워드가 마감됩니다. 계속 진행 하시겠습니까?")
 
-		if (checkAlert ) {
+		if (checkAlert) {
 			$.ajax({
 				type: "post",
 				url: "/api/voteEndStatus",
-				data:vote_no,
+				data: vote_no,
 				dataType: "json",
 				contentType: "application/json",
 				success: function(data) {
@@ -386,16 +398,16 @@ window.onload = function() {
 			alert("어워드 삭제가 취소되었습니다.")
 		}
 	})
-	
-	$(header).on('click', '#logout', function(){
-		
+
+	$(header).on('click', '#logout', function() {
+
 		var check = confirm("로그아웃 하시겠습니까?")
-		
-		if(check){
+
+		if (check) {
 			$.removeCookie("zinnaworks")
-			window.location.href="login"
-		} 
-		
+			window.location.href = "login"
+		}
+
 	})
 
 

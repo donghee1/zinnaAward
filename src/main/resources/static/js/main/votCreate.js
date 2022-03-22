@@ -41,10 +41,12 @@ window.onload = function() {
 
 	console.log("cookie = " + cookie)
 
-	if (cookieGd > 1) {
-		$("#admin").css("display", "none");
-	}
-
+	if (cookieGd == 1) {
+		$("#admin").css("display", "block");
+		$("#voteCompensationListLink").css("display", "block");
+		$("#votCreateLink").css("display", "block");
+		$("#totalLink").css("display", "block");
+	}	
 	if (cookieGd == 3) {
 		alert("사용할 수 없는 페이지 입니다.")
 		location.href = "/main"

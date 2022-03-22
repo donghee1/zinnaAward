@@ -35,7 +35,7 @@ body {
 	width:13%;
 	height:110px;
 	background: url("../../img/zinnaworks-logo.png");	
-	background-size: contain;
+	background-size: cover;
 }
 
 #logo{

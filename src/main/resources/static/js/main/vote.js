@@ -23,14 +23,12 @@ window.onload = function() {
 	let grade = cookieData[3];
 	let cookieGd = grade.substr(0, 1)
 
-	if (cookieGd > 1) {
-		$("#admin").css("display", "none");
-	}
-	if (cookieGd > 1) {
-		$("#admin").css("display", "none");
-		$("#voteCompensationListLink").css("display", "none");
-		$("#votCreateLink").css("display", "none");
-		$("#totalLink").css("display", "none");
+
+	if (cookieGd == 1) {
+		$("#admin").css("display", "block");
+		$("#voteCompensationListLink").css("display", "block");
+		$("#votCreateLink").css("display", "block");
+		$("#totalLink").css("display", "block");
 	}
 
 	let memberListHtml = "";

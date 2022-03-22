@@ -20,12 +20,13 @@ window.onload = function() {
 	var str = cookieData[3];
 	let cookieGd = str.substr(0, 1)
 	cookieGd = Number(cookieGd)
-	if (cookieGd == 3) {
-		$("#admin").css("display", "none");
-		$("#voteCompensationListLink").css("display", "none");
-		$("#votCreateLink").css("display", "none");
-		$("#totalLink").css("display", "none");
-	}
+	if (cookieGd == 1) {
+		$("#admin").css("display", "block");
+		$("#voteCompensationListLink").css("display", "block");
+		$("#votCreateLink").css("display", "block");
+		$("#totalLink").css("display", "block");
+	}	
+	
 	let list = "";
 	var cnt = "";
 	var awardDate = "";
