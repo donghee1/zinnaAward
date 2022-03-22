@@ -193,27 +193,20 @@ window.onload = function() {
 
 			var test = Object.values(data);
 			var choiceUser = Math.max(...test);
-			var result = "";
 
-			console.log("data data= " + JSON.stringify(data))
-			console.log("data length= " + data.size)
-			console.log("data length= " + JSON.stringify(data))
-			
-			for(var i=0; i < keysArr.length; i++){
-				
-				console.log("arr = " + keysArr[i])
-				console.log("choice = " + choiceUser)
-				console.log("data = " + data[keysArr[i]])
-				
-				if(choiceUser == data[keysArr[i]]){
-					$("#choice_member").text("("+keysArr[i]+")")
-					var i = 0;
-					++i;
-					if(i > 1){
-						$("#choice_member").text("("+keysArr[i]+")" + "외" + i-1 +" 명")
-					}				
+			var z = 0;
+			for (var i = 0; i < keysArr.length; i++) {
+				if (choiceUser == data[keysArr[i]]) {
+					$("#choice_member").text("(" + keysArr[i] + ")")
+					++z;
+					console.log("z = " + z)
+					if (z > 1) {
+						z = z-1;
+						$("#choice_member").text("(" + keysArr[i] + " 외" + z+"명" + ")")
+						
+					}
 				}
-			}			
+			}
 			console.log("keysArr = " + JSON.stringify(keysArr))
 			console.log("valueArr = " + JSON.stringify(valueArr))
 
