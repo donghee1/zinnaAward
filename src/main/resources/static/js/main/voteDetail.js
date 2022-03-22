@@ -101,7 +101,16 @@ window.onload = function() {
 			grp = data.grp;
 			member = data.member;
 			rate = data.rate;
-
+			console.log("rate = " + JSON.stringify(rate))
+			var totalCnt = 0;
+			
+			for(var x = 0; x < rate.length; x++){
+				if(rate[x].VOT_GRADE == 3){
+					totalCnt = totalCnt + 1;
+				}else if(rate[x].VOT_GRADE == 2){
+					totalCnt = totalCnt + 2;
+				}
+			}
 			if (info[0].STATUS === 0) {
 				status = "진행중"
 			} else {
@@ -156,11 +165,16 @@ window.onload = function() {
 			//rate 값을 추출 투표자, 투표수가 높은 투표자
 			for (var i = 0; i < rate.length; i++) {
 				arr.push(rate[i].VOT_NAME)
-				if (!data[rate[i].VOT_NAME]) {
+				if (!data[rate[i].VOT_NAME] && rate[i].VOT_GRADE == 3) {
+					console.log("추천")
 					data[rate[i].VOT_NAME] = 0 + 1;
-				} else if (rate[i].VOT_GRADE <= 3) {
+				}else if(!data[rate[i].VOT_NAME] && rate[i].VOT_GRADE == 2){
+					data[rate[i].VOT_NAME] = 0 + 2;
+				} else if (rate[i].VOT_GRADE == 3) {
+					console.log("사원 = " )
 					data[rate[i].VOT_NAME] = data[rate[i].VOT_NAME] + 1;
-				} else {
+				} else if(rate[i].VOT_GRADE == 2){
+					console.log("부서장 = " )
 					data[rate[i].VOT_NAME] = data[rate[i].VOT_NAME] + 2;
 				}
 			}
@@ -181,14 +195,6 @@ window.onload = function() {
 					keysArr.push(rate[i].VOT_NAME)
 					valueArr.push(value)
 				}
-				/*if (value < min) {
-					min = value;
-					minVoter = rate[i].VOT_NAME
-					console.log("minVoter = " + minVoter)
-				} else if (value <= max) {
-					max = value;
-					maxVoter = rate[i].VOT_NAME
-				}*/
 			}
 
 			var test = Object.values(data);
@@ -249,7 +255,7 @@ window.onload = function() {
 
 			var chartHtml = "";
 			for (var i = 0; i < keysArr.length; i++) {
-				var data = valueArr[i] / rate.length * 100;
+				var data = valueArr[i] / totalCnt * 100;
 				console.log("data = " + data)
 				//data = data.substr(0, 3)
 				data = Math.round(data);
