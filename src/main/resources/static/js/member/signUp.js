@@ -41,12 +41,12 @@ window.onload = function() {
 			$('#team').append(option);
 		}
 
-	}#password
+	}
 
 	$(document).on('focusout', '#password', function() {
 
 		console.log("????")
-		var password = $("#pwd").val();
+		var password = $("#password").val();
 		var num = password.search(/[0-9]/g);
 		var eng = password.search(/[a-z]/g);
 		var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -79,7 +79,7 @@ window.onload = function() {
 
 		password2 = $(this).val();
 
-		if (password != undefined && !password == "" && password.length >= 8) {
+		if (password2 != "") {
 			if (password2 != password) {
 				alert("비밀번호가 일치하지 않습니다.")
 			}
