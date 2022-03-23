@@ -192,7 +192,7 @@ body {
 	font-size: 17px;
 	border-radius: 12px;
 	float: left;
-	left : 10px;
+	left : 25%;
 	background-color: #114495;
 	border-color: #114495;
 }
@@ -203,7 +203,7 @@ body {
 	border-radius: 12px;
 	background-color: #114495;
 	border-color: #114495;
-	right: 10px;
+	left:22%;
 }
 #awardSuccess{
 	position: relative;
@@ -211,7 +211,7 @@ body {
 	font-size: 17px;
 	border-radius: 12px;
 	float: left;
-	left : 10px;
+	left : 3%;
 }
 /* nav css 옵션 끝 */
 

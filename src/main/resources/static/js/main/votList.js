@@ -20,7 +20,7 @@ window.onload = function() {
 	var str = cookieData[3];
 	let cookieGd = str.substr(0, 1)
 	cookieGd = Number(cookieGd)
-	if (cookieGd == 1) {
+	if (cookieGd <= 2) {
 		$("#admin").css("display", "block");
 		$("#voteCompensationListLink").css("display", "block");
 		$("#votCreateLink").css("display", "block");

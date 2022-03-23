@@ -48,11 +48,8 @@ public class AwardRepository {
 		map.put("status", status);
 		map.put("before", before);
 		map.put("after", after);
-
 		list = (List<Object>) awardMapper.selectVotList(map);
-
 		return list;
-
 	}
 
 	public Map<String, Object> awardUserList(Map<String, Object> obj) {
@@ -80,10 +77,12 @@ public class AwardRepository {
 		int grade = (int) obj.get("grade");
 
 		System.out.println("grade = " + grade);
-
+		int totalCnt = 0;
 		if (grade >= 2) {
 			list = (List<Object>) awardMapper.awardUserList(map);
 		} else if (grade <= 1) {
+			totalCnt = awardMapper.awardAdminListSize();
+			System.out.println("totalCnt = " + totalCnt);
 			list = (List<Object>) awardMapper.awardAdminList(map);
 		}
 
@@ -662,7 +661,7 @@ public class AwardRepository {
 			System.out.println("admin");
 			totalSize = awardMapper.awardMainAdminListSize();
 			list = awardMapper.awardMainAdminList(map);
-			System.out.println("list = " + list.toString());
+			System.out.println("totalSize = " + totalSize);
 			list.add(0, totalSize);
 		}
 

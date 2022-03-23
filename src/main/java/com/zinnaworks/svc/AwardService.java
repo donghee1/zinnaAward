@@ -368,7 +368,6 @@ public class AwardService {
 				data.add(obj.get("vote_member"));
 
 				System.out.println("data = " + data.toString());
-				System.out.println("data = " + data.size());
 				List<String> dataList = new ArrayList<>();
 
 				dataList = (List<String>) data.get(0);

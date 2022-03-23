@@ -94,6 +94,8 @@ public interface AwardMapper {
 
 	public Map<String, Object> awardMainAdminListSize();
 
+	public int awardAdminListSize();
+
 	
 	
 

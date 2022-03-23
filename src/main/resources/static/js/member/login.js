@@ -30,10 +30,12 @@ window.onload = function() {
 				contentType: "application/json",
 				success: function(data) {
 
-					console.log("data = " + JSON.stringify(data.result))
+					console.log("datakkkk = " + JSON.stringify(data.result))
 
 					if (data.result == "fail") {
 						alert("가입 대기중인 계정입니다")
+					}else if(data.result == "NoId"){
+						alert("없는 계정입니다. 회원가입 바랍니다.")
 					} else if (data.result == "success") {
 						member = {
 							"userId": userId,

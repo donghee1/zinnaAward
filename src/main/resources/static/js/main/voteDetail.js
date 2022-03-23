@@ -12,7 +12,6 @@ window.onload = function() {
 		alert("관리자에게 문의하기 바랍니다")
 		window.location.href = "/login"
 	}
-
 	let cookieData = cookie.split(",");
 	var str = cookieData[0];
 	let cookieId = str.substr(1);
@@ -30,9 +29,11 @@ window.onload = function() {
 			format: 'Y-m-d H:i'
 		})
 	})
+	
 
-	if (cookieGd == 1) {
-		$("#admin").css("display", "block");
+	if (cookieGd == 3) {
+		alert("사용할 수 없는 페이지 입니다.")
+		window.location.href="/login"
 	}
 
 	if (cookieGd == 1) {
@@ -252,7 +253,6 @@ window.onload = function() {
 					}
 				}
 			});
-
 			var chartHtml = "";
 			for (var i = 0; i < keysArr.length; i++) {
 				var data = valueArr[i] / totalCnt * 100;
@@ -266,8 +266,7 @@ window.onload = function() {
 			}
 			$("#chartData").html(chartHtml)
 
-		},
-		error: function(e) {
+		}, error: function(e) {
 			alert("일시적인 에러입니다. 다시 시도해 주세요.");
 		}
 	});
@@ -379,7 +378,7 @@ window.onload = function() {
 			$.ajax({
 				type: "post",
 				url: "/api/voteDelete",
-				data: JSON.stringify(vote_no),
+				data:vote_no,
 				dataType: "json",
 				contentType: "application/json",
 				success: function(data) {

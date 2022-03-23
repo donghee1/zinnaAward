@@ -71,29 +71,36 @@ public class MemberRepository {
 
 	public Map<String, Object> checkAuthLogin(String email) {
 		
+		Map<String, Object> data = new HashMap<>();
+		
 		Map<String, Object> result = new HashMap<>();
 		
-		System.out.println("email!!!!@!@!@!!! = " + email);
 		
 		String userId = email + "@zinnaworks.com";
 		
-		result = memberMapper.checkAuthLogin(userId);
+		data = memberMapper.checkAuthLogin(userId);
 		
-		System.out.println("result = " + result.toString());
-		
-		int i = 0; 
-		
-		userId = (String) result.get("USE_YN");
-		
-		i = Integer.parseInt(userId);
-		System.out.println("i = " + i);
-		
-		if(i == 3) {
-			result.put("result", "fail");
+		if(data == null) {
+			System.out.println("result null = ");
+			result.put("result", "NoId");
+			return result;
 		}else {
-			result.put("result", "success");
+			System.out.println("result = " + result.toString());
+			
+			int i = 0; 
+			
+			userId = (String) data.get("USE_YN");
+			
+			i = Integer.parseInt(userId);
+			System.out.println("i = " + i);
+			
+			if(i == 3) {
+				result.put("result", "fail");
+			}else {
+				result.put("result", "success");
+			}
+			
 		}
-		
 		return result;
 	}
 

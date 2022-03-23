@@ -13,12 +13,12 @@ window.onload = function() {
 	let historyHtml = "";
 
 	let cookie = $.cookie("zinnaworks");
-	
-	if(cookie == null || cookie == undefined || cookie == ""){
+
+	if (cookie == null || cookie == undefined || cookie == "") {
 		alert("관리자에게 문의하기 바랍니다")
-		window.location.href="/login"
+		window.location.href = "/login"
 	}
-	
+
 	console.log("cookie = " + cookie)
 	let cookieData = cookie.split(",");
 	var str = cookieData[0];
@@ -68,7 +68,7 @@ window.onload = function() {
 	var obj = {
 		"pageCnt": pageCnt,
 		"user": cookieId,
-		"grade" : Number(cookieGd)
+		"grade": Number(cookieGd)
 	}
 
 	$.ajax({
@@ -85,20 +85,20 @@ window.onload = function() {
 				console.log("awardList = " + JSON.stringify(data));
 				//리스트의카운트가 될수있다.
 				var awardList = data.body;
-				if(awardList == "" || awardList == undefined){
+				if (awardList == "" || awardList == undefined) {
 					$('#newAwardList').css("visibility", "hidden")
-				}else{
+				} else {
 					awardTotalCnt = awardList.length
-					makeAwardList(awardList);	
+					makeAwardList(awardList);
 				}
-				
-				if(awardTotalCnt < 3){
+
+				if (awardTotalCnt < 3) {
 					console.log("test smoking")
 					$('#newAwardList').css("visibility", "hidden")
 				}
-				
+
 				//메인 페이지 어워드 데이터 동적 태그 생성
-				
+
 				var obj = {
 					"pageCnt": pageCnt,
 				}
@@ -116,16 +116,16 @@ window.onload = function() {
 							console.log("historyList = " + JSON.stringify(data));
 							//리스트의카운트가 될수있다.
 							var historyList = data.body;
-							historyTotalCnt = historyList[0].StatusCnt;
-							console.log("historyTotalCnt = " + historyTotalCnt)
-							//메인 페이지 어워드 데이터 동적 태그 생성
-							makeHisotryList(historyList);
+							if (historyList == undefined) {
+								$("#historyBtn").css('display', 'none')
+							} else {
+								historyTotalCnt = historyList[0].StatusCnt;
+								//메인 페이지 어워드 데이터 동적 태그 생성
+								makeHisotryList(historyList);
+							}
 						}
-
 					}
 				});
-
-
 			}
 
 		}
@@ -142,28 +142,35 @@ window.onload = function() {
 			var totalPerson = awardListData[i].NCNT;
 			var choiPerson = awardListData[i].YCNT;
 			var voteCheck = awardListData[i].VOT_CHECK;
-			var resultBtn = '<button id="awardDetail" class="btn btn-primary bottom-btn" value="' + awardListData[i].VOT_ID + '" type="button">결과확인</button>';
-			var voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '"type="button">투표참여</button>'
+			var resultBtn = '<button id="awardDetail" class="btn btn-primary bottom-btn" value="' + awardListData[i].VOT_ID + '" style="display:none;" type="button">결과확인</button>';
+			var voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '" style="display:none;" type="button">투표참여</button>'
 			var successBtn = '<button id="awardSuccess" class="btn btn-secondary bottom-btn" type="button" style="display:none;" disabled>투표완료</button>';
 			//계정 별 권한에 따른 버튼 노출
-			
-			if(cookieNm == "관리자"){
+
+			if (cookieGd == 1) {
+				var resultBtn = '<button id="awardDetail" class="btn btn-primary bottom-btn" value="' + awardListData[i].VOT_ID + '" style="display:block;" type="button">결과확인</button>';
 				console.log("Btn admin start = ")
-				successBtn = '<button id="awardSuccess" class="btn btn-secondary bottom-btn" type="button" style="display:none;" disabled>투표완료</button>'
-				voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '"type="button" style="display:none;">투표참여</button>'
-			}else{
-				if(voteCheck == 0){
+			} else if (cookieGd == 2) {
+				if (voteCheck == 0) {
 					console.log("Btn user start = ")
-					successBtn = '<button id="awardSuccess" class="btn btn-secondary bottom-btn" type="button" style="display:none;" disabled>투표완료</button>'
-					voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '"type="button" style="display:block;">투표참여</button>'
-				}else if(voteCheck != 0){
+					voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '" type="button" style="display:block; left:3%;">투표참여</button>'
+					var resultBtn = '<button id="awardDetail" class="btn btn-primary bottom-btn" value="' + awardListData[i].VOT_ID + '" style="display:block; left:6%; top:5px;" type="button">결과확인</button>';
+				} else if (voteCheck != 0) {
 					console.log("Btn success vote = ")
-				successBtn = '<button id="awardSuccess" class="btn btn-secondary bottom-btn" type="button" style="display:block;" disabled>투표완료</button>'
-				voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '"type="button" style="display:none;">투표참여</button>'
-					
+					successBtn = '<button id="awardSuccess" class="btn btn-secondary bottom-btn" type="button" style="display:block; left:3%;" disabled>투표완료</button>'
+					voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '" type="button" style="display:none;">투표참여</button>'
+					var resultBtn = '<button id="awardDetail" class="btn btn-primary bottom-btn" value="' + awardListData[i].VOT_ID + '" style="display:block; left:6%; top:5px;" type="button">결과확인</button>';
+				}
+			} else if (cookieGd ==3) {
+				if (voteCheck == 0) {
+					console.log("Btn user start = ")
+					voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '" type="button" style="display:block;">투표참여</button>'
+				} else if (voteCheck != 0) {
+					console.log("Btn success vote = ")
+					successBtn = '<button id="awardSuccess" class="btn btn-secondary bottom-btn" type="button" style="display:block; left:25%;" disabled>투표완료</button>'
 				}
 			}
-			
+
 			if (i > 2) {
 				awardHtml += '<div id="divList" class ="awardList" style="display:none;">' +
 					'<div id="awardList_top" class="AL">' + awardListData[i].VOT_NM + '</div>' +
@@ -222,7 +229,7 @@ window.onload = function() {
 			if (imageSrc == 0) {
 				image = '<div id= "historyList_mid" class="HL">' + '사진없음' + '</div>'
 			} else {
-				image = '<div id= "historyList_mid" class="HL" style="background-image:url('+imageSrc+');">'
+				image = '<div id= "historyList_mid" class="HL" style="background-image:url(' + imageSrc+ ');">'
 			}
 			if (z > 2) {
 				historyHtml += '<div id="divList" class="historyList" style="display:none;">' +
@@ -348,9 +355,9 @@ window.onload = function() {
 							var imageSrc = historyList[z].PHOTO_NM
 							var image = "";
 							if (imageSrc == 0) {
-								image = '<div id= "historyList_mid" class="HL">' + '사진없음'  + '</div>'
+								image = '<div id= "historyList_mid" class="HL">' + '사진없음' + '</div>'
 							} else {
-								image = '<div id= "historyList_mid" class="HL" style="background-image:url('+imageSrc+');">'
+								image = '<div id= "historyList_mid" class="HL" style="background-image:url(' + imageSrc + ');">'
 							}
 							historyPageHtml += '<div id="divList" class="historyList">' +
 								'<div id="his_top_title" class="his_top_title">' + historyList[z].VOT_NM + '</div>' +
@@ -412,15 +419,15 @@ window.onload = function() {
 
 	}
 
-	$(header).on('click', '#logout', function(){
-		
+	$(header).on('click', '#logout', function() {
+
 		var check = confirm("로그아웃 하시겠습니까?")
-		
-		if(check){
+
+		if (check) {
 			$.removeCookie("zinnaworks")
-			window.location.href="login"
-		} 
-		
+			window.location.href = "login"
+		}
+
 	})
 
 };
