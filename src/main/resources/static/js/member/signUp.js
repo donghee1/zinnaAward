@@ -51,36 +51,38 @@ window.onload = function() {
 		var eng = password.search(/[a-z]/g);
 		var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
-		console.log("num = " + num)
-		console.log("eng = " + eng)
-		console.log("spe = " + spe)
-		if (password.length < 8){
-		alert("비밀번호는 8자리 이상으로 입력바랍니다.");
-	}else {
+		if (password != "") {
+			if (password.length < 8) {
+				alert("비밀번호는 8자리 이상으로 입력바랍니다.");
+			} else {
 
-		if (num < 0) {
-			alert("비밀번호에 숫자 1자리 이상 입력해주시기 바랍니다");
-		}
-		if (eng < 0) {
-			alert("비밀번호에 영문 1자리 이상 입력해주시기 바랍니다");
-		}
-		if (spe < 0) {
-			alert("비밀번호에 특수문자 1자리 이상 입력해주시기 바랍니다");
+				if (num < 0) {
+					alert("비밀번호에 숫자 1자리 이상 입력해주시기 바랍니다");
+				}
+				if (eng < 0) {
+					alert("비밀번호에 영문 1자리 이상 입력해주시기 바랍니다");
+				}
+				if (spe < 0) {
+					alert("비밀번호에 특수문자 1자리 이상 입력해주시기 바랍니다");
+				}
+
+			}
+			if (password.match(/[^a-zA-Z0-9`~!@@#$%^&*|₩₩₩'₩";:₩/?]/) != null) {
+				alert("비밀번호는 숫자와 영문 또는 특수문자만 입력할 수 있습니다.");
+			}
+
 		}
 
-	}
-	if (password.match(/[^a-zA-Z0-9`~!@@#$%^&*|₩₩₩'₩";:₩/?]/) != null) {
-		alert("비밀번호는 숫자와 영문 또는 특수문자만 입력할 수 있습니다.");
-	}
 
-})
+	})
 
 	$(document).on('focusout', '#password2', function() {
-
+		var password = $("#password").val();
 		password2 = $(this).val();
-
+		console.log("password = " + password)
+		console.log("password2 = " + password2)
 		if (password2 != "") {
-			if (password2 != password) {
+			if (password2 !== password) {
 				alert("비밀번호가 일치하지 않습니다.")
 			}
 
