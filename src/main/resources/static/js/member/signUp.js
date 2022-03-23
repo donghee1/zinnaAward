@@ -41,28 +41,41 @@ window.onload = function() {
 			$('#team').append(option);
 		}
 
-	}
+	}#password
 
-	$(document).on('blur', '#password', function() {
+	$(document).on('focusout', '#password', function() {
 
 		console.log("????")
-		
+		var password = $("#pwd").val();
 		var num = password.search(/[0-9]/g);
 		var eng = password.search(/[a-z]/g);
-		
+		var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
 		console.log("num = " + num)
 		console.log("eng = " + eng)
+		console.log("spe = " + spe)
+		if (password.length < 8){
+		alert("비밀번호는 8자리 이상으로 입력바랍니다.");
+	}else {
 
-		password = $(this).val();
-		var reg = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
-
-		if (num < 0 || eng < 0 && password.length < 8) {
-			alert("8자리 비밀번호 입력 및 영문 또는 숫자를 혼합하여 입력해주시기 바랍니다.")
+		if (num < 0) {
+			alert("비밀번호에 숫자 1자리 이상 입력해주시기 바랍니다");
+		}
+		if (eng < 0) {
+			alert("비밀번호에 영문 1자리 이상 입력해주시기 바랍니다");
+		}
+		if (spe < 0) {
+			alert("비밀번호에 특수문자 1자리 이상 입력해주시기 바랍니다");
 		}
 
-	})
+	}
+	if (password.match(/[^a-zA-Z0-9`~!@@#$%^&*|₩₩₩'₩";:₩/?]/) != null) {
+		alert("비밀번호는 숫자와 영문 또는 특수문자만 입력할 수 있습니다.");
+	}
 
-	$(document).on('blur', '#password2', function() {
+})
+
+	$(document).on('focusout', '#password2', function() {
 
 		password2 = $(this).val();
 

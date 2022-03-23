@@ -129,11 +129,13 @@ window.onload = function() {
 		var userId = check[0];
 		var phone = $('#phone' + no + '').val();
 		var entryDt = $('#entryDt' + no + '').val();
+		console.log(entryDt)
 		var gradeCd = '';
 		var gradeCheck = $('#memberCheck' + no + '').is(':checked');
 		var grpCd = $('#grpSelect' + no + '').val();
 		var regPhone = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-		var date = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		var date = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
+
 
 		if (gradeCheck) {
 			gradeCd = $('#memberCheck' + no + '').val();

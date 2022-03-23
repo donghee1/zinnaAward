@@ -161,7 +161,7 @@ window.onload = function() {
 					voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '" type="button" style="display:none;">투표참여</button>'
 					var resultBtn = '<button id="awardDetail" class="btn btn-primary bottom-btn" value="' + awardListData[i].VOT_ID + '" style="display:block; left:6%; top:5px;" type="button">결과확인</button>';
 				}
-			} else if (cookieGd ==3) {
+			} else if (cookieGd == 3) {
 				if (voteCheck == 0) {
 					console.log("Btn user start = ")
 					voteBtn = '<button id="awardGo"  class="btn btn-primary bottom-btn"' + 'value="' + awardListData[i].VOT_ID + '" type="button" style="display:block;">투표참여</button>'
