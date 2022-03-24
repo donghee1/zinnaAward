@@ -656,12 +656,13 @@ public class AwardRepository {
 		if (grade == 3) {
 			totalSize = awardMapper.awardMainListSize(user);
 			list = awardMapper.awardMainList(map);
+			System.out.println("user totalSize = " + totalSize);
 			list.add(0, totalSize);
 		} else if (grade <= 2) {
 			System.out.println("admin");
 			totalSize = awardMapper.awardMainAdminListSize();
 			list = awardMapper.awardMainAdminList(map);
-			System.out.println("totalSize = " + totalSize);
+			System.out.println("admin totalSize = " + totalSize);
 			list.add(0, totalSize);
 		}
 

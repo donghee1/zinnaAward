@@ -117,7 +117,9 @@ window.onload = function() {
 							//리스트의카운트가 될수있다.
 							var historyList = data.body;
 							if (historyList == undefined) {
-								$("#historyBtn").css('display', 'none')
+								if(historyList.length <= 3){
+									$("#historyBtn").css('display', 'none')	
+								}
 							} else {
 								historyTotalCnt = historyList[0].StatusCnt;
 								//메인 페이지 어워드 데이터 동적 태그 생성
