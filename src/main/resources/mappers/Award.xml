@@ -195,7 +195,7 @@
 		LEFT JOIN VOT_ITEM b ON a.VOT_ID = b.VOT_ID AND b.VOT_CD = c.VOT_RESULT_ID
 		LEFT JOIN (SELECT VOT_ID, COUNT(VOT_RESULT_ID) AS YCNT, COUNT(VOT_ID)
 		AS NCNT FROM VOT_RATE GROUP BY VOT_ID) d ON a.VOT_ID = d.VOT_ID 
-		ORDER BY a.VOT_ID DESC
+		ORDER BY a.VOT_ID DESC LIMIT #{before}, #{after}
 	</select>
 	
 	<select id="awardMainAdminListSize" resultType="map">

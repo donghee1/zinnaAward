@@ -87,16 +87,6 @@ window.onload = function() {
 
 			})
 
-
-
-
-
-
-
-
-
-
-
 		}
 
 	});

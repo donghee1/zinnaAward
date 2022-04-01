@@ -83,7 +83,7 @@ window.onload = function() {
 				list = data.body;
 				console.log("start list = " + JSON.stringify(list))
 					list = data.body;
-					listCnt = list[0].totalCnt
+					listCnt = list.length;
 					console.log("listCnt = " + listCnt)
 				pageLoad(listCnt)
 				awardList(list);
