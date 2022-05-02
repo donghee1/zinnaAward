@@ -284,7 +284,7 @@ window.onload = function() {
 					$('#file_btn').text("선택완료")
 				}
 			});
-
+			
 			$("#result_submit").click(function() {
 				giftCd = $('#result_gift_select').val();
 				var money = $('#result_money').val();
@@ -303,7 +303,7 @@ window.onload = function() {
 				}
 				let fileForm = $('#uploadForm')[0];
 				var formData = new FormData(fileForm);
-				console.log("file = " + formData)
+				console.log("file = " + JSON.stringify(formData))
 
 				$.ajax({
 					type: "post",
